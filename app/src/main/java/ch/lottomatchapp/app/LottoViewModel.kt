@@ -1,0 +1,236 @@
+package ch.lottomatchapp.app
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import ch.lottomatchapp.app.R
+import ch.lottomatchapp.app.data.LottoCard
+import ch.lottomatchapp.app.data.LottoDataRepository
+import ch.lottomatchapp.app.data.LottoUndoState
+import ch.lottomatchapp.app.stats.DailySummary
+import ch.lottomatchapp.app.stats.RoundStatistics
+import ch.lottomatchapp.app.util.getStatsDate
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalDateTime
+
+class LottoViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository = LottoDataRepository.getInstance(application)
+
+    private val _cards = MutableStateFlow<List<LottoCard>>(emptyList())
+    val cards = _cards.asStateFlow()
+
+    private val _winRows = MutableStateFlow(1)
+    val winRows = _winRows.asStateFlow()
+
+    private val _history = MutableStateFlow<List<Int>>(emptyList())
+    val history = _history.asStateFlow()
+
+    private val _lastNumber = MutableStateFlow<Int?>(null)
+    val lastNumber = _lastNumber.asStateFlow()
+
+    private val _undoState = MutableStateFlow<LottoUndoState?>(null)
+    val canUndo = MutableStateFlow(false)
+    val undoLabel = MutableStateFlow("")
+
+    val allRounds: List<RoundStatistics> get() = repository.loadAllRounds()
+    val allSummaries: Map<LocalDate, DailySummary> get() = repository.loadAllSummaries()
+
+    init {
+        viewModelScope.launch {
+            repository.appData.collect { data ->
+                _cards.value = data.cards
+                _winRows.value = data.winRows
+                _history.value = data.history
+                _lastNumber.value = data.lastNumber
+                _undoState.value = data.undoState
+                canUndo.value = data.undoState != null
+                undoLabel.value = data.undoState?.description ?: ""
+            }
+        }
+    }
+
+    private fun updateState(description: String, transform: (LottoUndoState) -> LottoUndoState) {
+        val baseState = LottoUndoState(
+            description = undoLabel.value,
+            cards = _cards.value,
+            winRows = _winRows.value,
+            history = _history.value,
+            lastNumber = _lastNumber.value,
+            undoState = _undoState.value
+        )
+        // Transform anwenden und neue Undo-Kette aufbauen:
+        // neuer Zustand zeigt auf den vorherigen Zustand.
+        val transformed = transform(baseState)
+        val trimmedBase = trimUndoChain(baseState, MAX_UNDO_DEPTH - 1)
+        val newState = transformed.copy(
+            description = description,
+            undoState = trimmedBase
+        )
+        undoLabel.value = description
+        canUndo.value = true
+        repository.saveUndoState(newState)
+    }
+
+    fun addCard() {
+        if (_cards.value.size >= MAX_CARDS) return
+        val newIndex = _cards.value.size + 1
+        val defaultName = getApplication<Application>().getString(R.string.card_title, newIndex)
+        updateState("New card added") {
+            it.copy(cards = _cards.value + LottoCard(name = defaultName))
+        }
+    }
+
+    fun deleteCard(index: Int) {
+        updateState("Card ${index + 1} deleted") {
+            it.copy(cards = _cards.value.filterIndexed { i, _ -> i != index })
+        }
+    }
+
+    fun updateCardFromEdit(index: Int, updatedCard: LottoCard) {
+        updateState("Cell on card ${index + 1} changed") {
+            it.copy(
+                cards = _cards.value.mapIndexed { i, card ->
+                    if (i == index) updatedCard else card
+                }
+            )
+        }
+    }
+
+    fun updateCardName(index: Int, newName: String) {
+        updateState("Card name changed") {
+            it.copy(
+                cards = _cards.value.mapIndexed { i, card ->
+                    if (i == index) card.copy(name = newName) else card
+                }
+            )
+        }
+    }
+
+    fun markNumberAcrossAll(number: Int): Boolean {
+        if (number !in 1..90 || _history.value.contains(number) || _lastNumber.value == number) {
+            return false
+        }
+        updateState("Number $number marked") {
+            it.copy(
+                cards = _cards.value.map { card -> card.markNumber(number) },
+                history = _lastNumber.value?.let { n -> _history.value + n } ?: _history.value,
+                lastNumber = number
+            )
+        }
+        return true
+    }
+
+    fun setWinRows(rows: Int) {
+        updateState("Win rows changed") { it.copy(winRows = rows) }
+    }
+
+    fun clearMarksOnCard(index: Int) {
+        updateState("Marks on card ${index + 1} cleared") {
+            it.copy(
+                cards = _cards.value.mapIndexed { i, card ->
+                    if (i == index) card.cleared() else card
+                }
+            )
+        }
+    }
+
+    fun applyScanToCard(index: Int, scannedCard: LottoCard) {
+        updateState("Scan applied to card ${index + 1}") {
+            it.copy(
+                cards = _cards.value.mapIndexed { i, c ->
+                    if (i == index) c.copy(cells = scannedCard.cells) else c
+                }
+            )
+        }
+    }
+
+    fun startNewRound() {
+        // First, finalize the current round's statistics.
+        val roundNumber = allRounds.size + 1
+        val drawnNumbers = _history.value + listOfNotNull(_lastNumber.value)
+
+        if (drawnNumbers.isNotEmpty()) {
+            val cardStates = _cards.value.map { it.toCardState() }
+            val winnersCount = _cards.value.count { it.completedRows().isNotEmpty() }
+            val maxCompletedRows = _cards.value.maxOfOrNull { it.completedRows().size } ?: 0
+
+            val round = RoundStatistics(
+                roundNumber = roundNumber,
+                date = getStatsDate(LocalDateTime.now()),
+                drawnNumbers = drawnNumbers,
+                cardStates = cardStates,
+                winnersCount = winnersCount,
+                maxCompletedRows = maxCompletedRows
+            )
+            repository.saveRound(round)
+        }
+
+        // Then, reset the state for a new round.
+        updateState("New round started") {
+            it.copy(
+                cards = _cards.value.map { card -> card.cleared() },
+                history = emptyList(),
+                lastNumber = null
+            )
+        }
+        _winRows.value = 1
+    }
+
+    
+    fun wipeAllCardsAndHistory() {
+        updateState("All cards cleared") {
+            it.copy(
+                cards = emptyList(),
+                history = emptyList(),
+                lastNumber = null
+            )
+        }
+    }
+
+    fun clearHistory(alsoUnmarkOnCards: Boolean = true) {
+        updateState("History cleared") {
+            val updatedCards = if (alsoUnmarkOnCards) {
+                val numbersToUnmark = _history.value + listOfNotNull(_lastNumber.value)
+                _cards.value.map { card -> card.unmarkNumbers(numbersToUnmark) }
+            } else _cards.value
+            it.copy(cards = updatedCards, history = emptyList(), lastNumber = null)
+        }
+    }
+
+    fun removeNumberFromHistory(number: Int, alsoUnmarkOnCards: Boolean = true) {
+        updateState("Number $number removed from history") {
+            val updatedCards = if (alsoUnmarkOnCards) {
+                _cards.value.map { card -> card.unmarkNumber(number) }
+            } else _cards.value
+
+            it.copy(
+                cards = updatedCards,
+                history = _history.value.filter { historyNumber -> historyNumber != number }
+            )
+        }
+    }
+
+    fun clearStatistics() {
+        repository.clearStatistics()
+    }
+
+    fun undo() {
+        _undoState.value?.let {
+            repository.restoreFromUndo(it)
+        }
+    }
+
+    companion object {
+        const val MAX_CARDS = 10
+        const val MAX_UNDO_DEPTH = 30
+
+        fun trimUndoChain(state: LottoUndoState?, depth: Int): LottoUndoState? {
+            if (state == null || depth <= 0) return null
+            return state.copy(undoState = trimUndoChain(state.undoState, depth - 1))
+        }
+    }
+}

@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">Menü</string>
+    <string name="undo">Rückgängig</string>
+    <string name="new_card">Neue Karte</string>
+    <string name="start_new_round">Neue Runde starten</string>
+    <string name="delete_all_cards">Alle Karten löschen</string>
+    <string name="history">Zahlenverlauf</string>
+    <string name="statistics">Statistik</string>
+    <string name="info">Info</string>
+    <string name="scan_or_enter_numbers_prompt">Zuerst eine Karte scannen oder die Zahlen auf der Karte eingeben.</string>
+    <string name="invalid_number_prompt">Gültige Zahl ist 1-90.</string>
+    <string name="number_already_drawn_prompt">Zahl %1$d wurde bereits gezogen.</string>
+    <string name="reset_all_confirmation_title">Alles zurücksetzen?</string>
+    <string name="reset_all_confirmation_message">Möchtest du wirklich alle Karten, Markierungen und den Zahlenverlauf unwiderruflich löschen?</string>
+    <string name="reset_all_confirm_button">Alles zurücksetzen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="undo_confirmation_title">Rückgängig?</string>
+    <string name="close">Schliessen</string>
+    <string name="info_dialog_title">Hinweis zur Bedienung</string>
+    <string name="info_dialog_line_1">• Wähle aus, wie viele Reihen für einen Gewinn benötigt werden.</string>
+    <string name="info_dialog_line_2">• Prüfe nach dem Scannen der Karte die Zahlen auf ihre Korrektheit.</string>
+    <string name="info_dialog_line_3">• Um eine Zahl auf der Karte zu ändern, halte das entsprechende Feld lange gedrückt.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">Statistik</string>
+    <string name="probability_label">Wahrscheinlichkeit für jede noch nicht gezogene Zahl:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">Gezogene Zahlen (%1$d)</string>
+    <string name="no_numbers_drawn_yet">Noch keine Zahlen gezogen.</string>
+    <string name="undrawn_numbers_label">Noch nicht gezogene Zahlen (%1$d)</string>
+    <string name="all_numbers_drawn">Alle Zahlen wurden gezogen!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">Zahlen-History</string>
+    <string name="no_numbers_entered_yet">Noch keine Zahlen eingegeben.</string>
+    <string name="last_number_label">Letzte Zahl: %1$d</string>
+    <string name="clear_history_button">History löschen</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">Karte %1$d</string>
+    <string name="numbers_to_win_label">Noch %1$d Zahl%2$s bis zum Gewinn</string>
+    <plurals name="lotto_win_message">
+        <item quantity="one">LOTTO: %1$d Reihe</item>
+        <item quantity="other">LOTTO: %1$d Reihen</item>
+    </plurals>
+    <string name="scan_successful_message">Karte %1$d: Scan übernommen.</string>
+    <string name="clear_card_confirmation_title">Karte leeren?</string>
+    <string name="clear_card_confirmation_message">Alle Markierungen dieser Karte werden entfernt.</string>
+    <string name="clear_button">Ja, leeren</string>
+    <string name="delete_card_confirmation_title">Karte löschen?</string>
+    <string name="delete_card_confirmation_message">Bei nur einer Karte werden Zahlen und Markierungen entfernt.</string>
+    <string name="delete_button">Ja, löschen</string>
+    <string name="actions">Aktionen</string>
+    <string name="scan">Scannen</string>
+    <string name="clear">Leeren</string>
+    <string name="delete">Löschen</string>
+    <string name="share">Teilen</string>
+    <string name="rename_card">Karte umbenennen</string>
+    <string name="win_label">Gewinn:</string>
+    <string name="edit_card_name_dialog_title">Kartenname ändern</string>
+    <string name="name_label">Name</string>
+
+    <!-- Number Entry Bar -->
+    <string name="enter_number_label">Zahl eingeben (1-90):</string>
+    <string name="last_drawn">Zuletzt</string>
+    <string name="remaining_numbers">Noch %1$d übrig</string>
+    <string name="number_entry_placeholder">z.B. 5 23 67</string>
+    <string name="mark_button">Markieren</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">Lottokarte scannen (auto)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">Erneut scannen</string>
+    <string name="scan_confirm_accept">Übernehmen</string>
+    <string name="scan_confirm_message">Gefundene Zahlen: %1$d von %2$d</string>
+    <string name="scan_confirm_title">Scan überprüfen</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">Zahl eingeben oder leer lassen</string>
+    <string name="ok">OK</string>
+    <string name="number_input_dialog_supporting_text">Erlaubt: %1$d-%2$d; leer = ohne Zahl</string>
+    <string name="camera_permission_denied_title">Kamerazugriff benötigt</string>
+    <string name="camera_permission_denied_message">Um Karten zu scannen, muss die App auf die Kamera zugreifen.</string>
+    <string name="request_again">Erneut anfragen</string>
+    <!-- Undo labels -->
+    <string name="undo_default_label">Letzte Änderung</string>
+    <string name="undo_change_win_rows">Anzahl Gewinnreihen geändert</string>
+    <string name="undo_add_card">Neue Karte hinzugefügt</string>
+    <string name="undo_card_deleted">Karte %1$d gelöscht</string>
+    <string name="undo_card_cleared">Karte geleert</string>
+    <string name="undo_clear_marks_for_card">Markierungen auf Karte %1$d gelöscht</string>
+    <string name="undo_cell_changed">Feld auf Karte %1$d geändert</string>
+    <string name="undo_scan_applied">Scan auf Karte %1$d übernommen</string>
+    <string name="undo_start_new_round">Neue Runde gestartet</string>
+    <string name="undo_wipe_all">Alle Karten geleert</string>
+    <string name="undo_number_marked">Zahl %1$d markiert</string>
+    <string name="undo_history_cleared">History gelöscht</string>
+    <string name="undo_number_removed_from_history">Zahl %1$d aus History entfernt</string>
+    <string name="undo_card_name_changed">Kartenname geändert</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">Noch keine Runden abgeschlossen.</string>    <string name="statistics_daily_summaries_title">Tagesübersichten</string>    <string name="statistics_no_daily_summaries">Keine Tagesübersichten vorhanden.</string>    <string name="statistics_date_label">Tagesübersicht – %1$s</string>    <string name="statistics_most_frequent_numbers">Häufigste gezogene Zahlen: %1$s</string>    <string name="statistics_least_frequent_numbers">Selten gezogene Zahlen: %1$s</string>    <string name="statistics_missing_numbers">Noch nicht gezogen: %1$s</string>
+    <string name="statistics_completed_rounds_title">Abgeschlossene Runden</string>
+    <string name="statistics_no_completed_rounds">Keine abgeschlossenen Runden.</string>
+    <string name="statistics_round_header">Runde %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">Gezogene Zahlen: %1$s</string>    <string name="statistics_delete_all_button">Statistik zurücksetzen</string>    <string name="statistics_delete_all_confirmation_title">Statistik zurücksetzen?</string>    <string name="statistics_delete_all_confirmation_message">Alle gespeicherten Statistiken werden gelöscht. Dieser Vorgang kann nicht rückgängig gemacht werden.</string>
+    <string name="statistics_delete_all_confirm_button">Löschen</string>
+
+    <string name="history_card_summary_line">  • %1$s: %2$d fehlten</string>
+    <string name="row_singular">Reihe</string>
+    <string name="row_plural">Reihen</string>
+    <string name="statistics_rounds_and_draws">Runden: %1$d · Gezogene Zahlen: %2$d</string>
+
+    <string name="statistics_round_winners_line">Gewinner: %1$d · Max. volle Reihen: %2$d</string>
+
+    <string name="statistics_global_top5">Häufigste Zahlen (alle Runden): %1$s</string>
+
+    <string name="no_cards_cta">Erste Karte erstellen</string>
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Karte scannen</string>
+    <string name="onboarding_body_1">Füge eine neue Karte hinzu und scanne sie mit der Kamera. Die Zahlen werden automatisch erkannt.</string>
+    <string name="onboarding_title_2">Zahlen markieren</string>
+    <string name="onboarding_body_2">Gib die gezogenen Zahlen ein – auch mehrere auf einmal. Lange auf ein Feld drücken, um es zu bearbeiten.</string>
+    <string name="onboarding_title_3">Gewinn prüfen</string>
+    <string name="onboarding_body_3">Wähle aus, wie viele Reihen zum Gewinn nötig sind. Bei einem Treffer gibt es Konfetti!</string>
+    <string name="onboarding_skip">Überspringen</string>
+    <string name="onboarding_next">Weiter</string>
+    <string name="onboarding_done">Los geht\'s!</string>
+
+    <string name="statistics_chart_title">Top 10 häufigste Zahlen</string>
+    <string name="about_app">Über die App</string>
+
+</resources>
