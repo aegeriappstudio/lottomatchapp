@@ -27,7 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "lottomatch.db"
-                ).allowMainThreadQueries().build().also { INSTANCE = it }
+                ).build().also { INSTANCE = it }
             }
     }
 }

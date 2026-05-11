@@ -7,6 +7,10 @@ import ch.lottomatchapp.app.data.db.RoundEntity
 import ch.lottomatchapp.app.data.db.SummaryEntity
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.time.LocalDate
 
 private const val TAG = "StatisticsRepository"
@@ -18,15 +22,41 @@ class StatisticsRepository(context: Context) {
     private val roundDao = db.roundDao()
     private val summaryDao = db.summaryDao()
 
-    init {
-        try {
-            migrateFromSharedPreferences()
-        } catch (e: Exception) {
-            Log.e(TAG, "Migration failed during init", e)
+    @Volatile private var migrated = false
+    private val migrationMutex = Mutex()
+
+    val roundsFlow: Flow<List<RoundStatistics>> = roundDao.observeAll().map { entities ->
+        mapEntitiesToRounds(entities)
+    }
+
+    val summariesFlow: Flow<Map<LocalDate, DailySummary>> = summaryDao.observeAll().map { entities ->
+        entities.associate { entity ->
+            entity.date to DailySummary(
+                date = entity.date,
+                mostFrequentNumbers = entity.mostFrequentNumbers,
+                leastFrequentNumbers = entity.leastFrequentNumbers,
+                missingNumbers = entity.missingNumbers,
+                totalRounds = entity.totalRounds,
+                totalDraws = entity.totalDraws,
+                averageDrawsPerRound = entity.averageDrawsPerRound
+            )
         }
     }
 
-    fun saveRound(round: RoundStatistics) {
+    suspend fun ensureMigrated() {
+        if (migrated) return
+        migrationMutex.withLock {
+            if (migrated) return
+            try {
+                migrateFromSharedPreferences()
+            } catch (e: Exception) {
+                Log.e(TAG, "Migration from SharedPreferences failed", e)
+            }
+            migrated = true
+        }
+    }
+
+    suspend fun saveRound(round: RoundStatistics) {
         val entity = RoundEntity(
             roundNumber = round.roundNumber,
             date = round.date,
@@ -36,37 +66,16 @@ class StatisticsRepository(context: Context) {
             cardStatesJson = GsonBuilder().create().toJson(round.cardStates)
         )
         roundDao.insert(entity)
-
-        val allRounds = getAllRounds()
+        val allRounds = mapEntitiesToRounds(roundDao.getAllOnce())
         updateDailySummary(round.date, allRounds)
     }
 
-    fun getAllRounds(): List<RoundStatistics> {
-        return try {
-            val gson = GsonBuilder().create()
-            roundDao.getAll().map { entity ->
-                val cardStates: List<CardState> = try {
-                    val type = object : TypeToken<List<CardState>>() {}.type
-                    gson.fromJson(entity.cardStatesJson, type) ?: emptyList()
-                } catch (e: Exception) {
-                    emptyList()
-                }
-                RoundStatistics(
-                    date = entity.date,
-                    roundNumber = entity.roundNumber,
-                    drawnNumbers = entity.drawnNumbers,
-                    cardStates = cardStates,
-                    winnersCount = entity.winnersCount,
-                    maxCompletedRows = entity.maxCompletedRows
-                )
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Failed to load rounds from Room", e)
-            emptyList()
-        }
+    suspend fun clearAll() {
+        roundDao.deleteAll()
+        summaryDao.deleteAll()
     }
 
-    private fun updateDailySummary(date: LocalDate, allRounds: List<RoundStatistics>) {
+    private suspend fun updateDailySummary(date: LocalDate, allRounds: List<RoundStatistics>) {
         val roundsForDate = allRounds.filter { it.date == date }
         val summary = calculateDailySummary(date, roundsForDate)
         val entity = SummaryEntity(
@@ -81,73 +90,59 @@ class StatisticsRepository(context: Context) {
         summaryDao.upsert(entity)
     }
 
-    fun getAllSummaries(): Map<String, DailySummary> {
-        return try {
-            summaryDao.getAll().associate { entity ->
-                entity.date.toString() to DailySummary(
-                    date = entity.date,
-                    mostFrequentNumbers = entity.mostFrequentNumbers,
-                    leastFrequentNumbers = entity.leastFrequentNumbers,
-                    missingNumbers = entity.missingNumbers,
-                    totalRounds = entity.totalRounds,
-                    totalDraws = entity.totalDraws,
-                    averageDrawsPerRound = entity.averageDrawsPerRound
-                )
+    private fun mapEntitiesToRounds(entities: List<RoundEntity>): List<RoundStatistics> {
+        val gson = GsonBuilder().create()
+        return entities.map { entity ->
+            val cardStates: List<CardState> = try {
+                val type = object : TypeToken<List<CardState>>() {}.type
+                gson.fromJson<List<CardState>>(entity.cardStatesJson, type) ?: emptyList()
+            } catch (e: Exception) {
+                emptyList()
             }
-        } catch (e: Exception) {
-            Log.e(TAG, "Failed to load summaries from Room", e)
-            emptyMap()
+            RoundStatistics(
+                date = entity.date,
+                roundNumber = entity.roundNumber,
+                drawnNumbers = entity.drawnNumbers,
+                cardStates = cardStates,
+                winnersCount = entity.winnersCount,
+                maxCompletedRows = entity.maxCompletedRows
+            )
         }
     }
 
-    fun clearAll() {
-        roundDao.deleteAll()
-        summaryDao.deleteAll()
-    }
-
-    /**
-     * Migriert alte SharedPreferences-Daten einmalig nach Room.
-     */
-    private fun migrateFromSharedPreferences() {
+    private suspend fun migrateFromSharedPreferences() {
         val prefs = appContext.getSharedPreferences("ch.lottomatchapp.app.stats", Context.MODE_PRIVATE)
         val roundsJson = prefs.getString("rounds", null) ?: return
 
-        // Nur migrieren wenn Room noch leer ist
-        if (roundDao.getAll().isNotEmpty()) return
+        if (roundDao.getAllOnce().isNotEmpty()) return
 
-        try {
-            val gson = GsonBuilder()
-                .registerTypeAdapter(LocalDate::class.java, LocalDateAdapter())
-                .create()
-            val type = object : TypeToken<List<RoundStatistics>>() {}.type
-            val oldRounds: List<RoundStatistics> = gson.fromJson(roundsJson, type) ?: return
+        val gson = GsonBuilder()
+            .registerTypeAdapter(LocalDate::class.java, LocalDateAdapter())
+            .create()
+        val type = object : TypeToken<List<RoundStatistics>>() {}.type
+        val oldRounds: List<RoundStatistics> = gson.fromJson(roundsJson, type) ?: return
 
-            val cardGson = GsonBuilder().create()
-            oldRounds.forEach { round ->
-                roundDao.insert(
-                    RoundEntity(
-                        roundNumber = round.roundNumber,
-                        date = round.date,
-                        drawnNumbers = round.drawnNumbers,
-                        winnersCount = round.winnersCount,
-                        maxCompletedRows = round.maxCompletedRows,
-                        cardStatesJson = cardGson.toJson(round.cardStates)
-                    )
+        val cardGson = GsonBuilder().create()
+        oldRounds.forEach { round ->
+            roundDao.insert(
+                RoundEntity(
+                    roundNumber = round.roundNumber,
+                    date = round.date,
+                    drawnNumbers = round.drawnNumbers,
+                    winnersCount = round.winnersCount,
+                    maxCompletedRows = round.maxCompletedRows,
+                    cardStatesJson = cardGson.toJson(round.cardStates)
                 )
-            }
-
-            // Summaries neu berechnen
-            val allRounds = getAllRounds()
-            allRounds.map { it.date }.distinct().forEach { date ->
-                updateDailySummary(date, allRounds)
-            }
-
-            // Alte SharedPrefs löschen nach erfolgreicher Migration
-            prefs.edit().clear().apply()
-            Log.i(TAG, "Migrated ${oldRounds.size} rounds from SharedPreferences to Room")
-        } catch (e: Exception) {
-            Log.e(TAG, "Migration from SharedPreferences failed", e)
+            )
         }
+
+        val allRounds = mapEntitiesToRounds(roundDao.getAllOnce())
+        allRounds.map { it.date }.distinct().forEach { date ->
+            updateDailySummary(date, allRounds)
+        }
+
+        prefs.edit().clear().apply()
+        Log.i(TAG, "Migrated ${oldRounds.size} rounds from SharedPreferences to Room")
     }
 
     companion object {

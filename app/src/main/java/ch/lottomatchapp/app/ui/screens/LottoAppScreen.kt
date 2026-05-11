@@ -73,6 +73,8 @@ fun LottoAppScreen(
     val canUndo by viewModel.canUndo.collectAsState()
     val undoLabel by viewModel.undoLabel.collectAsState()
     val lastNumber by viewModel.lastNumber.collectAsState()
+    val allRounds by viewModel.allRounds.collectAsState()
+    val allSummaries by viewModel.allSummaries.collectAsState()
 
     val context = LocalContext.current
     val haptics = LocalHapticFeedback.current
@@ -290,9 +292,7 @@ fun LottoAppScreen(
             val drawnNumbersCount = history.size + if (lastNumber != null) 1 else 0
 
             NumberEntryBar(
-                history = history,
                 lastNumber = lastNumber,
-                onShowHistory = { if (history.isNotEmpty()) showHistory = true },
                 remainingNumbers = 90 - drawnNumbersCount,
                 onSubmitNumber = { n ->
                     val hasAnyNumbers = cards.any { it.countNumbers() > 0 }
@@ -457,8 +457,8 @@ fun LottoAppScreen(
     if (showStatistics) {
         StatisticsSheet(
             onDismiss = { showStatistics = false },
-            rounds = viewModel.allRounds,
-            summaries = viewModel.allSummaries.values.toList(),
+            rounds = allRounds,
+            summaries = allSummaries.values.toList(),
             onDeleteAllStatistics = { viewModel.clearStatistics() }
         )
     }

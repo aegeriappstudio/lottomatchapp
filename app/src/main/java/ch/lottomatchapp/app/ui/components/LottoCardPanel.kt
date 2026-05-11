@@ -8,9 +8,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas as AndroidCanvas
-import android.view.View
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
@@ -23,7 +20,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.FileProvider
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.pluralStringResource
@@ -127,7 +123,7 @@ fun LottoCardPanel(
             }
 
             Text(
-                text = stringResource(R.string.numbers_to_win_label, missingForWin, if (missingForWin != 1) "en" else ""),
+                text = pluralStringResource(R.plurals.numbers_to_win_label, missingForWin, missingForWin),
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.padding(bottom = 4.dp)
             )

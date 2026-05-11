@@ -18,36 +18,16 @@
     <string name="reset_all_confirm_button">Reset All</string>
     <string name="cancel">Cancel</string>
     <string name="undo_confirmation_title">Undo?</string>
-    <string name="close">Schliessen</string>
-<string name="info_dialog_title">Hinweis zur Bedienung</string>
-    <string name="info_bullet_1">Im Menu eine neue Karte hinzufügen.</string>
-    <string name="info_bullet_2">Es können bis zu 20 Karten hinzugefügt werden.</string>
-    <string name="info_bullet_3">Bei jeder Karte auf Scannen klicken, um die persönliche Karte zu erfassen.</string>
-    <string name="info_bullet_4">Prüfe nach dem Scannen der Karte die Zahlen auf ihre Korrektheit.</string>
-    <string name="info_bullet_5">Um eine Zahl auf der Karte zu ändern, halte das entsprechende Feld lange gedrückt.</string>
-    <string name="info_bullet_6">Wähle beim Gewinn aus, wieviele Reihen zum Gewinn notwendig sind.</string>
-    <string name="info_bullet_7">Neue Runde starten, um mit den bestehenden Karten weiterzuspielen.</string>
-    <string name="info_bullet_8">Jede Karte kann umbenannt werden.</string>
-
-    <string name="info_dialog_text">• Im Menu eine neue Karte hinzufügen.
-• Es können bis zu 20 Karten hinzugefügt werden.
-
-• Bei jeder Karte auf Scannen klicken, um die persönliche Karte zu erfassen.
-• Prüfe nach dem Scannen der Karte die Zahlen auf ihre Korrektheit.
-• Um eine Zahl auf der Karte zu ändern, halte das entsprechende Feld lange gedrückt.
-
-• Wähle beim Gewinn aus, wieviele Reihen zum Gewinn notwendig sind.
-• Neue Runde starten, um mit den bestehenden Karten weiterzuspielen.
-• Jede Karte kann umbenannt werden.</string>
-    <string name="info_dialog_line_1">• Im Menu eine neue Karte hinzufügen.
-• Es können bis zu 20 Karten hinzugefügt werden.
-• Bei jeder Karte auf „Scannen“ tippen, um die persönliche Karte zu erfassen.</string>
-    <string name="info_dialog_line_2">• Prüfe nach dem Scannen der Karte die Zahlen auf ihre Korrektheit.
-• Um eine Zahl auf der Karte zu ändern, halte das entsprechende Feld lange gedrückt.</string>
-    <string name="info_dialog_line_3">• Wähle beim Gewinn aus, wie viele Reihen zum Gewinn notwendig sind.
-• „Neue Runde“ starten, um mit den bestehenden Karten weiterzuspielen.
-• Jede Karte kann umbenannt werden.</string>
-
+    <string name="close">Close</string>
+    <string name="info_dialog_title">How to use</string>
+    <string name="info_bullet_1">Add a new card from the menu.</string>
+    <string name="info_bullet_2">Up to 30 cards can be added.</string>
+    <string name="info_bullet_3">Tap Scan on a card to capture your personal lotto ticket.</string>
+    <string name="info_bullet_4">After scanning, double-check the recognised numbers.</string>
+    <string name="info_bullet_5">To edit a number on a card, long-press the cell.</string>
+    <string name="info_bullet_6">Choose how many rows are required to win.</string>
+    <string name="info_bullet_7">Start a new round to keep playing with the existing cards.</string>
+    <string name="info_bullet_8">Every card can be renamed.</string>
 
     <!-- Statistics -->
     <string name="statistics_title">Statistics</string>
@@ -66,7 +46,10 @@
 
     <!-- LottoCardPanel -->
     <string name="card_title">Card %1$d</string>
-    <string name="numbers_to_win_label">%1$d number%2$s to win</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">%1$d number to win</item>
+        <item quantity="other">%1$d numbers to win</item>
+    </plurals>
     <plurals name="lotto_win_message">
         <item quantity="one">LOTTO: %1$d row</item>
         <item quantity="other">LOTTO: %1$d rows</item>
@@ -92,7 +75,7 @@
     <string name="enter_number_label">Enter number (1-90):</string>
     <string name="last_drawn">Last</string>
     <string name="remaining_numbers">%1$d left</string>
-    <string name="number_entry_placeholder">z.B. 5 23 67</string>
+    <string name="number_entry_placeholder">e.g. 5 23 67</string>
     <string name="mark_button">Mark</string>
 
     <!-- Scanner -->
@@ -102,6 +85,7 @@
     <string name="scan_confirm_accept">Apply</string>
     <string name="scan_confirm_message">Detected numbers: %1$d of %2$d</string>
     <string name="scan_confirm_title">Check scan</string>
+    <string name="scan_preview_legend">Coloured cells = detected numbers, empty cells = not detected.</string>
 
     <!-- Dialogs -->
     <string name="number_input_dialog_title">Enter number or leave empty</string>
@@ -110,6 +94,7 @@
     <string name="camera_permission_denied_title">Camera Access Required</string>
     <string name="camera_permission_denied_message">To scan cards, the app needs to access the camera.</string>
     <string name="request_again">Request Again</string>
+
     <!-- Undo labels -->
     <string name="undo_default_label">Last action</string>
     <string name="undo_change_win_rows">Win rows changed</string>
@@ -127,56 +112,62 @@
     <string name="undo_card_name_changed">Card name changed</string>
 
     <!-- Statistics sheet -->
-    <string name="statistics_no_rounds_yet">No rounds completed yet.</string>    <string name="statistics_daily_summaries_title">Daily overviews</string>    <string name="statistics_no_daily_summaries">No daily overviews available.</string>    <string name="statistics_date_label">Daily overview – %1$s</string>
+    <string name="statistics_no_rounds_yet">No rounds completed yet.</string>
+    <string name="statistics_daily_summaries_title">Daily overviews</string>
+    <string name="statistics_no_daily_summaries">No daily overviews available.</string>
+    <string name="statistics_date_label">Daily overview – %1$s</string>
     <string name="statistics_most_frequent_numbers">Most frequent numbers: %1$s</string>
-    <string name="statistics_least_frequent_numbers">Least frequent numbers: %1$s</string>    <string name="statistics_missing_numbers">Not yet drawn: %1$s</string>
+    <string name="statistics_least_frequent_numbers">Least frequent numbers: %1$s</string>
+    <string name="statistics_missing_numbers">Not yet drawn: %1$s</string>
     <string name="statistics_completed_rounds_title">Completed Rounds</string>
     <string name="statistics_no_completed_rounds">No completed rounds.</string>
     <string name="statistics_round_header">Round %1$d (%2$s)</string>
-    <string name="statistics_drawn_numbers_label">Drawn numbers: %1$s</string>    <string name="statistics_delete_all_button">Reset statistics</string>    <string name="statistics_delete_all_confirmation_title">Reset statistics?</string>    <string name="statistics_delete_all_confirmation_message">Delete all saved statistics? This action cannot be undone.</string>
-    <string name="statistics_delete_all_confirm_button">Delete</string>    <string name="statistics_rounds_and_draws">Rounds: %1$d · Drawn numbers: %2$d</string>
-    <string name="statistics_round_winners_line">Winners: %1$d · Max completed rows: %2$d</string>    <string name="statistics_global_top5">Most frequent numbers (all rounds): %1$s</string>
+    <string name="statistics_drawn_numbers_label">Drawn numbers: %1$s</string>
+    <string name="statistics_delete_all_button">Reset statistics</string>
+    <string name="statistics_delete_all_confirmation_title">Reset statistics?</string>
+    <string name="statistics_delete_all_confirmation_message">Delete all saved statistics? This action cannot be undone.</string>
+    <string name="statistics_delete_all_confirm_button">Delete</string>
+    <string name="statistics_rounds_and_draws">Rounds: %1$d · Drawn numbers: %2$d</string>
+    <string name="statistics_round_winners_line">Winners: %1$d · Max completed rows: %2$d</string>
+    <string name="statistics_global_top5">Most frequent numbers (all rounds): %1$s</string>
+    <string name="statistics_chart_title">Top 10 most frequent numbers</string>
     <string name="history_card_summary_line">  • %1$s: %2$d were missing</string>
     <string name="row_singular">row</string>
     <string name="row_plural">rows</string>
 
     <!-- Legal / privacy -->
-    <string name="legal">Rechtliches</string>
-    <string name="privacy_policy">Datenschutzerklärung</string>
-    <string name="terms_of_service">Nutzungsbedingungen</string>
-    <string name="legal_info_title">Rechtliche Hinweise</string>
-    <string name="legal_info_body">Lottomatch wird von Aegeri App Studio entwickelt und funktioniert vollständig offline. Detaillierte Informationen findest du in der Datenschutzerklärung und den Nutzungsbedingungen.</string>
+    <string name="legal">Legal</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="legal_info_title">Legal notice</string>
+    <string name="legal_info_body">Lottomatch is developed by Aegeri App Studio and works fully offline. Detailed information is available in the privacy policy and terms of service.</string>
 
-    <!-- Feedback & rating -->
+    <!-- Feedback &amp; rating -->
     <string name="about_app">About the App</string>
     <string name="feedback">Feedback</string>
     <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
-    <string name="feedback_email_subject">Feedback zu Lottomatch (Android)</string>
-    <string name="feedback_email_chooser">Feedback senden mit …</string>
+    <string name="feedback_email_subject">Feedback for Lottomatch (Android)</string>
+    <string name="feedback_email_chooser">Send feedback with…</string>
 
-    <string name="rating_dialog_title">Gefällt dir Lottomatch?</string>
-    <string name="rating_dialog_body">Wenn dir die App hilft, deine Lotto-Karten schneller zu prüfen, freuen wir uns über eine Bewertung im Play Store.</string>
-    <string name="rating_now">Jetzt bewerten</string>
-    <string name="rating_later">Später</string>
-    <string name="rating_never">Nicht mehr fragen</string>
+    <string name="rating_dialog_title">Do you like Lottomatch?</string>
+    <string name="rating_dialog_body">If the app helps you check your lotto cards faster, we would appreciate a rating on the Play Store.</string>
+    <string name="rating_now">Rate now</string>
+    <string name="rating_later">Later</string>
+    <string name="rating_never">Don\'t ask again</string>
 
     <!-- Empty state -->
-    <string name="no_cards_title">Noch keine Karte erfasst</string>
-    <string name="no_cards_body">Füge im Menu eine neue Karte hinzu und scanne deinen ersten Lottozettel.</string>
-    <string name="no_cards_cta">Erste Karte erstellen</string>
+    <string name="no_cards_title">No cards yet</string>
+    <string name="no_cards_body">Add a new card from the menu and scan your first lotto ticket.</string>
+    <string name="no_cards_cta">Create first card</string>
 
-    <!-- Scan preview legend -->
     <!-- Onboarding -->
-    <string name="onboarding_title_1">Karte scannen</string>
-    <string name="onboarding_body_1">Füge eine neue Karte hinzu und scanne sie mit der Kamera. Die Zahlen werden automatisch erkannt.</string>
-    <string name="onboarding_title_2">Zahlen markieren</string>
-    <string name="onboarding_body_2">Gib die gezogenen Zahlen ein – auch mehrere auf einmal. Lange auf ein Feld drücken, um es zu bearbeiten.</string>
-    <string name="onboarding_title_3">Gewinn prüfen</string>
-    <string name="onboarding_body_3">Wähle aus, wie viele Reihen zum Gewinn nötig sind. Bei einem Treffer gibt es Konfetti!</string>
-    <string name="onboarding_skip">Überspringen</string>
-    <string name="onboarding_next">Weiter</string>
-    <string name="onboarding_done">Los geht\'s!</string>
-
-    <string name="statistics_chart_title">Top 10 häufigste Zahlen</string>
-    <string name="scan_preview_legend">Eingefärbte Felder = erkannte Zahlen, leere Felder = nicht erkannt.</string>
+    <string name="onboarding_title_1">Scan a card</string>
+    <string name="onboarding_body_1">Add a new card and scan it with the camera. The numbers will be detected automatically.</string>
+    <string name="onboarding_title_2">Mark numbers</string>
+    <string name="onboarding_body_2">Enter the drawn numbers — one or many at once. Long-press a cell to edit it.</string>
+    <string name="onboarding_title_3">Check for wins</string>
+    <string name="onboarding_body_3">Choose how many rows are required to win. There\'s confetti when you hit it!</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_done">Let\'s go!</string>
 </resources>

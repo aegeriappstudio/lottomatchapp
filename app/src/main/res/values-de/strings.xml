@@ -20,9 +20,14 @@
     <string name="undo_confirmation_title">Rückgängig?</string>
     <string name="close">Schliessen</string>
     <string name="info_dialog_title">Hinweis zur Bedienung</string>
-    <string name="info_dialog_line_1">• Wähle aus, wie viele Reihen für einen Gewinn benötigt werden.</string>
-    <string name="info_dialog_line_2">• Prüfe nach dem Scannen der Karte die Zahlen auf ihre Korrektheit.</string>
-    <string name="info_dialog_line_3">• Um eine Zahl auf der Karte zu ändern, halte das entsprechende Feld lange gedrückt.</string>
+    <string name="info_bullet_1">Im Menu eine neue Karte hinzufügen.</string>
+    <string name="info_bullet_2">Es können bis zu 30 Karten hinzugefügt werden.</string>
+    <string name="info_bullet_3">Bei jeder Karte auf Scannen klicken, um die persönliche Karte zu erfassen.</string>
+    <string name="info_bullet_4">Prüfe nach dem Scannen der Karte die Zahlen auf ihre Korrektheit.</string>
+    <string name="info_bullet_5">Um eine Zahl auf der Karte zu ändern, halte das entsprechende Feld lange gedrückt.</string>
+    <string name="info_bullet_6">Wähle beim Gewinn aus, wieviele Reihen zum Gewinn notwendig sind.</string>
+    <string name="info_bullet_7">Neue Runde starten, um mit den bestehenden Karten weiterzuspielen.</string>
+    <string name="info_bullet_8">Jede Karte kann umbenannt werden.</string>
 
     <!-- Statistics -->
     <string name="statistics_title">Statistik</string>
@@ -41,7 +46,10 @@
 
     <!-- LottoCardPanel -->
     <string name="card_title">Karte %1$d</string>
-    <string name="numbers_to_win_label">Noch %1$d Zahl%2$s bis zum Gewinn</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">Noch %1$d Zahl bis zum Gewinn</item>
+        <item quantity="other">Noch %1$d Zahlen bis zum Gewinn</item>
+    </plurals>
     <plurals name="lotto_win_message">
         <item quantity="one">LOTTO: %1$d Reihe</item>
         <item quantity="other">LOTTO: %1$d Reihen</item>

@@ -6,6 +6,7 @@ import ch.lottomatchapp.app.persistence.encodeState
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.stats.StatisticsRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,6 +33,9 @@ class LottoDataRepository private constructor(context: Context) {
 
     private val _appData = MutableStateFlow(loadInitialState())
     val appData: StateFlow<AppData> = _appData.asStateFlow()
+
+    val roundsFlow: Flow<List<RoundStatistics>> = statsRepo.roundsFlow
+    val summariesFlow: Flow<Map<LocalDate, DailySummary>> = statsRepo.summariesFlow
 
     private fun loadInitialState(): AppData {
         val encoded = prefs.getString(KEY_STATE, null)
@@ -83,18 +87,11 @@ class LottoDataRepository private constructor(context: Context) {
 
     // --- Statistik-Fassade ---
 
-    fun loadAllRounds(): List<RoundStatistics> = statsRepo.getAllRounds()
+    suspend fun ensureStatsMigrated() = statsRepo.ensureMigrated()
 
-    fun loadAllSummaries(): Map<LocalDate, DailySummary> =
-        statsRepo.getAllSummaries().mapKeys { (key, _) -> LocalDate.parse(key) }
+    suspend fun saveRound(round: RoundStatistics) = statsRepo.saveRound(round)
 
-    fun saveRound(round: RoundStatistics) {
-        statsRepo.saveRound(round)
-    }
-
-    fun clearStatistics() {
-        statsRepo.clearAll()
-    }
+    suspend fun clearStatistics() = statsRepo.clearAll()
 
     companion object {
         private const val PREFS_NAME = "ch.lottomatchapp.app"

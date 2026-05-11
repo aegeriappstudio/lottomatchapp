@@ -33,10 +33,8 @@ import ch.lottomatchapp.app.R
 
 @Composable
 fun NumberEntryBar(
-    history: List<Int>,
     lastNumber: Int?,
     remainingNumbers: Int,
-    onShowHistory: () -> Unit,
     onSubmitNumber: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {

@@ -11,7 +11,10 @@ import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.util.getStatsDate
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -36,10 +39,16 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     val canUndo = MutableStateFlow(false)
     val undoLabel = MutableStateFlow("")
 
-    val allRounds: List<RoundStatistics> get() = repository.loadAllRounds()
-    val allSummaries: Map<LocalDate, DailySummary> get() = repository.loadAllSummaries()
+    val allRounds: StateFlow<List<RoundStatistics>> = repository.roundsFlow
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    val allSummaries: StateFlow<Map<LocalDate, DailySummary>> = repository.summariesFlow
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
 
     init {
+        viewModelScope.launch {
+            repository.ensureStatsMigrated()
+        }
         viewModelScope.launch {
             repository.appData.collect { data ->
                 _cards.value = data.cards
@@ -149,38 +158,38 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun startNewRound() {
-        // First, finalize the current round's statistics.
-        val roundNumber = allRounds.size + 1
-        val drawnNumbers = _history.value + listOfNotNull(_lastNumber.value)
+        viewModelScope.launch {
+            val roundNumber = allRounds.value.size + 1
+            val drawnNumbers = _history.value + listOfNotNull(_lastNumber.value)
 
-        if (drawnNumbers.isNotEmpty()) {
-            val cardStates = _cards.value.map { it.toCardState() }
-            val winnersCount = _cards.value.count { it.completedRows().isNotEmpty() }
-            val maxCompletedRows = _cards.value.maxOfOrNull { it.completedRows().size } ?: 0
+            if (drawnNumbers.isNotEmpty()) {
+                val cardStates = _cards.value.map { it.toCardState() }
+                val winnersCount = _cards.value.count { it.completedRows().isNotEmpty() }
+                val maxCompletedRows = _cards.value.maxOfOrNull { it.completedRows().size } ?: 0
 
-            val round = RoundStatistics(
-                roundNumber = roundNumber,
-                date = getStatsDate(LocalDateTime.now()),
-                drawnNumbers = drawnNumbers,
-                cardStates = cardStates,
-                winnersCount = winnersCount,
-                maxCompletedRows = maxCompletedRows
-            )
-            repository.saveRound(round)
+                val round = RoundStatistics(
+                    roundNumber = roundNumber,
+                    date = getStatsDate(LocalDateTime.now()),
+                    drawnNumbers = drawnNumbers,
+                    cardStates = cardStates,
+                    winnersCount = winnersCount,
+                    maxCompletedRows = maxCompletedRows
+                )
+                repository.saveRound(round)
+            }
+
+            updateState("New round started") {
+                it.copy(
+                    cards = _cards.value.map { card -> card.cleared() },
+                    history = emptyList(),
+                    lastNumber = null,
+                    winRows = 1
+                )
+            }
         }
-
-        // Then, reset the state for a new round.
-        updateState("New round started") {
-            it.copy(
-                cards = _cards.value.map { card -> card.cleared() },
-                history = emptyList(),
-                lastNumber = null
-            )
-        }
-        _winRows.value = 1
     }
 
-    
+
     fun wipeAllCardsAndHistory() {
         updateState("All cards cleared") {
             it.copy(
@@ -215,7 +224,9 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun clearStatistics() {
-        repository.clearStatistics()
+        viewModelScope.launch {
+            repository.clearStatistics()
+        }
     }
 
     fun undo() {
@@ -225,7 +236,7 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     companion object {
-        const val MAX_CARDS = 10
+        const val MAX_CARDS = 30
         const val MAX_UNDO_DEPTH = 30
 
         fun trimUndoChain(state: LottoUndoState?, depth: Int): LottoUndoState? {

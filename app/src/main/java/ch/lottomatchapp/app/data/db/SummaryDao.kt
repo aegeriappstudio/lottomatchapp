@@ -4,15 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SummaryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(summary: SummaryEntity)
+    suspend fun upsert(summary: SummaryEntity)
 
     @Query("SELECT * FROM daily_summaries ORDER BY date DESC")
-    fun getAll(): List<SummaryEntity>
+    fun observeAll(): Flow<List<SummaryEntity>>
 
     @Query("DELETE FROM daily_summaries")
-    fun deleteAll()
+    suspend fun deleteAll()
 }

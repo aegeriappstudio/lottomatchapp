@@ -316,21 +316,26 @@ private fun ScanResultConfirmation(
             Spacer(Modifier.height(8.dp))
             ScannedCardPreview(card = card)
             Spacer(Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 OutlinedButton(
                     onClick = onRetry,
-                    modifier = Modifier
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(stringResource(R.string.scan_confirm_retry))
                 }
                 Button(
                     onClick = onAccept,
-                    modifier = Modifier
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(stringResource(R.string.scan_confirm_accept))
                 }
             }
         }
     }
+}
 
 @Composable
 private fun ScannedCardPreview(card: LottoCard) {
