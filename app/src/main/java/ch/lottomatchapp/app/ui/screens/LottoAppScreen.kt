@@ -17,13 +17,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material.icons.filled.CleaningServices
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.outlined.CreditCard
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
@@ -47,6 +50,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ch.lottomatchapp.app.AddCardResult
 import ch.lottomatchapp.app.LottoViewModel
 import ch.lottomatchapp.app.R
 import ch.lottomatchapp.app.data.LottoCard
@@ -80,6 +84,8 @@ fun LottoAppScreen(
     val lastNumber by viewModel.lastNumber.collectAsState()
     val allRounds by viewModel.allRounds.collectAsState()
     val allSummaries by viewModel.allSummaries.collectAsState()
+    val isPremium by viewModel.isPremium.collectAsState()
+    val maxCards by viewModel.maxCards.collectAsState()
 
     val context = LocalContext.current
     val haptics = LocalHapticFeedback.current
@@ -100,12 +106,13 @@ fun LottoAppScreen(
     var showAboutDialog by remember { mutableStateOf(false) }
     var askUndo by remember { mutableStateOf(false) }
     var showMainMenu by remember { mutableStateOf(false) }
+    var showPaywall by remember { mutableStateOf(false) }
     var entryError by remember { mutableStateOf<String?>(null) }
     var scanMessage by remember { mutableStateOf<String?>(null) }
     var winMessage by remember { mutableStateOf<String?>(null) }
 
     val listState = rememberLazyListState()
-    val atLimit = cards.size >= LottoViewModel.MAX_CARDS
+    val atLimit = cards.size >= maxCards
 
     
     val sortedCards = remember(cards, winRows, history, lastNumber) {
@@ -180,8 +187,15 @@ fun LottoAppScreen(
                             Icon(Icons.AutoMirrored.Filled.Undo, contentDescription = stringResource(R.string.undo))
                         }
                     }
-                    if (!atLimit) {
-                        IconButton(onClick = { viewModel.addCard() }) {
+                    // Free users always see the +; tapping at the free limit
+                    // routes them to the paywall. Premium users at 30 hide it.
+                    if (!atLimit || !isPremium) {
+                        IconButton(onClick = {
+                            when (viewModel.addCard()) {
+                                AddCardResult.Added -> {}
+                                AddCardResult.LimitReached -> showPaywall = true
+                            }
+                        }) {
                             Icon(Icons.Default.Add, contentDescription = stringResource(R.string.new_card))
                         }
                     }
@@ -469,8 +483,14 @@ fun LottoAppScreen(
             onShowHistory = { showMainMenu = false; if (history.isNotEmpty()) showHistory = true },
             onShowStatistics = { showMainMenu = false; showStatistics = true },
             onShowAbout = { showMainMenu = false; showAboutDialog = true },
+            onShowPaywall = { showMainMenu = false; showPaywall = true },
+            isPremium = isPremium,
             historyEnabled = history.isNotEmpty()
         )
+    }
+
+    if (showPaywall) {
+        PaywallSheet(onDismiss = { showPaywall = false })
     }
 
     if (showDeleteAllDialog) {
@@ -498,7 +518,9 @@ fun LottoAppScreen(
             onDismiss = { showStatistics = false },
             rounds = allRounds,
             summaries = allSummaries.values.toList(),
-            onDeleteAllStatistics = { viewModel.clearStatistics() }
+            onDeleteAllStatistics = { viewModel.clearStatistics() },
+            isPremium = isPremium,
+            onUpgradeClick = { showStatistics = false; showPaywall = true }
         )
     }
 
@@ -572,6 +594,53 @@ fun LottoAppScreen(
 }
 
 @Composable
+private fun LockedHeatmapTeaser(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Surface(
+        shape = MaterialTheme.shapes.medium,
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)),
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+    ) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = Icons.Default.Lock,
+                contentDescription = null,
+                modifier = Modifier.size(32.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = stringResource(R.string.premium_locked_heatmap_title),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = stringResource(R.string.premium_locked_heatmap_body),
+                style = MaterialTheme.typography.bodySmall,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(Modifier.height(12.dp))
+            FilledTonalButton(onClick = onClick) {
+                Icon(
+                    imageVector = Icons.Default.WorkspacePremium,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp)
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(stringResource(R.string.premium_unlock_cta))
+            }
+        }
+    }
+}
+
+@Composable
 private fun CardSwipeBackground(direction: SwipeToDismissBoxValue) {
     val color = when (direction) {
         SwipeToDismissBoxValue.StartToEnd -> MaterialTheme.colorScheme.tertiaryContainer
@@ -615,6 +684,8 @@ private fun MainMenuSheet(
     onShowHistory: () -> Unit,
     onShowStatistics: () -> Unit,
     onShowAbout: () -> Unit,
+    onShowPaywall: () -> Unit,
+    isPremium: Boolean,
     historyEnabled: Boolean
 ) {
     ModalBottomSheet(onDismissRequest = onDismiss) {
@@ -648,6 +719,19 @@ private fun MainMenuSheet(
                 modifier = Modifier.clickable(onClick = onShowStatistics)
             )
             HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            if (!isPremium) {
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.premium_menu_label)) },
+                    leadingContent = {
+                        Icon(
+                            Icons.Default.WorkspacePremium,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    },
+                    modifier = Modifier.clickable(onClick = onShowPaywall)
+                )
+            }
             ListItem(
                 headlineContent = { Text(stringResource(R.string.about_app)) },
                 leadingContent = { Icon(Icons.Outlined.Info, contentDescription = null) },
@@ -855,7 +939,9 @@ fun StatisticsSheet(
     onDismiss: () -> Unit,
     rounds: List<RoundStatistics>,
     summaries: List<DailySummary>,
-    onDeleteAllStatistics: () -> Unit
+    onDeleteAllStatistics: () -> Unit,
+    isPremium: Boolean,
+    onUpgradeClick: () -> Unit
 ) {
     val dateFormatter = remember { DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
@@ -908,10 +994,17 @@ fun StatisticsSheet(
                         style = MaterialTheme.typography.titleSmall
                     )
                     Spacer(Modifier.height(8.dp))
-                    NumberFrequencyHeatmap(
-                        numberCounts = globalCounts,
-                        modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
-                    )
+                    if (isPremium) {
+                        NumberFrequencyHeatmap(
+                            numberCounts = globalCounts,
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
+                        )
+                    } else {
+                        LockedHeatmapTeaser(
+                            onClick = onUpgradeClick,
+                            modifier = Modifier.padding(bottom = 20.dp)
+                        )
+                    }
                     NumberFrequencyChart(
                         numberCounts = globalCounts,
                         title = stringResource(R.string.statistics_chart_title),

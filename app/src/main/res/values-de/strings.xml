@@ -142,6 +142,26 @@
     <string name="statistics_heatmap_title">Häufigkeits-Übersicht (1–90)</string>
     <string name="about_app">Über die App</string>
 
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">Mehr Karten und erweiterte Statistik</string>
+    <string name="paywall_feature_cards">Bis zu 30 Karten gleichzeitig</string>
+    <string name="paywall_feature_heatmap">Häufigkeits-Heatmap aller Zahlen 1–90</string>
+    <string name="paywall_feature_support">Unterstütze die Entwicklung der App</string>
+    <string name="paywall_buy_button">Freischalten — %1$s</string>
+    <string name="paywall_buy_loading">Verbinde mit Play Store…</string>
+    <string name="paywall_restore">Kauf wiederherstellen</string>
+    <string name="paywall_purchase_success">Premium aktiviert, danke!</string>
+    <string name="paywall_purchase_cancelled">Kauf abgebrochen</string>
+    <string name="paywall_purchase_error">Kauf fehlgeschlagen: %1$s</string>
+    <string name="paywall_unavailable">Premium gerade nicht verfügbar. Bitte später nochmals versuchen.</string>
+    <string name="paywall_already_owned">Premium ist bereits aktiv — danke!</string>
+    <string name="card_limit_reached">Karten-Limit erreicht. Hol dir Premium für bis zu 30 Karten.</string>
+    <string name="premium_locked_heatmap_title">Premium-Feature</string>
+    <string name="premium_locked_heatmap_body">Die Häufigkeits-Heatmap ist Teil von Lottomatch Premium.</string>
+    <string name="premium_unlock_cta">Premium freischalten</string>
+
     <!-- Widget -->
     <string name="widget_description">Lottomatch — Schnellansicht</string>
     <string name="widget_no_cards">Noch keine Karte</string>

@@ -172,6 +172,26 @@
     <string name="onboarding_next">Next</string>
     <string name="onboarding_done">Let\'s go!</string>
 
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">More cards and advanced statistics</string>
+    <string name="paywall_feature_cards">Up to 30 cards at once</string>
+    <string name="paywall_feature_heatmap">Frequency heatmap of all 1–90 numbers</string>
+    <string name="paywall_feature_support">Support development of the app</string>
+    <string name="paywall_buy_button">Unlock — %1$s</string>
+    <string name="paywall_buy_loading">Connecting to Play Store…</string>
+    <string name="paywall_restore">Restore purchase</string>
+    <string name="paywall_purchase_success">Premium activated, thanks!</string>
+    <string name="paywall_purchase_cancelled">Purchase cancelled</string>
+    <string name="paywall_purchase_error">Purchase failed: %1$s</string>
+    <string name="paywall_unavailable">Premium not available right now. Please try again later.</string>
+    <string name="paywall_already_owned">You already own Premium — thanks!</string>
+    <string name="card_limit_reached">Card limit reached. Get Premium for up to 30 cards.</string>
+    <string name="premium_locked_heatmap_title">Premium feature</string>
+    <string name="premium_locked_heatmap_body">The frequency heatmap is part of Lottomatch Premium.</string>
+    <string name="premium_unlock_cta">Unlock Premium</string>
+
     <!-- Widget -->
     <string name="widget_description">Lottomatch — quick view</string>
     <string name="widget_no_cards">No cards yet</string>

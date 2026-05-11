@@ -81,6 +81,9 @@ dependencies {
     implementation("androidx.glance:glance-appwidget:1.1.0")
     implementation("androidx.glance:glance-material3:1.1.0")
 
+    // ---- Google Play Billing (In-App Purchases) ----
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
+
     // ---- Room Database ----
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")

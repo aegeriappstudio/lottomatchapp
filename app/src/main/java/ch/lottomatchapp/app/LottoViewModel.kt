@@ -7,6 +7,7 @@ import ch.lottomatchapp.app.R
 import ch.lottomatchapp.app.data.LottoCard
 import ch.lottomatchapp.app.data.LottoDataRepository
 import ch.lottomatchapp.app.data.LottoUndoState
+import ch.lottomatchapp.app.data.PremiumRepository
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.util.getStatsDate
@@ -14,14 +15,24 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
 
+enum class AddCardResult { Added, LimitReached }
+
 class LottoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = LottoDataRepository.getInstance(application)
+    private val premiumRepo = PremiumRepository.getInstance(application)
+
+    val isPremium: StateFlow<Boolean> = premiumRepo.isPremium
+
+    val maxCards: StateFlow<Int> = premiumRepo.isPremium
+        .map { if (it) PREMIUM_MAX_CARDS else FREE_MAX_CARDS }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, FREE_MAX_CARDS)
 
     private val _cards = MutableStateFlow<List<LottoCard>>(emptyList())
     val cards = _cards.asStateFlow()
@@ -84,13 +95,14 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
         repository.saveUndoState(newState)
     }
 
-    fun addCard() {
-        if (_cards.value.size >= MAX_CARDS) return
+    fun addCard(): AddCardResult {
+        if (_cards.value.size >= maxCards.value) return AddCardResult.LimitReached
         val newIndex = _cards.value.size + 1
         val defaultName = getApplication<Application>().getString(R.string.card_title, newIndex)
         updateState("New card added") {
             it.copy(cards = _cards.value + LottoCard(name = defaultName))
         }
+        return AddCardResult.Added
     }
 
     fun deleteCard(index: Int) {
@@ -236,7 +248,8 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     companion object {
-        const val MAX_CARDS = 30
+        const val FREE_MAX_CARDS = 3
+        const val PREMIUM_MAX_CARDS = 30
         const val MAX_UNDO_DEPTH = 30
 
         fun trimUndoChain(state: LottoUndoState?, depth: Int): LottoUndoState? {
