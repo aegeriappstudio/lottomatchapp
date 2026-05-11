@@ -77,6 +77,10 @@ dependencies {
     // ---- Konfetti animation ----
     implementation("nl.dionsegijn:konfetti-compose:2.0.4")
 
+    // ---- Glance (Home-Screen Widget) ----
+    implementation("androidx.glance:glance-appwidget:1.1.0")
+    implementation("androidx.glance:glance-material3:1.1.0")
+
     // ---- Room Database ----
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")

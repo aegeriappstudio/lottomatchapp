@@ -6,10 +6,16 @@ import ch.lottomatchapp.app.persistence.encodeState
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.stats.StatisticsRepository
+import ch.lottomatchapp.app.widget.LottomatchWidget
+import androidx.glance.appwidget.updateAll
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 /**
@@ -30,6 +36,8 @@ class LottoDataRepository private constructor(context: Context) {
         appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     private val statsRepo = StatisticsRepository(appContext)
+    private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private val widget = LottomatchWidget()
 
     private val _appData = MutableStateFlow(loadInitialState())
     val appData: StateFlow<AppData> = _appData.asStateFlow()
@@ -78,6 +86,11 @@ class LottoDataRepository private constructor(context: Context) {
             lastNumber = state.lastNumber,
             undoState = state
         )
+
+        ioScope.launch {
+            // Widget refreshen (no-op falls keins installiert)
+            runCatching { widget.updateAll(appContext) }
+        }
     }
 
     fun restoreFromUndo(current: LottoUndoState) {

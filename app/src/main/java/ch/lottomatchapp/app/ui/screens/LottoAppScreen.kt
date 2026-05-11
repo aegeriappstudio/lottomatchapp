@@ -7,17 +7,18 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.CleaningServices
+import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.outlined.CreditCard
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.History
@@ -26,6 +27,8 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.DeleteForever
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.annotation.StringRes
 import android.content.Intent
@@ -49,9 +52,11 @@ import ch.lottomatchapp.app.R
 import ch.lottomatchapp.app.data.LottoCard
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
+import ch.lottomatchapp.app.ui.components.DrawnNumbersTape
 import ch.lottomatchapp.app.ui.components.LottoCardPanel
-import ch.lottomatchapp.app.ui.components.NumberEntryBar
 import ch.lottomatchapp.app.ui.components.NumberFrequencyChart
+import ch.lottomatchapp.app.ui.components.NumberFrequencyHeatmap
+import ch.lottomatchapp.app.ui.components.NumberPad90
 import ch.lottomatchapp.app.ui.components.WinRulePicker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -210,6 +215,7 @@ fun LottoAppScreen(
                 .imePadding()
                 .navigationBarsPadding()
         ) {
+            DrawnNumbersTape(history = history, lastNumber = lastNumber)
             if (sortedCards.isEmpty()) {
                 Box(
                     modifier = Modifier
@@ -261,40 +267,85 @@ fun LottoAppScreen(
                         key = { sortedCards[it].first }
                     ) { sortedIndex ->
                         val (originalIndex, card) = sortedCards[sortedIndex]
-                        LottoCardPanel(
-                            displayIndex = sortedIndex,
-                            card = card,
-                            onCardChange = { updated -> viewModel.updateCardFromEdit(originalIndex, updated) },
-                            onDelete = { viewModel.deleteCard(originalIndex) },
-                            onClearMarks = { viewModel.clearMarksOnCard(originalIndex) },
-                            onScanResult = { scanned -> viewModel.applyScanToCard(originalIndex, scanned) },
-                            onNameChange = { newName -> viewModel.updateCardName(originalIndex, newName) },
-                            onScanMessage = { msg ->
-                                scanMessage = msg
-                                scope.launch {
-                                    delay(3000)
-                                    if (scanMessage == msg) scanMessage = null
+                        val dismissState = rememberSwipeToDismissBoxState(
+                            confirmValueChange = { value ->
+                                when (value) {
+                                    SwipeToDismissBoxValue.StartToEnd -> {
+                                        viewModel.clearMarksOnCard(originalIndex)
+                                        val msg = context.getString(R.string.marks_cleared_message)
+                                        val undoLbl = context.getString(R.string.undo)
+                                        scope.launch {
+                                            val result = snackbarHostState.showSnackbar(
+                                                message = msg,
+                                                actionLabel = undoLbl,
+                                                duration = SnackbarDuration.Short
+                                            )
+                                            if (result == SnackbarResult.ActionPerformed) {
+                                                viewModel.undo()
+                                            }
+                                        }
+                                        false
+                                    }
+                                    SwipeToDismissBoxValue.EndToStart -> {
+                                        viewModel.deleteCard(originalIndex)
+                                        val msg = context.getString(R.string.card_deleted_message)
+                                        val undoLbl = context.getString(R.string.undo)
+                                        scope.launch {
+                                            val result = snackbarHostState.showSnackbar(
+                                                message = msg,
+                                                actionLabel = undoLbl,
+                                                duration = SnackbarDuration.Short
+                                            )
+                                            if (result == SnackbarResult.ActionPerformed) {
+                                                viewModel.undo()
+                                            }
+                                        }
+                                        false
+                                    }
+                                    else -> false
                                 }
-                            },
-                            onWinMessage = { msg ->
-                                winMessage = msg
-                                scope.launch {
-                                    delay(3000)
-                                    if (winMessage == msg) winMessage = null
-                                }
-                            },
-                            winRowsRequired = winRows
+                            }
                         )
+                        SwipeToDismissBox(
+                            state = dismissState,
+                            backgroundContent = { CardSwipeBackground(dismissState.dismissDirection) }
+                        ) {
+                            LottoCardPanel(
+                                displayIndex = sortedIndex,
+                                card = card,
+                                onCardChange = { updated -> viewModel.updateCardFromEdit(originalIndex, updated) },
+                                onDelete = { viewModel.deleteCard(originalIndex) },
+                                onClearMarks = { viewModel.clearMarksOnCard(originalIndex) },
+                                onScanResult = { scanned -> viewModel.applyScanToCard(originalIndex, scanned) },
+                                onNameChange = { newName -> viewModel.updateCardName(originalIndex, newName) },
+                                onScanMessage = { msg ->
+                                    scanMessage = msg
+                                    scope.launch {
+                                        delay(3000)
+                                        if (scanMessage == msg) scanMessage = null
+                                    }
+                                },
+                                onWinMessage = { msg ->
+                                    winMessage = msg
+                                    scope.launch {
+                                        delay(3000)
+                                        if (winMessage == msg) winMessage = null
+                                    }
+                                },
+                                winRowsRequired = winRows
+                            )
+                        }
                     }
                 }
             }
 
-            val drawnNumbersCount = history.size + if (lastNumber != null) 1 else 0
+            val drawnNumbers = remember(history, lastNumber) {
+                (history + listOfNotNull(lastNumber)).toSet()
+            }
 
-            NumberEntryBar(
-                lastNumber = lastNumber,
-                remainingNumbers = 90 - drawnNumbersCount,
-                onSubmitNumber = { n ->
+            NumberPad90(
+                drawnNumbers = drawnNumbers,
+                onPickNumber = { n ->
                     val hasAnyNumbers = cards.any { it.countNumbers() > 0 }
                     if (!hasAnyNumbers) {
                         val msg = context.getString(R.string.scan_or_enter_numbers_prompt)
@@ -305,23 +356,11 @@ fun LottoAppScreen(
                         }
                     } else if (viewModel.markNumberAcrossAll(n)) {
                         haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
-                    } else {
-                        val msg = if (n !in 1..90) {
-                            context.getString(R.string.invalid_number_prompt)
-                        } else {
-                            context.getString(R.string.number_already_drawn_prompt, n)
-                        }
-                        entryError = msg
-                        scope.launch {
-                            delay(3000)
-                            if (entryError == msg) entryError = null
-                        }
                     }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = 16.dp, vertical = 10.dp)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             )
 
             AnimatedVisibility(
@@ -530,6 +569,42 @@ fun LottoAppScreen(
         )
     }
 
+}
+
+@Composable
+private fun CardSwipeBackground(direction: SwipeToDismissBoxValue) {
+    val color = when (direction) {
+        SwipeToDismissBoxValue.StartToEnd -> MaterialTheme.colorScheme.tertiaryContainer
+        SwipeToDismissBoxValue.EndToStart -> MaterialTheme.colorScheme.errorContainer
+        else -> Color.Transparent
+    }
+    val alignment = when (direction) {
+        SwipeToDismissBoxValue.StartToEnd -> Alignment.CenterStart
+        SwipeToDismissBoxValue.EndToStart -> Alignment.CenterEnd
+        else -> Alignment.Center
+    }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .clip(MaterialTheme.shapes.medium)
+            .background(color)
+            .padding(horizontal = 24.dp),
+        contentAlignment = alignment
+    ) {
+        when (direction) {
+            SwipeToDismissBoxValue.StartToEnd -> Icon(
+                Icons.Default.CleaningServices,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onTertiaryContainer
+            )
+            SwipeToDismissBoxValue.EndToStart -> Icon(
+                Icons.Default.DeleteOutline,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onErrorContainer
+            )
+            else -> {}
+        }
+    }
 }
 
 @Composable
@@ -828,6 +903,15 @@ fun StatisticsSheet(
                         style = MaterialTheme.typography.bodySmall
                     )
                     Spacer(Modifier.height(16.dp))
+                    Text(
+                        text = stringResource(R.string.statistics_heatmap_title),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    NumberFrequencyHeatmap(
+                        numberCounts = globalCounts,
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
+                    )
                     NumberFrequencyChart(
                         numberCounts = globalCounts,
                         title = stringResource(R.string.statistics_chart_title),

@@ -61,6 +61,8 @@
     <string name="delete_card_confirmation_title">Karte löschen?</string>
     <string name="delete_card_confirmation_message">Bei nur einer Karte werden Zahlen und Markierungen entfernt.</string>
     <string name="delete_button">Ja, löschen</string>
+    <string name="marks_cleared_message">Markierungen gelöscht</string>
+    <string name="card_deleted_message">Karte gelöscht</string>
     <string name="actions">Aktionen</string>
     <string name="scan">Scannen</string>
     <string name="clear">Leeren</string>
@@ -71,12 +73,10 @@
     <string name="edit_card_name_dialog_title">Kartenname ändern</string>
     <string name="name_label">Name</string>
 
-    <!-- Number Entry Bar -->
-    <string name="enter_number_label">Zahl eingeben (1-90):</string>
+    <!-- Number Pad -->
+    <string name="tap_number_label">Tippe gezogene Zahl</string>
     <string name="last_drawn">Zuletzt</string>
     <string name="remaining_numbers">Noch %1$d übrig</string>
-    <string name="number_entry_placeholder">z.B. 5 23 67</string>
-    <string name="mark_button">Markieren</string>
 
     <!-- Scanner -->
     <string name="scan_lotto_card_title">Lottokarte scannen (auto)</string>
@@ -139,6 +139,13 @@
     <string name="onboarding_done">Los geht\'s!</string>
 
     <string name="statistics_chart_title">Top 10 häufigste Zahlen</string>
+    <string name="statistics_heatmap_title">Häufigkeits-Übersicht (1–90)</string>
     <string name="about_app">Über die App</string>
 
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — Schnellansicht</string>
+    <string name="widget_no_cards">Noch keine Karte</string>
+    <string name="widget_to_win_label">bis Lotto</string>
+    <string name="widget_lotto_message">LOTTO!</string>
+    <string name="widget_last_drawn">Zuletzt: %1$d</string>
 </resources>

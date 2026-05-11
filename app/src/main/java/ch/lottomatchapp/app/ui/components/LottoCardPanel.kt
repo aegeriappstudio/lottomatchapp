@@ -3,6 +3,8 @@
 package ch.lottomatchapp.app.ui.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
@@ -14,16 +16,21 @@ import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.CleaningServices
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ch.lottomatchapp.app.R
@@ -80,6 +87,20 @@ fun LottoCardPanel(
         label = "winBorderWidth"
     )
 
+    // Sweep-Animation als Reveal beim Lotto-Treffer
+    val sweepProgress = remember { Animatable(2f) }
+    LaunchedEffect(hasWin) {
+        if (hasWin) {
+            sweepProgress.snapTo(-0.2f)
+            sweepProgress.animateTo(
+                targetValue = 1.2f,
+                animationSpec = tween(durationMillis = 850, easing = FastOutSlowInEasing)
+            )
+        } else {
+            sweepProgress.snapTo(2f)
+        }
+    }
+
     Surface(
         tonalElevation = winTonalElevation,
         shadowElevation = winShadowElevation,
@@ -89,7 +110,26 @@ fun LottoCardPanel(
             width = borderWidth,
             color = winBorderColor
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .drawWithContent {
+                drawContent()
+                val p = sweepProgress.value
+                if (p > -0.2f && p < 1.2f) {
+                    val centerX = p * size.width
+                    drawRect(
+                        brush = Brush.horizontalGradient(
+                            colors = listOf(
+                                Color.Transparent,
+                                Color.White.copy(alpha = 0.40f),
+                                Color.Transparent
+                            ),
+                            startX = centerX - size.width * 0.18f,
+                            endX = centerX + size.width * 0.18f
+                        )
+                    )
+                }
+            }
     ) {
         Column(Modifier.padding(12.dp)) {
 
@@ -121,22 +161,40 @@ fun LottoCardPanel(
             val missingForWin = if (rowsUsed == 0) 0 else {
                 rowStats.sortedBy { it.missing }.take(rowsUsed).sumOf { it.missing }
             }
-
-            Text(
-                text = pluralStringResource(R.plurals.numbers_to_win_label, missingForWin, missingForWin),
-                style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
+            val totalRequiredForWin = rowStats.sortedBy { it.missing }
+                .take(rowsUsed)
+                .sumOf { it.required }
 
             if (hasWin) {
-                AssistChip(
-                    onClick = {},
-                    label = { Text(pluralStringResource(R.plurals.lotto_win_message, completed.size, completed.size)) },
-                    modifier = Modifier.padding(bottom = 8.dp),
-                    colors = AssistChipDefaults.assistChipColors(
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                        labelColor = MaterialTheme.colorScheme.onSecondaryContainer
-                    )
+                Surface(
+                    shape = MaterialTheme.shapes.small,
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.EmojiEvents,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(Modifier.width(6.dp))
+                        Text(
+                            text = pluralStringResource(R.plurals.lotto_win_message, completed.size, completed.size),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            } else {
+                WinProgressIndicator(
+                    missingForWin = missingForWin,
+                    totalRequired = totalRequiredForWin,
+                    hasWin = false,
+                    modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
 

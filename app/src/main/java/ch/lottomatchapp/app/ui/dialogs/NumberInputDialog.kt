@@ -44,7 +44,7 @@ fun NumberInputDialog(
                         if (newText.all { it.isDigit() } || newText.isEmpty()) text = newText
                     },
                     singleLine = true,
-                    placeholder = { Text(stringResource(R.string.number_entry_placeholder, allowedRange.first)) },
+                    placeholder = { Text(allowedRange.first.toString()) },
                     supportingText = {
                         Text(stringResource(R.string.number_input_dialog_supporting_text, allowedRange.first, allowedRange.last))
                     },
