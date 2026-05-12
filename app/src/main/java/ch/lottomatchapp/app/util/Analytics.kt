@@ -36,6 +36,15 @@ object Analytics {
         }
     }
 
+    /**
+     * Analytics-Collection und Crashlytics-Reporting an-/abschalten.
+     * Wird aus dem Consent-Flow heraus aufgerufen.
+     */
+    fun applyConsent(granted: Boolean) {
+        analytics?.setAnalyticsCollectionEnabled(granted)
+        crashlytics?.isCrashlyticsCollectionEnabled = granted
+    }
+
     // ---- Analytics ----
 
     fun logEvent(name: String, params: Bundle.() -> Unit = {}) {

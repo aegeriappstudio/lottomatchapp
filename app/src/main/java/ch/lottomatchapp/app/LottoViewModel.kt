@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import ch.lottomatchapp.app.R
+import ch.lottomatchapp.app.data.ConsentRepository
+import ch.lottomatchapp.app.data.ConsentStatus
 import ch.lottomatchapp.app.data.LottoCard
 import ch.lottomatchapp.app.data.LottoDataRepository
 import ch.lottomatchapp.app.data.LottoUndoState
@@ -28,8 +30,15 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = LottoDataRepository.getInstance(application)
     private val premiumRepo = PremiumRepository.getInstance(application)
+    private val consentRepo = ConsentRepository.getInstance(application)
 
     val isPremium: StateFlow<Boolean> = premiumRepo.isPremium
+    val consentStatus: StateFlow<ConsentStatus> = consentRepo.status
+
+    fun setConsent(granted: Boolean) {
+        consentRepo.setStatus(if (granted) ConsentStatus.Granted else ConsentStatus.Denied)
+        Analytics.applyConsent(granted)
+    }
 
     val maxCards: StateFlow<Int> = premiumRepo.isPremium
         .map { if (it) PREMIUM_MAX_CARDS else FREE_MAX_CARDS }

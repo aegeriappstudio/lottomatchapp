@@ -170,6 +170,16 @@
     <string name="onboarding_next">次へ</string>
     <string name="onboarding_done">はじめる!</string>
 
+    <!-- Privacy / Consent -->
+    <string name="consent_title">プライバシー</string>
+    <string name="consent_body">Lottomatch は、アプリの使われ方を理解しクラッシュを発見するために Firebase Analytics と Crashlytics を使用します。匿名の利用データのみを収集し、個人情報は一切収集しません。プライバシー設定でいつでも変更できます。</string>
+    <string name="consent_accept">許可</string>
+    <string name="consent_deny">拒否</string>
+    <string name="consent_read_policy">プライバシーポリシーを読む</string>
+    <string name="privacy_settings_label">プライバシー設定</string>
+    <string name="privacy_settings_body">匿名の利用データとクラッシュレポートを送って Lottomatch の改善に協力してください。</string>
+    <string name="privacy_settings_toggle">利用データを共有</string>
+
     <!-- Premium -->
     <string name="premium_menu_label">Lottomatch Premium</string>
     <string name="paywall_title">Lottomatch Premium</string>

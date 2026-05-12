@@ -172,6 +172,16 @@
     <string name="onboarding_next">अगला</string>
     <string name="onboarding_done">चलो शुरू करें!</string>
 
+    <!-- Privacy / Consent -->
+    <string name="consent_title">गोपनीयता</string>
+    <string name="consent_body">Lottomatch यह समझने और क्रैश ढूँढने के लिए Firebase Analytics और Crashlytics उपयोग करता है कि ऐप कैसे इस्तेमाल होता है। केवल अनाम उपयोग डेटा एकत्रित होता है — कोई व्यक्तिगत जानकारी नहीं। आप गोपनीयता सेटिंग्स में कभी भी बदल सकते हैं।</string>
+    <string name="consent_accept">स्वीकार</string>
+    <string name="consent_deny">अस्वीकार</string>
+    <string name="consent_read_policy">गोपनीयता नीति पढ़ें</string>
+    <string name="privacy_settings_label">गोपनीयता सेटिंग्स</string>
+    <string name="privacy_settings_body">अनाम उपयोग डेटा और क्रैश रिपोर्ट भेजकर Lottomatch को बेहतर बनाने में मदद करें।</string>
+    <string name="privacy_settings_toggle">उपयोग डेटा साझा करें</string>
+
     <!-- Premium -->
     <string name="premium_menu_label">Lottomatch Premium</string>
     <string name="paywall_title">Lottomatch Premium</string>

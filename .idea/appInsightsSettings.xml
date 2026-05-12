@@ -28,10 +28,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="ch.lottomatchapp.app" />
+                  <option name="mobileSdkAppId" value="1:596930221922:android:0925cbba8d475ff8557e3b" />
+                  <option name="projectId" value="lottomatch-94c02b44" />
+                  <option name="projectNumber" value="596930221922" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

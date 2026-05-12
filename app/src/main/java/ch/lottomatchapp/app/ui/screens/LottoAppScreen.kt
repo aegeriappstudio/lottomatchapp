@@ -25,6 +25,7 @@ import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material.icons.outlined.DeleteForever
@@ -53,6 +54,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import ch.lottomatchapp.app.AddCardResult
 import ch.lottomatchapp.app.LottoViewModel
 import ch.lottomatchapp.app.R
+import ch.lottomatchapp.app.data.ConsentStatus
 import ch.lottomatchapp.app.data.LottoCard
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
@@ -87,6 +89,7 @@ fun LottoAppScreen(
     val allSummaries by viewModel.allSummaries.collectAsState()
     val isPremium by viewModel.isPremium.collectAsState()
     val maxCards by viewModel.maxCards.collectAsState()
+    val consentStatus by viewModel.consentStatus.collectAsState()
 
     val context = LocalContext.current
     val haptics = LocalHapticFeedback.current
@@ -108,6 +111,8 @@ fun LottoAppScreen(
     var askUndo by remember { mutableStateOf(false) }
     var showMainMenu by remember { mutableStateOf(false) }
     var showPaywall by remember { mutableStateOf(false) }
+    var showPrivacySettings by remember { mutableStateOf(false) }
+    var onboardingDone by remember { mutableStateOf(prefs.getBoolean("onboarding_seen", false)) }
     var entryError by remember { mutableStateOf<String?>(null) }
     var scanMessage by remember { mutableStateOf<String?>(null) }
     var winMessage by remember { mutableStateOf<String?>(null) }
@@ -492,6 +497,10 @@ fun LottoAppScreen(
                 Analytics.paywallShown("menu")
                 showPaywall = true
             },
+            onShowPrivacySettings = {
+                showMainMenu = false
+                showPrivacySettings = true
+            },
             isPremium = isPremium,
             historyEnabled = history.isNotEmpty()
         )
@@ -540,11 +549,30 @@ fun LottoAppScreen(
         if (!prefs.getBoolean("onboarding_seen", false)) {
             OnboardingSheet(onDismiss = {
                 showInfoDialog = false
+                onboardingDone = true
                 prefs.edit().putBoolean("onboarding_seen", true).apply()
             })
         } else {
             InfoDialog(onDismiss = { showInfoDialog = false })
         }
+    }
+
+    // Consent-Dialog erst nach dem Onboarding zeigen, und nur wenn noch nicht
+    // entschieden wurde. Swipe down / Back-Press wird als "Decline" behandelt.
+    if (onboardingDone && consentStatus == ConsentStatus.Undefined && !showInfoDialog) {
+        ConsentSheet(
+            onAccept = { viewModel.setConsent(true) },
+            onDeny = { viewModel.setConsent(false) },
+            onShowPrivacyPolicy = { openUrl(context, PRIVACY_POLICY_URL) }
+        )
+    }
+
+    if (showPrivacySettings) {
+        PrivacySettingsDialog(
+            consentStatus = consentStatus,
+            onConsentChange = { viewModel.setConsent(it) },
+            onDismiss = { showPrivacySettings = false }
+        )
     }
 
     if (showLegalDialog) {
@@ -697,6 +725,7 @@ private fun MainMenuSheet(
     onShowStatistics: () -> Unit,
     onShowAbout: () -> Unit,
     onShowPaywall: () -> Unit,
+    onShowPrivacySettings: () -> Unit,
     isPremium: Boolean,
     historyEnabled: Boolean
 ) {
@@ -748,6 +777,11 @@ private fun MainMenuSheet(
                 headlineContent = { Text(stringResource(R.string.about_app)) },
                 leadingContent = { Icon(Icons.Outlined.Info, contentDescription = null) },
                 modifier = Modifier.clickable(onClick = onShowAbout)
+            )
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.privacy_settings_label)) },
+                leadingContent = { Icon(Icons.Default.PrivacyTip, contentDescription = null) },
+                modifier = Modifier.clickable(onClick = onShowPrivacySettings)
             )
         }
     }
@@ -813,6 +847,46 @@ private fun sendFeedbackEmail(context: Context) {
     }
     val chooser = Intent.createChooser(intent, context.getString(R.string.feedback_email_chooser))
     context.startActivity(chooser)
+}
+
+@Composable
+private fun PrivacySettingsDialog(
+    consentStatus: ConsentStatus,
+    onConsentChange: (Boolean) -> Unit,
+    onDismiss: () -> Unit
+) {
+    val granted = consentStatus == ConsentStatus.Granted
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.privacy_settings_label)) },
+        text = {
+            Column {
+                Text(
+                    text = stringResource(R.string.privacy_settings_body),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(16.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onConsentChange(!granted) },
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(R.string.privacy_settings_toggle),
+                        modifier = Modifier.weight(1f),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                    Switch(checked = granted, onCheckedChange = onConsentChange)
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.close))
+            }
+        }
+    )
 }
 
 @Composable

@@ -8,6 +8,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import ch.lottomatchapp.app.billing.BillingManager
 import ch.lottomatchapp.app.billing.LocalBillingManager
+import ch.lottomatchapp.app.data.ConsentRepository
+import ch.lottomatchapp.app.data.ConsentStatus
 import ch.lottomatchapp.app.data.PremiumRepository
 import ch.lottomatchapp.app.ui.screens.LottoAppScreen
 import ch.lottomatchapp.app.ui.theme.LottomatchTheme
@@ -24,6 +26,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         Analytics.init(applicationContext)
+        // Tracking nur einschalten wenn bereits zugestimmt wurde (sonst bleibt
+        // es per Manifest-Default off). ConsentSheet erscheint später aus der UI.
+        val consentRepo = ConsentRepository.getInstance(applicationContext)
+        Analytics.applyConsent(consentRepo.status.value == ConsentStatus.Granted)
 
         val premiumRepo = PremiumRepository.getInstance(applicationContext)
         billingManager = BillingManager(this, premiumRepo)

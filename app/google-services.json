@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "596930221922",
+    "project_id": "lottomatch-94c02b44",
+    "storage_bucket": "lottomatch-94c02b44.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596930221922:android:0925cbba8d475ff8557e3b",
+        "android_client_info": {
+          "package_name": "ch.lottomatchapp.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Cg6Gcl3FPdfld_CYwo2cfnRjPZ2BmvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

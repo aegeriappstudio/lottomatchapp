@@ -180,6 +180,16 @@
     <string name="onboarding_next">التالي</string>
     <string name="onboarding_done">هيا بنا!</string>
 
+    <!-- Privacy / Consent -->
+    <string name="consent_title">الخصوصية</string>
+    <string name="consent_body">يستخدم Lottomatch خدمتي Firebase Analytics و Crashlytics لفهم طريقة استخدام التطبيق واكتشاف الأعطال. يتم جمع بيانات استخدام مجهولة الهوية فقط — لا توجد معلومات شخصية. يمكنك تغيير اختيارك في أي وقت من إعدادات الخصوصية.</string>
+    <string name="consent_accept">موافق</string>
+    <string name="consent_deny">رفض</string>
+    <string name="consent_read_policy">قراءة سياسة الخصوصية</string>
+    <string name="privacy_settings_label">إعدادات الخصوصية</string>
+    <string name="privacy_settings_body">ساعد في تحسين Lottomatch بإرسال بيانات استخدام مجهولة الهوية وتقارير الأعطال.</string>
+    <string name="privacy_settings_toggle">مشاركة بيانات الاستخدام</string>
+
     <!-- Premium -->
     <string name="premium_menu_label">Lottomatch Premium</string>
     <string name="paywall_title">Lottomatch Premium</string>

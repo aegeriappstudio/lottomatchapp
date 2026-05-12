@@ -172,6 +172,16 @@
     <string name="onboarding_next">Weiter</string>
     <string name="onboarding_done">Los geht\'s!</string>
 
+    <!-- Privacy / Consent -->
+    <string name="consent_title">Datenschutz</string>
+    <string name="consent_body">Lottomatch verwendet Firebase Analytics und Crashlytics, um zu verstehen, wie die App genutzt wird, und um Abstürze zu finden. Es werden nur anonyme Nutzungsdaten erhoben — keine persönlichen Informationen. Du kannst die Auswahl jederzeit in den Datenschutz-Einstellungen ändern.</string>
+    <string name="consent_accept">Zustimmen</string>
+    <string name="consent_deny">Ablehnen</string>
+    <string name="consent_read_policy">Datenschutzerklärung lesen</string>
+    <string name="privacy_settings_label">Datenschutz-Einstellungen</string>
+    <string name="privacy_settings_body">Hilf, Lottomatch zu verbessern, indem du anonyme Nutzungsdaten und Absturzberichte sendest.</string>
+    <string name="privacy_settings_toggle">Nutzungsdaten teilen</string>
+
     <!-- Premium -->
     <string name="premium_menu_label">Lottomatch Premium</string>
     <string name="paywall_title">Lottomatch Premium</string>
