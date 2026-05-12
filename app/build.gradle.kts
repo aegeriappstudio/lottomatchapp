@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "ch.lottomatchapp.app"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ch.lottomatchapp.app"
@@ -16,6 +16,16 @@ android {
         versionCode = 11
         versionName = "1.11"
         // multiDexEnabled = true // nur nötig, falls du wirklich >64k Methoden brauchst
+
+        // Nur 64-Bit-ABIs ausliefern.
+        // - armeabi-v7a / x86 sind weltweit <5% (in DACH praktisch 0%)
+        // - Wichtig für 16-KB-Page-Size: ML Kit 16.0.1 liefert die
+        //   32-Bit-.so-Dateien noch mit 4-KB-LOAD-Alignment, die 64-Bit-
+        //   Varianten sind bereits 16 KB. Durch das Wegfiltern erfüllt
+        //   das AAB die Play-Anforderung ab 1. Nov 2025.
+        ndk {
+            abiFilters += setOf("arm64-v8a", "x86_64")
+        }
     }
 
     buildFeatures {
