@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import ch.lottomatchapp.app.data.PremiumRepository
+import ch.lottomatchapp.app.util.Analytics
 import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
@@ -177,7 +178,11 @@ class BillingManager(
         if (purchase.purchaseState != Purchase.PurchaseState.PURCHASED) return
         if (!purchase.products.contains(PREMIUM_SKU)) return
 
+        val wasAlreadyPremium = premiumRepo.isPremium.value
         premiumRepo.setPremium(true)
+        if (!wasAlreadyPremium) {
+            Analytics.premiumPurchased()
+        }
         _events.tryEmit(BillingEvent.PurchaseSuccess)
 
         if (!purchase.isAcknowledged) {

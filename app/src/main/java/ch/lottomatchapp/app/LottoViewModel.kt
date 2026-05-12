@@ -10,6 +10,7 @@ import ch.lottomatchapp.app.data.LottoUndoState
 import ch.lottomatchapp.app.data.PremiumRepository
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
+import ch.lottomatchapp.app.util.Analytics
 import ch.lottomatchapp.app.util.getStatsDate
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -102,6 +103,7 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
         updateState("New card added") {
             it.copy(cards = _cards.value + LottoCard(name = defaultName))
         }
+        Analytics.cardAdded(newIndex)
         return AddCardResult.Added
     }
 
@@ -167,6 +169,7 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
                 }
             )
         }
+        Analytics.cardScanned()
     }
 
     fun startNewRound() {
@@ -188,6 +191,7 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
                     maxCompletedRows = maxCompletedRows
                 )
                 repository.saveRound(round)
+                Analytics.roundCompleted(drawnNumbers.size, winnersCount)
             }
 
             updateState("New round started") {

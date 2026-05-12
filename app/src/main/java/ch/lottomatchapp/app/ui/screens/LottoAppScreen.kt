@@ -62,6 +62,7 @@ import ch.lottomatchapp.app.ui.components.NumberFrequencyChart
 import ch.lottomatchapp.app.ui.components.NumberFrequencyHeatmap
 import ch.lottomatchapp.app.ui.components.NumberPad90
 import ch.lottomatchapp.app.ui.components.WinRulePicker
+import ch.lottomatchapp.app.util.Analytics
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.compose.KonfettiView
@@ -193,7 +194,10 @@ fun LottoAppScreen(
                         IconButton(onClick = {
                             when (viewModel.addCard()) {
                                 AddCardResult.Added -> {}
-                                AddCardResult.LimitReached -> showPaywall = true
+                                AddCardResult.LimitReached -> {
+                                    Analytics.paywallShown("card_limit")
+                                    showPaywall = true
+                                }
                             }
                         }) {
                             Icon(Icons.Default.Add, contentDescription = stringResource(R.string.new_card))
@@ -483,7 +487,11 @@ fun LottoAppScreen(
             onShowHistory = { showMainMenu = false; if (history.isNotEmpty()) showHistory = true },
             onShowStatistics = { showMainMenu = false; showStatistics = true },
             onShowAbout = { showMainMenu = false; showAboutDialog = true },
-            onShowPaywall = { showMainMenu = false; showPaywall = true },
+            onShowPaywall = {
+                showMainMenu = false
+                Analytics.paywallShown("menu")
+                showPaywall = true
+            },
             isPremium = isPremium,
             historyEnabled = history.isNotEmpty()
         )
@@ -520,7 +528,11 @@ fun LottoAppScreen(
             summaries = allSummaries.values.toList(),
             onDeleteAllStatistics = { viewModel.clearStatistics() },
             isPremium = isPremium,
-            onUpgradeClick = { showStatistics = false; showPaywall = true }
+            onUpgradeClick = {
+                showStatistics = false
+                Analytics.paywallShown("stats_heatmap")
+                showPaywall = true
+            }
         )
     }
 

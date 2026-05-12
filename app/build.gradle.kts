@@ -5,6 +5,16 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+// Firebase-Plugins nur aktivieren wenn google-services.json vorhanden ist.
+// So lässt sich das Projekt auch ohne Firebase-Setup bauen; sobald du
+// die Datei in app/ ablegst, ziehen Plugin und Crashlytics-Mapping
+// beim nächsten Build automatisch an.
+val hasFirebaseConfig = project.file("google-services.json").exists()
+if (hasFirebaseConfig) {
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
+}
+
 android {
     namespace = "ch.lottomatchapp.app"
     compileSdk = 36
@@ -93,6 +103,13 @@ dependencies {
 
     // ---- Google Play Billing (In-App Purchases) ----
     implementation("com.android.billingclient:billing-ktx:7.1.1")
+
+    // ---- Firebase (Crashlytics + Analytics) ----
+    // Die Dependencies werden immer eingezogen; das eigentliche Aktivieren
+    // passiert per Plugin oben (nur wenn google-services.json existiert).
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 
     // ---- Room Database ----
     val roomVersion = "2.6.1"

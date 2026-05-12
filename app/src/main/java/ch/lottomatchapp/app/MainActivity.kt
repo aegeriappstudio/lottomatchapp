@@ -11,6 +11,7 @@ import ch.lottomatchapp.app.billing.LocalBillingManager
 import ch.lottomatchapp.app.data.PremiumRepository
 import ch.lottomatchapp.app.ui.screens.LottoAppScreen
 import ch.lottomatchapp.app.ui.theme.LottomatchTheme
+import ch.lottomatchapp.app.util.Analytics
 
 class MainActivity : ComponentActivity() {
 
@@ -21,6 +22,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
+
+        Analytics.init(applicationContext)
 
         val premiumRepo = PremiumRepository.getInstance(applicationContext)
         billingManager = BillingManager(this, premiumRepo)
