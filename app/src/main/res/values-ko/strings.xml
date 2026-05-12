@@ -1,0 +1,199 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">메뉴</string>
+    <string name="undo">실행 취소</string>
+    <string name="new_card">새 카드</string>
+    <string name="start_new_round">새 라운드 시작</string>
+    <string name="delete_all_cards">모든 카드 삭제</string>
+    <string name="history">기록</string>
+    <string name="statistics">통계</string>
+    <string name="info">정보</string>
+    <string name="scan_or_enter_numbers_prompt">먼저 카드를 스캔하거나 숫자를 입력하세요.</string>
+    <string name="invalid_number_prompt">1–90 사이의 숫자만 가능합니다.</string>
+    <string name="number_already_drawn_prompt">숫자 %1$d 은(는) 이미 뽑혔습니다.</string>
+    <string name="reset_all_confirmation_title">모두 초기화할까요?</string>
+    <string name="reset_all_confirmation_message">모든 카드, 마크, 숫자 기록을 정말 삭제할까요?</string>
+    <string name="reset_all_confirm_button">모두 초기화</string>
+    <string name="cancel">취소</string>
+    <string name="undo_confirmation_title">실행 취소할까요?</string>
+    <string name="close">닫기</string>
+    <string name="info_dialog_title">사용법</string>
+    <string name="info_bullet_1">메뉴에서 새 카드를 추가하세요.</string>
+    <string name="info_bullet_2">최대 30개의 카드를 추가할 수 있습니다.</string>
+    <string name="info_bullet_3">각 카드에서 「스캔」을 눌러 본인의 티켓을 등록하세요.</string>
+    <string name="info_bullet_4">스캔 후 숫자가 정확히 인식되었는지 확인하세요.</string>
+    <string name="info_bullet_5">칸을 길게 누르면 숫자를 변경할 수 있어요.</string>
+    <string name="info_bullet_6">상단에서 승리에 필요한 줄 수를 선택하세요.</string>
+    <string name="info_bullet_7">같은 카드로 계속 플레이하려면 새 라운드를 시작하세요.</string>
+    <string name="info_bullet_8">카드 이름을 눌러 변경할 수 있어요.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">통계</string>
+    <string name="probability_label">아직 나오지 않은 숫자별 확률:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">뽑힌 숫자 (%1$d)</string>
+    <string name="no_numbers_drawn_yet">아직 뽑힌 숫자가 없어요.</string>
+    <string name="undrawn_numbers_label">아직 안 뽑힌 숫자 (%1$d)</string>
+    <string name="all_numbers_drawn">모든 숫자가 뽑혔어요!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">숫자 기록</string>
+    <string name="no_numbers_entered_yet">아직 입력된 숫자가 없어요.</string>
+    <string name="last_number_label">마지막 숫자: %1$d</string>
+    <string name="clear_history_button">기록 지우기</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">카드 %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="other">승리까지 %1$d개 남음</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="other">빙고! %1$d줄</item>
+    </plurals>
+    <string name="scan_successful_message">카드 %1$d: 스캔이 적용되었어요.</string>
+    <string name="clear_card_confirmation_title">카드를 비울까요?</string>
+    <string name="clear_card_confirmation_message">이 카드의 모든 마크가 제거됩니다.</string>
+    <string name="clear_button">예, 비우기</string>
+    <string name="delete_card_confirmation_title">카드를 삭제할까요?</string>
+    <string name="delete_card_confirmation_message">이 카드와 모든 마크가 삭제됩니다.</string>
+    <string name="delete_button">예, 삭제</string>
+    <string name="marks_cleared_message">마크를 지웠어요</string>
+    <string name="card_deleted_message">카드를 삭제했어요</string>
+    <string name="actions">동작</string>
+    <string name="scan">스캔</string>
+    <string name="clear">비우기</string>
+    <string name="delete">삭제</string>
+    <string name="share">공유</string>
+    <string name="rename_card">카드 이름 변경</string>
+    <string name="win_label">승리:</string>
+    <string name="edit_card_name_dialog_title">카드 이름 편집</string>
+    <string name="name_label">이름</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">뽑힌 숫자를 누르세요</string>
+    <string name="last_drawn">마지막</string>
+    <string name="remaining_numbers">%1$d개 남음</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">카드 스캔 (자동)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">다시 스캔</string>
+    <string name="scan_confirm_accept">적용</string>
+    <string name="scan_confirm_message">감지된 숫자: %1$d / %2$d</string>
+    <string name="scan_confirm_title">스캔 확인</string>
+    <string name="scan_preview_legend">색칠된 칸 = 감지된 숫자, 빈 칸 = 감지되지 않음.</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">숫자를 입력하거나 비워두세요</string>
+    <string name="ok">확인</string>
+    <string name="number_input_dialog_supporting_text">허용: %1$d–%2$d; 비움 = 숫자 없음</string>
+    <string name="camera_permission_denied_title">카메라 권한 필요</string>
+    <string name="camera_permission_denied_message">카드를 스캔하려면 카메라 접근이 필요합니다.</string>
+    <string name="request_again">다시 요청</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">마지막 동작</string>
+    <string name="undo_change_win_rows">승리 줄 수 변경</string>
+    <string name="undo_add_card">새 카드 추가</string>
+    <string name="undo_card_deleted">카드 %1$d 삭제</string>
+    <string name="undo_card_cleared">카드 비움</string>
+    <string name="undo_clear_marks_for_card">카드 %1$d 마크 지움</string>
+    <string name="undo_cell_changed">카드 %1$d 칸 변경</string>
+    <string name="undo_scan_applied">카드 %1$d 에 스캔 적용</string>
+    <string name="undo_start_new_round">새 라운드 시작</string>
+    <string name="undo_wipe_all">모든 카드 비움</string>
+    <string name="undo_number_marked">숫자 %1$d 마킹</string>
+    <string name="undo_history_cleared">기록 지움</string>
+    <string name="undo_number_removed_from_history">숫자 %1$d 기록에서 제거</string>
+    <string name="undo_card_name_changed">카드 이름 변경</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">완료된 라운드가 아직 없어요.</string>
+    <string name="statistics_daily_summaries_title">일별 요약</string>
+    <string name="statistics_no_daily_summaries">일별 요약이 없어요.</string>
+    <string name="statistics_date_label">일별 요약 – %1$s</string>
+    <string name="statistics_most_frequent_numbers">가장 자주 나온 숫자: %1$s</string>
+    <string name="statistics_least_frequent_numbers">가장 적게 나온 숫자: %1$s</string>
+    <string name="statistics_missing_numbers">아직 안 나온 숫자: %1$s</string>
+    <string name="statistics_completed_rounds_title">완료된 라운드</string>
+    <string name="statistics_no_completed_rounds">완료된 라운드가 없어요.</string>
+    <string name="statistics_round_header">라운드 %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">뽑힌 숫자: %1$s</string>
+    <string name="statistics_delete_all_button">통계 초기화</string>
+    <string name="statistics_delete_all_confirmation_title">통계를 초기화할까요?</string>
+    <string name="statistics_delete_all_confirmation_message">저장된 모든 통계를 삭제할까요? 되돌릴 수 없어요.</string>
+    <string name="statistics_delete_all_confirm_button">삭제</string>
+    <string name="statistics_rounds_and_draws">라운드: %1$d · 뽑힌 숫자: %2$d</string>
+    <string name="statistics_round_winners_line">우승자: %1$d · 최대 완성 줄: %2$d</string>
+    <string name="statistics_global_top5">최다 출현 (전체): %1$s</string>
+    <string name="statistics_chart_title">최다 출현 상위 10개</string>
+    <string name="statistics_heatmap_title">빈도 개요 (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: %2$d개 부족</string>
+    <string name="row_singular">줄</string>
+    <string name="row_plural">줄</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">법적 고지</string>
+    <string name="privacy_policy">개인정보 처리방침</string>
+    <string name="terms_of_service">이용 약관</string>
+    <string name="legal_info_title">법적 고지</string>
+    <string name="legal_info_body">Lottomatch 은 Aegeri App Studio 에서 개발했으며 완전히 오프라인으로 작동합니다. 자세한 내용은 개인정보 처리방침과 이용 약관을 확인하세요.</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">앱 정보</string>
+    <string name="feedback">피드백</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Lottomatch 피드백 (Android)</string>
+    <string name="feedback_email_chooser">피드백 보낼 앱 선택…</string>
+
+    <string name="rating_dialog_title">Lottomatch 가 마음에 드세요?</string>
+    <string name="rating_dialog_body">카드를 더 빨리 확인하는 데 도움이 되었다면 Play 스토어에서 평가해 주세요.</string>
+    <string name="rating_now">지금 평가하기</string>
+    <string name="rating_later">나중에</string>
+    <string name="rating_never">다시 묻지 않기</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">카드가 아직 없어요</string>
+    <string name="no_cards_body">메뉴에서 새 카드를 추가하고 첫 티켓을 스캔하세요.</string>
+    <string name="no_cards_cta">첫 카드 만들기</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">카드 스캔</string>
+    <string name="onboarding_body_1">새 카드를 추가하고 카메라로 스캔하세요. 숫자는 자동으로 인식됩니다.</string>
+    <string name="onboarding_title_2">숫자 표시</string>
+    <string name="onboarding_body_2">뽑힌 숫자를 입력하세요 — 한 번에 여러 개도 가능. 칸을 길게 누르면 편집할 수 있어요.</string>
+    <string name="onboarding_title_3">승리 확인</string>
+    <string name="onboarding_body_3">승리에 필요한 줄 수를 선택하세요. 맞히면 색종이가 뿌려져요!</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_next">다음</string>
+    <string name="onboarding_done">시작!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">더 많은 카드와 고급 통계</string>
+    <string name="paywall_feature_cards">한 번에 최대 30개의 카드</string>
+    <string name="paywall_feature_heatmap">1–90 모든 숫자의 빈도 히트맵</string>
+    <string name="paywall_feature_support">앱 개발을 지원해 주세요</string>
+    <string name="paywall_buy_button">잠금 해제 — %1$s</string>
+    <string name="paywall_buy_loading">Play 스토어에 연결 중…</string>
+    <string name="paywall_restore">구매 복원</string>
+    <string name="paywall_purchase_success">Premium 이 활성화되었어요. 감사합니다!</string>
+    <string name="paywall_purchase_cancelled">구매가 취소되었어요</string>
+    <string name="paywall_purchase_error">구매 실패: %1$s</string>
+    <string name="paywall_unavailable">Premium 을 지금은 사용할 수 없어요. 나중에 다시 시도하세요.</string>
+    <string name="paywall_already_owned">이미 Premium 을 보유 중이에요 — 감사합니다!</string>
+    <string name="card_limit_reached">카드 한도에 도달했어요. Premium 으로 최대 30개.</string>
+    <string name="premium_locked_heatmap_title">Premium 기능</string>
+    <string name="premium_locked_heatmap_body">빈도 히트맵은 Lottomatch Premium 의 일부예요.</string>
+    <string name="premium_unlock_cta">Premium 잠금 해제</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — 빠른 보기</string>
+    <string name="widget_no_cards">카드 없음</string>
+    <string name="widget_to_win_label">승리까지</string>
+    <string name="widget_lotto_message">빙고!</string>
+    <string name="widget_last_drawn">마지막: %1$d</string>
+</resources>

@@ -1,0 +1,201 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">Menü</string>
+    <string name="undo">Geri al</string>
+    <string name="new_card">Yeni kart</string>
+    <string name="start_new_round">Yeni tur başlat</string>
+    <string name="delete_all_cards">Tüm kartları sil</string>
+    <string name="history">Geçmiş</string>
+    <string name="statistics">İstatistikler</string>
+    <string name="info">Bilgi</string>
+    <string name="scan_or_enter_numbers_prompt">Önce bir kart tara veya numaraları gir.</string>
+    <string name="invalid_number_prompt">Yalnızca 1–90 arası sayılar geçerlidir.</string>
+    <string name="number_already_drawn_prompt">%1$d sayısı zaten çekildi.</string>
+    <string name="reset_all_confirmation_title">Her şey sıfırlansın mı?</string>
+    <string name="reset_all_confirmation_message">Tüm kartları, işaretleri ve sayı geçmişini gerçekten silmek istiyor musun?</string>
+    <string name="reset_all_confirm_button">Her şeyi sıfırla</string>
+    <string name="cancel">İptal</string>
+    <string name="undo_confirmation_title">Geri alınsın mı?</string>
+    <string name="close">Kapat</string>
+    <string name="info_dialog_title">Nasıl kullanılır</string>
+    <string name="info_bullet_1">Menüden yeni bir kart ekle.</string>
+    <string name="info_bullet_2">En fazla 30 kart ekleyebilirsin.</string>
+    <string name="info_bullet_3">Her kartta «Tara»ya dokunarak biletini yakala.</string>
+    <string name="info_bullet_4">Taradıktan sonra sayıların doğru tanındığını kontrol et.</string>
+    <string name="info_bullet_5">Sayıyı değiştirmek için kareye uzun bas.</string>
+    <string name="info_bullet_6">Yukarıdan kazanmak için kaç sıra gerektiğini seç.</string>
+    <string name="info_bullet_7">Aynı kartlarla devam etmek için yeni bir tur başlat.</string>
+    <string name="info_bullet_8">Kartın adına dokunarak yeniden adlandır.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">İstatistikler</string>
+    <string name="probability_label">Henüz çekilmemiş her sayı için olasılık:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">Çekilen sayılar (%1$d)</string>
+    <string name="no_numbers_drawn_yet">Henüz sayı çekilmedi.</string>
+    <string name="undrawn_numbers_label">Çekilmemiş sayılar (%1$d)</string>
+    <string name="all_numbers_drawn">Tüm sayılar çekildi!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">Sayı geçmişi</string>
+    <string name="no_numbers_entered_yet">Henüz sayı girilmedi.</string>
+    <string name="last_number_label">Son sayı: %1$d</string>
+    <string name="clear_history_button">Geçmişi temizle</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">Kart %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">Kazanmaya %1$d sayı kaldı</item>
+        <item quantity="other">Kazanmaya %1$d sayı kaldı</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="one">TOMBALA! %1$d sıra</item>
+        <item quantity="other">TOMBALA! %1$d sıra</item>
+    </plurals>
+    <string name="scan_successful_message">Kart %1$d: tarama uygulandı.</string>
+    <string name="clear_card_confirmation_title">Kart temizlensin mi?</string>
+    <string name="clear_card_confirmation_message">Bu karttaki tüm işaretler kaldırılacak.</string>
+    <string name="clear_button">Evet, temizle</string>
+    <string name="delete_card_confirmation_title">Kart silinsin mi?</string>
+    <string name="delete_card_confirmation_message">Bu kart ve tüm işaretleri silinecek.</string>
+    <string name="delete_button">Evet, sil</string>
+    <string name="marks_cleared_message">İşaretler temizlendi</string>
+    <string name="card_deleted_message">Kart silindi</string>
+    <string name="actions">Eylemler</string>
+    <string name="scan">Tara</string>
+    <string name="clear">Temizle</string>
+    <string name="delete">Sil</string>
+    <string name="share">Paylaş</string>
+    <string name="rename_card">Kartı yeniden adlandır</string>
+    <string name="win_label">Kazanç:</string>
+    <string name="edit_card_name_dialog_title">Kart adını değiştir</string>
+    <string name="name_label">Ad</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">Çekilen bir sayıya dokun</string>
+    <string name="last_drawn">Son</string>
+    <string name="remaining_numbers">%1$d kaldı</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">Kartı tara (oto)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">Tekrar tara</string>
+    <string name="scan_confirm_accept">Uygula</string>
+    <string name="scan_confirm_message">Bulunan sayılar: %2$d içinden %1$d</string>
+    <string name="scan_confirm_title">Taramayı kontrol et</string>
+    <string name="scan_preview_legend">Renkli kareler = bulunan sayılar, boş kareler = bulunamadı.</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">Sayı gir veya boş bırak</string>
+    <string name="ok">Tamam</string>
+    <string name="number_input_dialog_supporting_text">İzin verilen: %1$d–%2$d; boş = sayısız</string>
+    <string name="camera_permission_denied_title">Kamera erişimi gerekli</string>
+    <string name="camera_permission_denied_message">Kartları taramak için uygulamanın kameraya erişmesi gerekiyor.</string>
+    <string name="request_again">Tekrar iste</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">Son işlem</string>
+    <string name="undo_change_win_rows">Kazanma sıraları değiştirildi</string>
+    <string name="undo_add_card">Yeni kart eklendi</string>
+    <string name="undo_card_deleted">Kart %1$d silindi</string>
+    <string name="undo_card_cleared">Kart temizlendi</string>
+    <string name="undo_clear_marks_for_card">Kart %1$d işaretleri temizlendi</string>
+    <string name="undo_cell_changed">Kart %1$d hücresi değişti</string>
+    <string name="undo_scan_applied">Kart %1$d tarama uygulandı</string>
+    <string name="undo_start_new_round">Yeni tur başlatıldı</string>
+    <string name="undo_wipe_all">Tüm kartlar temizlendi</string>
+    <string name="undo_number_marked">%1$d sayısı işaretlendi</string>
+    <string name="undo_history_cleared">Geçmiş temizlendi</string>
+    <string name="undo_number_removed_from_history">%1$d geçmişten kaldırıldı</string>
+    <string name="undo_card_name_changed">Kart adı değişti</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">Henüz tamamlanmış tur yok.</string>
+    <string name="statistics_daily_summaries_title">Günlük özetler</string>
+    <string name="statistics_no_daily_summaries">Günlük özet yok.</string>
+    <string name="statistics_date_label">Günlük özet – %1$s</string>
+    <string name="statistics_most_frequent_numbers">En sık gelen sayılar: %1$s</string>
+    <string name="statistics_least_frequent_numbers">En az gelen sayılar: %1$s</string>
+    <string name="statistics_missing_numbers">Henüz çekilmedi: %1$s</string>
+    <string name="statistics_completed_rounds_title">Tamamlanan turlar</string>
+    <string name="statistics_no_completed_rounds">Tamamlanan tur yok.</string>
+    <string name="statistics_round_header">Tur %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">Çekilen sayılar: %1$s</string>
+    <string name="statistics_delete_all_button">İstatistikleri sıfırla</string>
+    <string name="statistics_delete_all_confirmation_title">İstatistikler sıfırlansın mı?</string>
+    <string name="statistics_delete_all_confirmation_message">Tüm kayıtlı istatistikler silinsin mi? Bu işlem geri alınamaz.</string>
+    <string name="statistics_delete_all_confirm_button">Sil</string>
+    <string name="statistics_rounds_and_draws">Tur: %1$d · Çekilen sayı: %2$d</string>
+    <string name="statistics_round_winners_line">Kazananlar: %1$d · Maks. tam sıra: %2$d</string>
+    <string name="statistics_global_top5">En sık gelen (tüm turlar): %1$s</string>
+    <string name="statistics_chart_title">En sık gelen 10 sayı</string>
+    <string name="statistics_heatmap_title">Sıklık haritası (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: %2$d eksikti</string>
+    <string name="row_singular">sıra</string>
+    <string name="row_plural">sıralar</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">Yasal</string>
+    <string name="privacy_policy">Gizlilik politikası</string>
+    <string name="terms_of_service">Kullanım koşulları</string>
+    <string name="legal_info_title">Yasal bilgiler</string>
+    <string name="legal_info_body">Lottomatch, Aegeri App Studio tarafından geliştirildi ve tamamen çevrimdışı çalışır. Detaylar gizlilik politikası ve kullanım koşullarında.</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">Uygulama hakkında</string>
+    <string name="feedback">Geri bildirim</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Lottomatch geri bildirimi (Android)</string>
+    <string name="feedback_email_chooser">Geri bildirimi şununla gönder…</string>
+
+    <string name="rating_dialog_title">Lottomatch\'i sevdin mi?</string>
+    <string name="rating_dialog_body">Uygulama kartlarını daha hızlı kontrol etmene yardımcı oluyorsa, Play Store\'da değerlendirmen bizi sevindirir.</string>
+    <string name="rating_now">Şimdi değerlendir</string>
+    <string name="rating_later">Daha sonra</string>
+    <string name="rating_never">Bir daha sorma</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">Henüz kart yok</string>
+    <string name="no_cards_body">Menüden yeni bir kart ekle ve ilk biletini tara.</string>
+    <string name="no_cards_cta">İlk kartı oluştur</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Kart tara</string>
+    <string name="onboarding_body_1">Yeni bir kart ekle ve kamerayla tara. Sayılar otomatik olarak tanınır.</string>
+    <string name="onboarding_title_2">Sayıları işaretle</string>
+    <string name="onboarding_body_2">Çekilen sayıları gir — tek tek veya aynı anda birkaçı. Düzenlemek için kareye uzun bas.</string>
+    <string name="onboarding_title_3">Kazanmayı kontrol et</string>
+    <string name="onboarding_body_3">Kazanmak için kaç sıra gerektiğini seç. Vurduğunda konfeti gelir!</string>
+    <string name="onboarding_skip">Atla</string>
+    <string name="onboarding_next">İleri</string>
+    <string name="onboarding_done">Başlayalım!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">Daha fazla kart ve gelişmiş istatistikler</string>
+    <string name="paywall_feature_cards">Aynı anda 30 karta kadar</string>
+    <string name="paywall_feature_heatmap">1–90 tüm sayılar için sıklık haritası</string>
+    <string name="paywall_feature_support">Uygulamanın gelişimine destek ol</string>
+    <string name="paywall_buy_button">Aç — %1$s</string>
+    <string name="paywall_buy_loading">Play Store\'a bağlanılıyor…</string>
+    <string name="paywall_restore">Satın almayı geri yükle</string>
+    <string name="paywall_purchase_success">Premium etkin, teşekkürler!</string>
+    <string name="paywall_purchase_cancelled">Satın alma iptal edildi</string>
+    <string name="paywall_purchase_error">Satın alma başarısız: %1$s</string>
+    <string name="paywall_unavailable">Premium şu anda kullanılamıyor. Daha sonra tekrar dene.</string>
+    <string name="paywall_already_owned">Premium\'a zaten sahipsin — teşekkürler!</string>
+    <string name="card_limit_reached">Kart limiti doldu. Premium ile 30 karta kadar.</string>
+    <string name="premium_locked_heatmap_title">Premium özelliği</string>
+    <string name="premium_locked_heatmap_body">Sıklık haritası Lottomatch Premium\'un parçası.</string>
+    <string name="premium_unlock_cta">Premium\'u aç</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — hızlı görünüm</string>
+    <string name="widget_no_cards">Kart yok</string>
+    <string name="widget_to_win_label">kazanmaya</string>
+    <string name="widget_lotto_message">TOMBALA!</string>
+    <string name="widget_last_drawn">Son: %1$d</string>
+</resources>

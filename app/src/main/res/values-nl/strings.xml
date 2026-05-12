@@ -1,0 +1,201 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">Menu</string>
+    <string name="undo">Ongedaan maken</string>
+    <string name="new_card">Nieuwe kaart</string>
+    <string name="start_new_round">Nieuwe ronde starten</string>
+    <string name="delete_all_cards">Alle kaarten verwijderen</string>
+    <string name="history">Geschiedenis</string>
+    <string name="statistics">Statistieken</string>
+    <string name="info">Info</string>
+    <string name="scan_or_enter_numbers_prompt">Scan eerst een kaart of voer de nummers in.</string>
+    <string name="invalid_number_prompt">Alleen getallen van 1 tot 90 zijn geldig.</string>
+    <string name="number_already_drawn_prompt">Nummer %1$d is al getrokken.</string>
+    <string name="reset_all_confirmation_title">Alles resetten?</string>
+    <string name="reset_all_confirmation_message">Wil je echt alle kaarten, markeringen en de nummergeschiedenis wissen?</string>
+    <string name="reset_all_confirm_button">Alles resetten</string>
+    <string name="cancel">Annuleren</string>
+    <string name="undo_confirmation_title">Ongedaan maken?</string>
+    <string name="close">Sluiten</string>
+    <string name="info_dialog_title">Zo werkt het</string>
+    <string name="info_bullet_1">Voeg een nieuwe kaart toe via het menu.</string>
+    <string name="info_bullet_2">Je kunt tot 30 kaarten toevoegen.</string>
+    <string name="info_bullet_3">Tik op «Scannen» bij elke kaart om je speelkaart vast te leggen.</string>
+    <string name="info_bullet_4">Controleer na het scannen of de nummers kloppen.</string>
+    <string name="info_bullet_5">Houd een vakje ingedrukt om het nummer te wijzigen.</string>
+    <string name="info_bullet_6">Kies bovenaan hoeveel rijen er nodig zijn om te winnen.</string>
+    <string name="info_bullet_7">Start een nieuwe ronde om met dezelfde kaarten verder te spelen.</string>
+    <string name="info_bullet_8">Tik op de naam van een kaart om die te wijzigen.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">Statistieken</string>
+    <string name="probability_label">Kans voor elk nog niet getrokken nummer:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">Getrokken nummers (%1$d)</string>
+    <string name="no_numbers_drawn_yet">Nog geen nummers getrokken.</string>
+    <string name="undrawn_numbers_label">Nog niet getrokken nummers (%1$d)</string>
+    <string name="all_numbers_drawn">Alle nummers zijn getrokken!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">Nummergeschiedenis</string>
+    <string name="no_numbers_entered_yet">Nog geen nummers ingevoerd.</string>
+    <string name="last_number_label">Laatste nummer: %1$d</string>
+    <string name="clear_history_button">Geschiedenis wissen</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">Kaart %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">Nog %1$d nummer om te winnen</item>
+        <item quantity="other">Nog %1$d nummers om te winnen</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="one">BINGO! %1$d rij</item>
+        <item quantity="other">BINGO! %1$d rijen</item>
+    </plurals>
+    <string name="scan_successful_message">Kaart %1$d: scan toegepast.</string>
+    <string name="clear_card_confirmation_title">Kaart leegmaken?</string>
+    <string name="clear_card_confirmation_message">Alle markeringen op deze kaart worden verwijderd.</string>
+    <string name="clear_button">Ja, leegmaken</string>
+    <string name="delete_card_confirmation_title">Kaart verwijderen?</string>
+    <string name="delete_card_confirmation_message">Deze kaart en alle markeringen worden verwijderd.</string>
+    <string name="delete_button">Ja, verwijderen</string>
+    <string name="marks_cleared_message">Markeringen gewist</string>
+    <string name="card_deleted_message">Kaart verwijderd</string>
+    <string name="actions">Acties</string>
+    <string name="scan">Scannen</string>
+    <string name="clear">Leegmaken</string>
+    <string name="delete">Verwijderen</string>
+    <string name="share">Delen</string>
+    <string name="rename_card">Kaart hernoemen</string>
+    <string name="win_label">Winst:</string>
+    <string name="edit_card_name_dialog_title">Kaartnaam wijzigen</string>
+    <string name="name_label">Naam</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">Tik op een getrokken nummer</string>
+    <string name="last_drawn">Laatste</string>
+    <string name="remaining_numbers">Nog %1$d over</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">Lottokaart scannen (auto)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">Opnieuw scannen</string>
+    <string name="scan_confirm_accept">Toepassen</string>
+    <string name="scan_confirm_message">Gevonden nummers: %1$d van %2$d</string>
+    <string name="scan_confirm_title">Scan controleren</string>
+    <string name="scan_preview_legend">Gekleurde vakjes = gevonden nummers, lege vakjes = niet herkend.</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">Voer een nummer in of laat leeg</string>
+    <string name="ok">OK</string>
+    <string name="number_input_dialog_supporting_text">Toegestaan: %1$d–%2$d; leeg = geen nummer</string>
+    <string name="camera_permission_denied_title">Camera-toegang vereist</string>
+    <string name="camera_permission_denied_message">Om kaarten te scannen, heeft de app toegang tot de camera nodig.</string>
+    <string name="request_again">Opnieuw vragen</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">Laatste actie</string>
+    <string name="undo_change_win_rows">Winrijen aangepast</string>
+    <string name="undo_add_card">Nieuwe kaart toegevoegd</string>
+    <string name="undo_card_deleted">Kaart %1$d verwijderd</string>
+    <string name="undo_card_cleared">Kaart leeggemaakt</string>
+    <string name="undo_clear_marks_for_card">Markeringen op kaart %1$d gewist</string>
+    <string name="undo_cell_changed">Vakje op kaart %1$d gewijzigd</string>
+    <string name="undo_scan_applied">Scan toegepast op kaart %1$d</string>
+    <string name="undo_start_new_round">Nieuwe ronde gestart</string>
+    <string name="undo_wipe_all">Alle kaarten leeggemaakt</string>
+    <string name="undo_number_marked">Nummer %1$d gemarkeerd</string>
+    <string name="undo_history_cleared">Geschiedenis gewist</string>
+    <string name="undo_number_removed_from_history">Nummer %1$d uit geschiedenis verwijderd</string>
+    <string name="undo_card_name_changed">Kaartnaam gewijzigd</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">Nog geen rondes voltooid.</string>
+    <string name="statistics_daily_summaries_title">Dagoverzichten</string>
+    <string name="statistics_no_daily_summaries">Geen dagoverzichten beschikbaar.</string>
+    <string name="statistics_date_label">Dagoverzicht – %1$s</string>
+    <string name="statistics_most_frequent_numbers">Meest getrokken nummers: %1$s</string>
+    <string name="statistics_least_frequent_numbers">Minst getrokken nummers: %1$s</string>
+    <string name="statistics_missing_numbers">Nog niet getrokken: %1$s</string>
+    <string name="statistics_completed_rounds_title">Voltooide rondes</string>
+    <string name="statistics_no_completed_rounds">Geen voltooide rondes.</string>
+    <string name="statistics_round_header">Ronde %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">Getrokken nummers: %1$s</string>
+    <string name="statistics_delete_all_button">Statistieken resetten</string>
+    <string name="statistics_delete_all_confirmation_title">Statistieken resetten?</string>
+    <string name="statistics_delete_all_confirmation_message">Alle opgeslagen statistieken verwijderen? Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="statistics_delete_all_confirm_button">Verwijderen</string>
+    <string name="statistics_rounds_and_draws">Rondes: %1$d · Getrokken nummers: %2$d</string>
+    <string name="statistics_round_winners_line">Winnaars: %1$d · Max. volle rijen: %2$d</string>
+    <string name="statistics_global_top5">Meest getrokken (alle rondes): %1$s</string>
+    <string name="statistics_chart_title">Top 10 meest getrokken nummers</string>
+    <string name="statistics_heatmap_title">Frequentie-overzicht (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: %2$d ontbraken</string>
+    <string name="row_singular">rij</string>
+    <string name="row_plural">rijen</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">Juridisch</string>
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="terms_of_service">Gebruiksvoorwaarden</string>
+    <string name="legal_info_title">Juridische informatie</string>
+    <string name="legal_info_body">Lottomatch is ontwikkeld door Aegeri App Studio en werkt volledig offline. Details vind je in het privacybeleid en de gebruiksvoorwaarden.</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">Over de app</string>
+    <string name="feedback">Feedback</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Feedback over Lottomatch (Android)</string>
+    <string name="feedback_email_chooser">Feedback versturen via…</string>
+
+    <string name="rating_dialog_title">Vind je Lottomatch leuk?</string>
+    <string name="rating_dialog_body">Als de app je helpt om je kaarten sneller te controleren, zouden we een beoordeling in de Play Store waarderen.</string>
+    <string name="rating_now">Nu beoordelen</string>
+    <string name="rating_later">Later</string>
+    <string name="rating_never">Niet meer vragen</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">Nog geen kaarten</string>
+    <string name="no_cards_body">Voeg een nieuwe kaart toe via het menu en scan je eerste speelkaart.</string>
+    <string name="no_cards_cta">Eerste kaart maken</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Een kaart scannen</string>
+    <string name="onboarding_body_1">Voeg een nieuwe kaart toe en scan die met de camera. De nummers worden automatisch herkend.</string>
+    <string name="onboarding_title_2">Nummers markeren</string>
+    <string name="onboarding_body_2">Voer de getrokken nummers in — één of meerdere tegelijk. Houd een vakje ingedrukt om het te bewerken.</string>
+    <string name="onboarding_title_3">Win controleren</string>
+    <string name="onboarding_body_3">Kies hoeveel rijen er nodig zijn om te winnen. Bij een treffer komt er confetti!</string>
+    <string name="onboarding_skip">Overslaan</string>
+    <string name="onboarding_next">Volgende</string>
+    <string name="onboarding_done">We gaan!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">Meer kaarten en uitgebreide statistieken</string>
+    <string name="paywall_feature_cards">Tot 30 kaarten tegelijk</string>
+    <string name="paywall_feature_heatmap">Frequentiekaart van alle nummers 1–90</string>
+    <string name="paywall_feature_support">Steun de ontwikkeling van de app</string>
+    <string name="paywall_buy_button">Ontgrendelen — %1$s</string>
+    <string name="paywall_buy_loading">Verbinden met Play Store…</string>
+    <string name="paywall_restore">Aankoop herstellen</string>
+    <string name="paywall_purchase_success">Premium geactiveerd, bedankt!</string>
+    <string name="paywall_purchase_cancelled">Aankoop geannuleerd</string>
+    <string name="paywall_purchase_error">Aankoop mislukt: %1$s</string>
+    <string name="paywall_unavailable">Premium is nu niet beschikbaar. Probeer het later opnieuw.</string>
+    <string name="paywall_already_owned">Je hebt Premium al — bedankt!</string>
+    <string name="card_limit_reached">Kaartenlimiet bereikt. Met Premium tot 30 kaarten.</string>
+    <string name="premium_locked_heatmap_title">Premium-functie</string>
+    <string name="premium_locked_heatmap_body">De frequentiekaart is onderdeel van Lottomatch Premium.</string>
+    <string name="premium_unlock_cta">Premium ontgrendelen</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — snel overzicht</string>
+    <string name="widget_no_cards">Geen kaarten</string>
+    <string name="widget_to_win_label">tot winst</string>
+    <string name="widget_lotto_message">BINGO!</string>
+    <string name="widget_last_drawn">Laatst: %1$d</string>
+</resources>

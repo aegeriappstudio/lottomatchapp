@@ -1,0 +1,199 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">メニュー</string>
+    <string name="undo">元に戻す</string>
+    <string name="new_card">新しいカード</string>
+    <string name="start_new_round">新しいラウンド開始</string>
+    <string name="delete_all_cards">すべてのカードを削除</string>
+    <string name="history">履歴</string>
+    <string name="statistics">統計</string>
+    <string name="info">情報</string>
+    <string name="scan_or_enter_numbers_prompt">まずカードをスキャンするか、数字を入力してください。</string>
+    <string name="invalid_number_prompt">1〜90 の数字のみ有効です。</string>
+    <string name="number_already_drawn_prompt">数字 %1$d はすでに出ています。</string>
+    <string name="reset_all_confirmation_title">すべてリセットしますか?</string>
+    <string name="reset_all_confirmation_message">すべてのカード、マーク、数字履歴を完全に削除しますか?</string>
+    <string name="reset_all_confirm_button">すべてリセット</string>
+    <string name="cancel">キャンセル</string>
+    <string name="undo_confirmation_title">元に戻しますか?</string>
+    <string name="close">閉じる</string>
+    <string name="info_dialog_title">使い方</string>
+    <string name="info_bullet_1">メニューから新しいカードを追加します。</string>
+    <string name="info_bullet_2">最大 30 枚のカードを追加できます。</string>
+    <string name="info_bullet_3">各カードで「スキャン」をタップして自分のチケットを読み取ります。</string>
+    <string name="info_bullet_4">スキャン後、数字が正しく認識されているか確認します。</string>
+    <string name="info_bullet_5">マスを長押しすると数字を変更できます。</string>
+    <string name="info_bullet_6">上で、勝ちに必要な行数を選びます。</string>
+    <string name="info_bullet_7">同じカードで遊び続けるには新しいラウンドを始めます。</string>
+    <string name="info_bullet_8">カード名をタップして変更できます。</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">統計</string>
+    <string name="probability_label">まだ出ていない数字ごとの確率:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">出た数字 (%1$d)</string>
+    <string name="no_numbers_drawn_yet">まだ数字は出ていません。</string>
+    <string name="undrawn_numbers_label">まだ出ていない数字 (%1$d)</string>
+    <string name="all_numbers_drawn">すべての数字が出ました!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">数字の履歴</string>
+    <string name="no_numbers_entered_yet">まだ数字は入力されていません。</string>
+    <string name="last_number_label">最後の数字: %1$d</string>
+    <string name="clear_history_button">履歴を消去</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">カード %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="other">勝ちまであと %1$d 個</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="other">ビンゴ! %1$d 行</item>
+    </plurals>
+    <string name="scan_successful_message">カード %1$d: スキャンを適用しました。</string>
+    <string name="clear_card_confirmation_title">カードを空にしますか?</string>
+    <string name="clear_card_confirmation_message">このカードのすべてのマークが削除されます。</string>
+    <string name="clear_button">はい、空にする</string>
+    <string name="delete_card_confirmation_title">カードを削除しますか?</string>
+    <string name="delete_card_confirmation_message">このカードとすべてのマークが削除されます。</string>
+    <string name="delete_button">はい、削除</string>
+    <string name="marks_cleared_message">マークを消去しました</string>
+    <string name="card_deleted_message">カードを削除しました</string>
+    <string name="actions">操作</string>
+    <string name="scan">スキャン</string>
+    <string name="clear">空にする</string>
+    <string name="delete">削除</string>
+    <string name="share">共有</string>
+    <string name="rename_card">カード名を変更</string>
+    <string name="win_label">勝利:</string>
+    <string name="edit_card_name_dialog_title">カード名を編集</string>
+    <string name="name_label">名前</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">出た数字をタップ</string>
+    <string name="last_drawn">最後</string>
+    <string name="remaining_numbers">残り %1$d</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">カードをスキャン (自動)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">もう一度スキャン</string>
+    <string name="scan_confirm_accept">適用</string>
+    <string name="scan_confirm_message">検出された数字: %1$d / %2$d</string>
+    <string name="scan_confirm_title">スキャンを確認</string>
+    <string name="scan_preview_legend">色付きのマス = 検出された数字、空のマス = 未検出。</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">数字を入力するか空のままにします</string>
+    <string name="ok">OK</string>
+    <string name="number_input_dialog_supporting_text">許可: %1$d–%2$d; 空 = 数字なし</string>
+    <string name="camera_permission_denied_title">カメラへのアクセスが必要です</string>
+    <string name="camera_permission_denied_message">カードをスキャンするためにアプリはカメラにアクセスする必要があります。</string>
+    <string name="request_again">もう一度許可を求める</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">最後の操作</string>
+    <string name="undo_change_win_rows">勝利行数を変更</string>
+    <string name="undo_add_card">新しいカードを追加</string>
+    <string name="undo_card_deleted">カード %1$d を削除</string>
+    <string name="undo_card_cleared">カードを空にしました</string>
+    <string name="undo_clear_marks_for_card">カード %1$d のマークを消去</string>
+    <string name="undo_cell_changed">カード %1$d のマスを変更</string>
+    <string name="undo_scan_applied">カード %1$d にスキャンを適用</string>
+    <string name="undo_start_new_round">新しいラウンド開始</string>
+    <string name="undo_wipe_all">すべてのカードを空に</string>
+    <string name="undo_number_marked">数字 %1$d をマーク</string>
+    <string name="undo_history_cleared">履歴を消去</string>
+    <string name="undo_number_removed_from_history">数字 %1$d を履歴から削除</string>
+    <string name="undo_card_name_changed">カード名を変更</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">完了したラウンドはまだありません。</string>
+    <string name="statistics_daily_summaries_title">日別サマリー</string>
+    <string name="statistics_no_daily_summaries">日別サマリーはありません。</string>
+    <string name="statistics_date_label">日別サマリー – %1$s</string>
+    <string name="statistics_most_frequent_numbers">最も多く出た数字: %1$s</string>
+    <string name="statistics_least_frequent_numbers">最も少なく出た数字: %1$s</string>
+    <string name="statistics_missing_numbers">まだ出ていない: %1$s</string>
+    <string name="statistics_completed_rounds_title">完了したラウンド</string>
+    <string name="statistics_no_completed_rounds">完了したラウンドはありません。</string>
+    <string name="statistics_round_header">ラウンド %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">出た数字: %1$s</string>
+    <string name="statistics_delete_all_button">統計をリセット</string>
+    <string name="statistics_delete_all_confirmation_title">統計をリセットしますか?</string>
+    <string name="statistics_delete_all_confirmation_message">保存されたすべての統計を削除しますか? この操作は取り消せません。</string>
+    <string name="statistics_delete_all_confirm_button">削除</string>
+    <string name="statistics_rounds_and_draws">ラウンド: %1$d · 出た数字: %2$d</string>
+    <string name="statistics_round_winners_line">勝者: %1$d · 最大完成行: %2$d</string>
+    <string name="statistics_global_top5">最頻出 (全ラウンド): %1$s</string>
+    <string name="statistics_chart_title">最頻出の上位 10 数字</string>
+    <string name="statistics_heatmap_title">頻度マップ (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: %2$d 不足</string>
+    <string name="row_singular">行</string>
+    <string name="row_plural">行</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">法的情報</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="terms_of_service">利用規約</string>
+    <string name="legal_info_title">法的情報</string>
+    <string name="legal_info_body">Lottomatch は Aegeri App Studio によって開発されており、完全にオフラインで動作します。詳細はプライバシーポリシーと利用規約をご覧ください。</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">アプリについて</string>
+    <string name="feedback">フィードバック</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Lottomatch についてのフィードバック (Android)</string>
+    <string name="feedback_email_chooser">フィードバックを送信…</string>
+
+    <string name="rating_dialog_title">Lottomatch はいかがですか?</string>
+    <string name="rating_dialog_body">カードを素早くチェックできるなら、Play ストアでの評価をいただけると嬉しいです。</string>
+    <string name="rating_now">今すぐ評価</string>
+    <string name="rating_later">あとで</string>
+    <string name="rating_never">今後表示しない</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">カードはまだありません</string>
+    <string name="no_cards_body">メニューから新しいカードを追加し、最初のチケットをスキャンしましょう。</string>
+    <string name="no_cards_cta">最初のカードを作成</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">カードをスキャン</string>
+    <string name="onboarding_body_1">新しいカードを追加し、カメラでスキャンします。数字は自動で認識されます。</string>
+    <string name="onboarding_title_2">数字をマーク</string>
+    <string name="onboarding_body_2">出た数字を入力します — 一度に複数も可能。マスを長押しすると編集できます。</string>
+    <string name="onboarding_title_3">勝利を確認</string>
+    <string name="onboarding_body_3">勝ちに必要な行数を選びます。当たると紙吹雪!</string>
+    <string name="onboarding_skip">スキップ</string>
+    <string name="onboarding_next">次へ</string>
+    <string name="onboarding_done">はじめる!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">より多くのカードと高度な統計</string>
+    <string name="paywall_feature_cards">同時に最大 30 枚のカード</string>
+    <string name="paywall_feature_heatmap">1–90 全数字の頻度ヒートマップ</string>
+    <string name="paywall_feature_support">アプリ開発をサポート</string>
+    <string name="paywall_buy_button">アンロック — %1$s</string>
+    <string name="paywall_buy_loading">Play ストアに接続中…</string>
+    <string name="paywall_restore">購入を復元</string>
+    <string name="paywall_purchase_success">Premium が有効になりました。ありがとう!</string>
+    <string name="paywall_purchase_cancelled">購入がキャンセルされました</string>
+    <string name="paywall_purchase_error">購入失敗: %1$s</string>
+    <string name="paywall_unavailable">Premium は現在利用できません。あとで試してください。</string>
+    <string name="paywall_already_owned">すでに Premium をお持ちです — ありがとう!</string>
+    <string name="card_limit_reached">カードの上限に達しました。Premium で最大 30 枚。</string>
+    <string name="premium_locked_heatmap_title">Premium 機能</string>
+    <string name="premium_locked_heatmap_body">頻度ヒートマップは Lottomatch Premium の一部です。</string>
+    <string name="premium_unlock_cta">Premium をアンロック</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — クイックビュー</string>
+    <string name="widget_no_cards">カードなし</string>
+    <string name="widget_to_win_label">勝ちまで</string>
+    <string name="widget_lotto_message">ビンゴ!</string>
+    <string name="widget_last_drawn">最後: %1$d</string>
+</resources>

@@ -1,0 +1,201 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">Menu</string>
+    <string name="undo">Annuler</string>
+    <string name="new_card">Nouvelle carte</string>
+    <string name="start_new_round">Nouvelle partie</string>
+    <string name="delete_all_cards">Supprimer toutes les cartes</string>
+    <string name="history">Historique</string>
+    <string name="statistics">Statistiques</string>
+    <string name="info">Info</string>
+    <string name="scan_or_enter_numbers_prompt">Scanne une carte ou saisis d\'abord les numéros.</string>
+    <string name="invalid_number_prompt">Seuls les nombres de 1 à 90 sont valides.</string>
+    <string name="number_already_drawn_prompt">Le numéro %1$d a déjà été tiré.</string>
+    <string name="reset_all_confirmation_title">Tout réinitialiser ?</string>
+    <string name="reset_all_confirmation_message">Veux-tu vraiment supprimer toutes les cartes, marques et l\'historique des numéros ?</string>
+    <string name="reset_all_confirm_button">Tout réinitialiser</string>
+    <string name="cancel">Annuler</string>
+    <string name="undo_confirmation_title">Annuler ?</string>
+    <string name="close">Fermer</string>
+    <string name="info_dialog_title">Comment ça marche</string>
+    <string name="info_bullet_1">Ajoute une nouvelle carte depuis le menu.</string>
+    <string name="info_bullet_2">Tu peux ajouter jusqu\'à 30 cartes.</string>
+    <string name="info_bullet_3">Appuie sur « Scanner » pour capturer ta carte.</string>
+    <string name="info_bullet_4">Après le scan, vérifie que les numéros sont corrects.</string>
+    <string name="info_bullet_5">Appuie longuement sur une case pour en changer le numéro.</string>
+    <string name="info_bullet_6">Choisis en haut combien de lignes sont requises pour gagner.</string>
+    <string name="info_bullet_7">Démarre une nouvelle partie pour rejouer avec les mêmes cartes.</string>
+    <string name="info_bullet_8">Appuie sur le nom d\'une carte pour la renommer.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">Statistiques</string>
+    <string name="probability_label">Probabilité de chaque numéro non tiré :</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">Numéros tirés (%1$d)</string>
+    <string name="no_numbers_drawn_yet">Aucun numéro tiré pour l\'instant.</string>
+    <string name="undrawn_numbers_label">Numéros non tirés (%1$d)</string>
+    <string name="all_numbers_drawn">Tous les numéros ont été tirés !</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">Historique des numéros</string>
+    <string name="no_numbers_entered_yet">Aucun numéro saisi pour l\'instant.</string>
+    <string name="last_number_label">Dernier numéro : %1$d</string>
+    <string name="clear_history_button">Effacer l\'historique</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">Carte %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">Encore %1$d numéro pour gagner</item>
+        <item quantity="other">Encore %1$d numéros pour gagner</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="one">LOTO : %1$d ligne</item>
+        <item quantity="other">LOTO : %1$d lignes</item>
+    </plurals>
+    <string name="scan_successful_message">Carte %1$d : scan appliqué.</string>
+    <string name="clear_card_confirmation_title">Vider la carte ?</string>
+    <string name="clear_card_confirmation_message">Toutes les marques de cette carte seront effacées.</string>
+    <string name="clear_button">Oui, vider</string>
+    <string name="delete_card_confirmation_title">Supprimer la carte ?</string>
+    <string name="delete_card_confirmation_message">Cette carte et toutes ses marques seront supprimées.</string>
+    <string name="delete_button">Oui, supprimer</string>
+    <string name="marks_cleared_message">Marques effacées</string>
+    <string name="card_deleted_message">Carte supprimée</string>
+    <string name="actions">Actions</string>
+    <string name="scan">Scanner</string>
+    <string name="clear">Vider</string>
+    <string name="delete">Supprimer</string>
+    <string name="share">Partager</string>
+    <string name="rename_card">Renommer la carte</string>
+    <string name="win_label">Gain :</string>
+    <string name="edit_card_name_dialog_title">Modifier le nom de la carte</string>
+    <string name="name_label">Nom</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">Appuie sur un numéro tiré</string>
+    <string name="last_drawn">Dernier</string>
+    <string name="remaining_numbers">%1$d restants</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">Scanner une carte (auto)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">Rescanner</string>
+    <string name="scan_confirm_accept">Appliquer</string>
+    <string name="scan_confirm_message">Numéros détectés : %1$d sur %2$d</string>
+    <string name="scan_confirm_title">Vérifier le scan</string>
+    <string name="scan_preview_legend">Cases colorées = numéros détectés, cases vides = non détectés.</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">Saisis un numéro ou laisse vide</string>
+    <string name="ok">OK</string>
+    <string name="number_input_dialog_supporting_text">Autorisé : %1$d–%2$d ; vide = sans numéro</string>
+    <string name="camera_permission_denied_title">Accès à la caméra requis</string>
+    <string name="camera_permission_denied_message">Pour scanner des cartes, l\'application a besoin d\'accéder à la caméra.</string>
+    <string name="request_again">Redemander</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">Dernière action</string>
+    <string name="undo_change_win_rows">Lignes gagnantes modifiées</string>
+    <string name="undo_add_card">Nouvelle carte ajoutée</string>
+    <string name="undo_card_deleted">Carte %1$d supprimée</string>
+    <string name="undo_card_cleared">Carte vidée</string>
+    <string name="undo_clear_marks_for_card">Marques de la carte %1$d effacées</string>
+    <string name="undo_cell_changed">Case de la carte %1$d modifiée</string>
+    <string name="undo_scan_applied">Scan appliqué à la carte %1$d</string>
+    <string name="undo_start_new_round">Nouvelle partie démarrée</string>
+    <string name="undo_wipe_all">Toutes les cartes vidées</string>
+    <string name="undo_number_marked">Numéro %1$d marqué</string>
+    <string name="undo_history_cleared">Historique effacé</string>
+    <string name="undo_number_removed_from_history">Numéro %1$d retiré de l\'historique</string>
+    <string name="undo_card_name_changed">Nom de la carte modifié</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">Aucune partie terminée pour l\'instant.</string>
+    <string name="statistics_daily_summaries_title">Récapitulatifs quotidiens</string>
+    <string name="statistics_no_daily_summaries">Aucun récapitulatif disponible.</string>
+    <string name="statistics_date_label">Récapitulatif du jour – %1$s</string>
+    <string name="statistics_most_frequent_numbers">Numéros les plus fréquents : %1$s</string>
+    <string name="statistics_least_frequent_numbers">Numéros les moins fréquents : %1$s</string>
+    <string name="statistics_missing_numbers">Pas encore tirés : %1$s</string>
+    <string name="statistics_completed_rounds_title">Parties terminées</string>
+    <string name="statistics_no_completed_rounds">Aucune partie terminée.</string>
+    <string name="statistics_round_header">Partie %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">Numéros tirés : %1$s</string>
+    <string name="statistics_delete_all_button">Réinitialiser les statistiques</string>
+    <string name="statistics_delete_all_confirmation_title">Réinitialiser les statistiques ?</string>
+    <string name="statistics_delete_all_confirmation_message">Supprimer toutes les statistiques enregistrées ? Cette action est irréversible.</string>
+    <string name="statistics_delete_all_confirm_button">Supprimer</string>
+    <string name="statistics_rounds_and_draws">Parties : %1$d · Numéros tirés : %2$d</string>
+    <string name="statistics_round_winners_line">Gagnants : %1$d · Max. lignes complètes : %2$d</string>
+    <string name="statistics_global_top5">Numéros les plus fréquents (toutes parties) : %1$s</string>
+    <string name="statistics_chart_title">Top 10 des numéros les plus fréquents</string>
+    <string name="statistics_heatmap_title">Carte des fréquences (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s : %2$d manquaient</string>
+    <string name="row_singular">ligne</string>
+    <string name="row_plural">lignes</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">Mentions légales</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="terms_of_service">Conditions d\'utilisation</string>
+    <string name="legal_info_title">Mentions légales</string>
+    <string name="legal_info_body">Lottomatch est développée par Aegeri App Studio et fonctionne entièrement hors ligne. Tu trouveras plus de détails dans la politique de confidentialité et les conditions d\'utilisation.</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">À propos de l\'app</string>
+    <string name="feedback">Commentaires</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Commentaires sur Lottomatch (Android)</string>
+    <string name="feedback_email_chooser">Envoyer des commentaires avec…</string>
+
+    <string name="rating_dialog_title">Lottomatch te plaît ?</string>
+    <string name="rating_dialog_body">Si l\'app t\'aide à vérifier tes cartes plus vite, on serait ravis d\'une évaluation sur le Play Store.</string>
+    <string name="rating_now">Évaluer maintenant</string>
+    <string name="rating_later">Plus tard</string>
+    <string name="rating_never">Ne plus demander</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">Aucune carte pour l\'instant</string>
+    <string name="no_cards_body">Ajoute une nouvelle carte depuis le menu et scanne ta première grille.</string>
+    <string name="no_cards_cta">Créer ma première carte</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Scanner une carte</string>
+    <string name="onboarding_body_1">Ajoute une nouvelle carte et scanne-la avec la caméra. Les numéros sont détectés automatiquement.</string>
+    <string name="onboarding_title_2">Marquer les numéros</string>
+    <string name="onboarding_body_2">Saisis les numéros tirés — un ou plusieurs à la fois. Appuie longuement sur une case pour la modifier.</string>
+    <string name="onboarding_title_3">Vérifier le gain</string>
+    <string name="onboarding_body_3">Choisis combien de lignes sont nécessaires pour gagner. Confettis garantis !</string>
+    <string name="onboarding_skip">Passer</string>
+    <string name="onboarding_next">Suivant</string>
+    <string name="onboarding_done">C\'est parti !</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">Plus de cartes et des statistiques avancées</string>
+    <string name="paywall_feature_cards">Jusqu\'à 30 cartes en même temps</string>
+    <string name="paywall_feature_heatmap">Carte de fréquence de tous les numéros 1–90</string>
+    <string name="paywall_feature_support">Soutiens le développement de l\'app</string>
+    <string name="paywall_buy_button">Débloquer — %1$s</string>
+    <string name="paywall_buy_loading">Connexion au Play Store…</string>
+    <string name="paywall_restore">Restaurer l\'achat</string>
+    <string name="paywall_purchase_success">Premium activé, merci !</string>
+    <string name="paywall_purchase_cancelled">Achat annulé</string>
+    <string name="paywall_purchase_error">Achat échoué : %1$s</string>
+    <string name="paywall_unavailable">Premium n\'est pas disponible pour le moment. Réessaie plus tard.</string>
+    <string name="paywall_already_owned">Tu as déjà Premium — merci !</string>
+    <string name="card_limit_reached">Limite de cartes atteinte. Passe à Premium pour jusqu\'à 30 cartes.</string>
+    <string name="premium_locked_heatmap_title">Fonction Premium</string>
+    <string name="premium_locked_heatmap_body">La carte de fréquence fait partie de Lottomatch Premium.</string>
+    <string name="premium_unlock_cta">Débloquer Premium</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — aperçu rapide</string>
+    <string name="widget_no_cards">Aucune carte</string>
+    <string name="widget_to_win_label">pour gagner</string>
+    <string name="widget_lotto_message">LOTO !</string>
+    <string name="widget_last_drawn">Dernier : %1$d</string>
+</resources>

@@ -21,13 +21,13 @@
     <string name="close">Close</string>
     <string name="info_dialog_title">How to use</string>
     <string name="info_bullet_1">Add a new card from the menu.</string>
-    <string name="info_bullet_2">Up to 30 cards can be added.</string>
-    <string name="info_bullet_3">Tap Scan on a card to capture your personal lotto ticket.</string>
-    <string name="info_bullet_4">After scanning, double-check the recognised numbers.</string>
-    <string name="info_bullet_5">To edit a number on a card, long-press the cell.</string>
-    <string name="info_bullet_6">Choose how many rows are required to win.</string>
-    <string name="info_bullet_7">Start a new round to keep playing with the existing cards.</string>
-    <string name="info_bullet_8">Every card can be renamed.</string>
+    <string name="info_bullet_2">Add up to 30 cards.</string>
+    <string name="info_bullet_3">Tap Scan on a card to capture your lotto ticket.</string>
+    <string name="info_bullet_4">After scanning, verify the recognised numbers.</string>
+    <string name="info_bullet_5">Long-press a cell to edit its number.</string>
+    <string name="info_bullet_6">Choose at the top how many rows are required to win.</string>
+    <string name="info_bullet_7">Start a new round to keep playing with the same cards.</string>
+    <string name="info_bullet_8">Tap a card\'s name to rename it.</string>
 
     <!-- Statistics -->
     <string name="statistics_title">Statistics</string>
@@ -59,7 +59,7 @@
     <string name="clear_card_confirmation_message">All markings on this card will be removed.</string>
     <string name="clear_button">Yes, clear</string>
     <string name="delete_card_confirmation_title">Delete card?</string>
-    <string name="delete_card_confirmation_message">If there is only one card, numbers and markings will be removed.</string>
+    <string name="delete_card_confirmation_message">This card and all its markings will be removed.</string>
     <string name="delete_button">Yes, delete</string>
     <string name="marks_cleared_message">Markings cleared</string>
     <string name="card_deleted_message">Card deleted</string>

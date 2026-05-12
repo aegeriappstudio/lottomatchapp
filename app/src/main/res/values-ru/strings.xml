@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">Меню</string>
+    <string name="undo">Отменить</string>
+    <string name="new_card">Новая карточка</string>
+    <string name="start_new_round">Новый раунд</string>
+    <string name="delete_all_cards">Удалить все карточки</string>
+    <string name="history">История</string>
+    <string name="statistics">Статистика</string>
+    <string name="info">Инфо</string>
+    <string name="scan_or_enter_numbers_prompt">Сначала отсканируй карточку или введи номера.</string>
+    <string name="invalid_number_prompt">Допустимы числа от 1 до 90.</string>
+    <string name="number_already_drawn_prompt">Число %1$d уже вытащено.</string>
+    <string name="reset_all_confirmation_title">Сбросить всё?</string>
+    <string name="reset_all_confirmation_message">Точно удалить все карточки, отметки и историю чисел?</string>
+    <string name="reset_all_confirm_button">Сбросить всё</string>
+    <string name="cancel">Отмена</string>
+    <string name="undo_confirmation_title">Отменить?</string>
+    <string name="close">Закрыть</string>
+    <string name="info_dialog_title">Как пользоваться</string>
+    <string name="info_bullet_1">Добавь новую карточку из меню.</string>
+    <string name="info_bullet_2">Можно добавить до 30 карточек.</string>
+    <string name="info_bullet_3">Нажми «Сканировать» на каждой карточке, чтобы оцифровать свой билет.</string>
+    <string name="info_bullet_4">После сканирования проверь, правильно ли распознаны числа.</string>
+    <string name="info_bullet_5">Удерживай клетку, чтобы изменить число.</string>
+    <string name="info_bullet_6">Выбери сверху, сколько рядов нужно для выигрыша.</string>
+    <string name="info_bullet_7">Запусти новый раунд, чтобы играть с теми же карточками.</string>
+    <string name="info_bullet_8">Коснись названия карточки, чтобы переименовать.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">Статистика</string>
+    <string name="probability_label">Вероятность для каждого ещё не выпавшего числа:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">Выпавшие числа (%1$d)</string>
+    <string name="no_numbers_drawn_yet">Числа ещё не выпадали.</string>
+    <string name="undrawn_numbers_label">Ещё не выпавшие числа (%1$d)</string>
+    <string name="all_numbers_drawn">Все числа выпали!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">История чисел</string>
+    <string name="no_numbers_entered_yet">Числа ещё не вводились.</string>
+    <string name="last_number_label">Последнее число: %1$d</string>
+    <string name="clear_history_button">Очистить историю</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">Карточка %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">Осталось %1$d число до выигрыша</item>
+        <item quantity="few">Осталось %1$d числа до выигрыша</item>
+        <item quantity="many">Осталось %1$d чисел до выигрыша</item>
+        <item quantity="other">Осталось %1$d числа до выигрыша</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="one">ЛОТО: %1$d ряд</item>
+        <item quantity="few">ЛОТО: %1$d ряда</item>
+        <item quantity="many">ЛОТО: %1$d рядов</item>
+        <item quantity="other">ЛОТО: %1$d ряда</item>
+    </plurals>
+    <string name="scan_successful_message">Карточка %1$d: скан применён.</string>
+    <string name="clear_card_confirmation_title">Очистить карточку?</string>
+    <string name="clear_card_confirmation_message">Все отметки на этой карточке будут удалены.</string>
+    <string name="clear_button">Да, очистить</string>
+    <string name="delete_card_confirmation_title">Удалить карточку?</string>
+    <string name="delete_card_confirmation_message">Эта карточка и все её отметки будут удалены.</string>
+    <string name="delete_button">Да, удалить</string>
+    <string name="marks_cleared_message">Отметки удалены</string>
+    <string name="card_deleted_message">Карточка удалена</string>
+    <string name="actions">Действия</string>
+    <string name="scan">Сканировать</string>
+    <string name="clear">Очистить</string>
+    <string name="delete">Удалить</string>
+    <string name="share">Поделиться</string>
+    <string name="rename_card">Переименовать карточку</string>
+    <string name="win_label">Выигрыш:</string>
+    <string name="edit_card_name_dialog_title">Изменить название карточки</string>
+    <string name="name_label">Название</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">Коснись выпавшего числа</string>
+    <string name="last_drawn">Последнее</string>
+    <string name="remaining_numbers">Осталось %1$d</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">Сканировать карточку (авто)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">Сканировать ещё раз</string>
+    <string name="scan_confirm_accept">Применить</string>
+    <string name="scan_confirm_message">Найдено чисел: %1$d из %2$d</string>
+    <string name="scan_confirm_title">Проверить сканирование</string>
+    <string name="scan_preview_legend">Цветные клетки = распознанные числа, пустые = не распознанные.</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">Введи число или оставь пустым</string>
+    <string name="ok">ОК</string>
+    <string name="number_input_dialog_supporting_text">Допустимо: %1$d–%2$d; пусто = без числа</string>
+    <string name="camera_permission_denied_title">Нужен доступ к камере</string>
+    <string name="camera_permission_denied_message">Чтобы сканировать карточки, приложению нужен доступ к камере.</string>
+    <string name="request_again">Запросить ещё раз</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">Последнее действие</string>
+    <string name="undo_change_win_rows">Изменено число выигрышных рядов</string>
+    <string name="undo_add_card">Добавлена новая карточка</string>
+    <string name="undo_card_deleted">Карточка %1$d удалена</string>
+    <string name="undo_card_cleared">Карточка очищена</string>
+    <string name="undo_clear_marks_for_card">Отметки карточки %1$d удалены</string>
+    <string name="undo_cell_changed">Клетка карточки %1$d изменена</string>
+    <string name="undo_scan_applied">Скан применён к карточке %1$d</string>
+    <string name="undo_start_new_round">Новый раунд начат</string>
+    <string name="undo_wipe_all">Все карточки очищены</string>
+    <string name="undo_number_marked">Число %1$d отмечено</string>
+    <string name="undo_history_cleared">История очищена</string>
+    <string name="undo_number_removed_from_history">Число %1$d удалено из истории</string>
+    <string name="undo_card_name_changed">Название карточки изменено</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">Завершённых раундов пока нет.</string>
+    <string name="statistics_daily_summaries_title">Ежедневные сводки</string>
+    <string name="statistics_no_daily_summaries">Сводок пока нет.</string>
+    <string name="statistics_date_label">Сводка за день – %1$s</string>
+    <string name="statistics_most_frequent_numbers">Самые частые: %1$s</string>
+    <string name="statistics_least_frequent_numbers">Самые редкие: %1$s</string>
+    <string name="statistics_missing_numbers">Ещё не выпадали: %1$s</string>
+    <string name="statistics_completed_rounds_title">Завершённые раунды</string>
+    <string name="statistics_no_completed_rounds">Завершённых раундов нет.</string>
+    <string name="statistics_round_header">Раунд %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">Выпавшие числа: %1$s</string>
+    <string name="statistics_delete_all_button">Сбросить статистику</string>
+    <string name="statistics_delete_all_confirmation_title">Сбросить статистику?</string>
+    <string name="statistics_delete_all_confirmation_message">Удалить всю сохранённую статистику? Это нельзя отменить.</string>
+    <string name="statistics_delete_all_confirm_button">Удалить</string>
+    <string name="statistics_rounds_and_draws">Раунды: %1$d · Выпавшие числа: %2$d</string>
+    <string name="statistics_round_winners_line">Победители: %1$d · Макс. полных рядов: %2$d</string>
+    <string name="statistics_global_top5">Самые частые (все раунды): %1$s</string>
+    <string name="statistics_chart_title">Топ-10 самых частых чисел</string>
+    <string name="statistics_heatmap_title">Тепловая карта (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: не хватало %2$d</string>
+    <string name="row_singular">ряд</string>
+    <string name="row_plural">ряды</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">Юридическая информация</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="terms_of_service">Условия использования</string>
+    <string name="legal_info_title">Юридическая информация</string>
+    <string name="legal_info_body">Lottomatch разработана Aegeri App Studio и работает полностью оффлайн. Подробности в политике конфиденциальности и условиях использования.</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">О приложении</string>
+    <string name="feedback">Отзыв</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Отзыв о Lottomatch (Android)</string>
+    <string name="feedback_email_chooser">Отправить отзыв через…</string>
+
+    <string name="rating_dialog_title">Нравится Lottomatch?</string>
+    <string name="rating_dialog_body">Если приложение помогает быстрее проверять карточки, будем рады оценке в Play Store.</string>
+    <string name="rating_now">Оценить</string>
+    <string name="rating_later">Позже</string>
+    <string name="rating_never">Больше не спрашивать</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">Карточек пока нет</string>
+    <string name="no_cards_body">Добавь новую карточку из меню и отсканируй первый билет.</string>
+    <string name="no_cards_cta">Создать первую карточку</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Сканируй карточку</string>
+    <string name="onboarding_body_1">Добавь новую карточку и отсканируй её камерой. Числа распознаются автоматически.</string>
+    <string name="onboarding_title_2">Отмечай числа</string>
+    <string name="onboarding_body_2">Вводи выпавшие числа — по одному или сразу несколько. Удерживай клетку, чтобы её редактировать.</string>
+    <string name="onboarding_title_3">Проверяй выигрыш</string>
+    <string name="onboarding_body_3">Выбери, сколько рядов нужно для выигрыша. При попадании — конфетти!</string>
+    <string name="onboarding_skip">Пропустить</string>
+    <string name="onboarding_next">Дальше</string>
+    <string name="onboarding_done">Поехали!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">Больше карточек и расширенная статистика</string>
+    <string name="paywall_feature_cards">До 30 карточек одновременно</string>
+    <string name="paywall_feature_heatmap">Тепловая карта частот всех чисел 1–90</string>
+    <string name="paywall_feature_support">Поддержи разработку приложения</string>
+    <string name="paywall_buy_button">Разблокировать — %1$s</string>
+    <string name="paywall_buy_loading">Подключение к Play Store…</string>
+    <string name="paywall_restore">Восстановить покупку</string>
+    <string name="paywall_purchase_success">Premium активирован, спасибо!</string>
+    <string name="paywall_purchase_cancelled">Покупка отменена</string>
+    <string name="paywall_purchase_error">Покупка не удалась: %1$s</string>
+    <string name="paywall_unavailable">Premium сейчас недоступен. Попробуй позже.</string>
+    <string name="paywall_already_owned">У тебя уже есть Premium — спасибо!</string>
+    <string name="card_limit_reached">Достигнут лимит карточек. С Premium до 30 карточек.</string>
+    <string name="premium_locked_heatmap_title">Premium-функция</string>
+    <string name="premium_locked_heatmap_body">Тепловая карта частот входит в Lottomatch Premium.</string>
+    <string name="premium_unlock_cta">Получить Premium</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — быстрый обзор</string>
+    <string name="widget_no_cards">Нет карточек</string>
+    <string name="widget_to_win_label">до выигрыша</string>
+    <string name="widget_lotto_message">ЛОТО!</string>
+    <string name="widget_last_drawn">Последнее: %1$d</string>
+</resources>

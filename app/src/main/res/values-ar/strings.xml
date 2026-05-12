@@ -1,0 +1,209 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">القائمة</string>
+    <string name="undo">تراجع</string>
+    <string name="new_card">بطاقة جديدة</string>
+    <string name="start_new_round">بدء جولة جديدة</string>
+    <string name="delete_all_cards">حذف كل البطاقات</string>
+    <string name="history">السجل</string>
+    <string name="statistics">الإحصائيات</string>
+    <string name="info">معلومات</string>
+    <string name="scan_or_enter_numbers_prompt">امسح بطاقة أولاً أو أدخل الأرقام.</string>
+    <string name="invalid_number_prompt">الأرقام المسموح بها من 1 إلى 90.</string>
+    <string name="number_already_drawn_prompt">الرقم %1$d تم سحبه مسبقاً.</string>
+    <string name="reset_all_confirmation_title">إعادة ضبط الكل؟</string>
+    <string name="reset_all_confirmation_message">هل تريد فعلاً حذف كل البطاقات والعلامات وسجل الأرقام؟</string>
+    <string name="reset_all_confirm_button">إعادة ضبط الكل</string>
+    <string name="cancel">إلغاء</string>
+    <string name="undo_confirmation_title">تراجع؟</string>
+    <string name="close">إغلاق</string>
+    <string name="info_dialog_title">طريقة الاستخدام</string>
+    <string name="info_bullet_1">أضف بطاقة جديدة من القائمة.</string>
+    <string name="info_bullet_2">يمكنك إضافة حتى 30 بطاقة.</string>
+    <string name="info_bullet_3">انقر على «مسح» في كل بطاقة لالتقاط تذكرتك.</string>
+    <string name="info_bullet_4">بعد المسح تحقق من أن الأرقام صحيحة.</string>
+    <string name="info_bullet_5">اضغط مطولاً على الخانة لتغيير الرقم.</string>
+    <string name="info_bullet_6">اختر من الأعلى كم صفاً يلزم للفوز.</string>
+    <string name="info_bullet_7">ابدأ جولة جديدة للاستمرار بنفس البطاقات.</string>
+    <string name="info_bullet_8">انقر على اسم البطاقة لتغييره.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">الإحصائيات</string>
+    <string name="probability_label">احتمال كل رقم لم يُسحب بعد:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">الأرقام المسحوبة (%1$d)</string>
+    <string name="no_numbers_drawn_yet">لم يتم سحب أي رقم بعد.</string>
+    <string name="undrawn_numbers_label">الأرقام غير المسحوبة (%1$d)</string>
+    <string name="all_numbers_drawn">تم سحب جميع الأرقام!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">سجل الأرقام</string>
+    <string name="no_numbers_entered_yet">لم تُدخل أي أرقام بعد.</string>
+    <string name="last_number_label">آخر رقم: %1$d</string>
+    <string name="clear_history_button">مسح السجل</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">البطاقة %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="zero">لا يوجد أرقام متبقية للفوز</item>
+        <item quantity="one">يتبقى رقم واحد للفوز</item>
+        <item quantity="two">يتبقى رقمان للفوز</item>
+        <item quantity="few">يتبقى %1$d أرقام للفوز</item>
+        <item quantity="many">يتبقى %1$d رقماً للفوز</item>
+        <item quantity="other">يتبقى %1$d للفوز</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="zero">لوتو! لا صفوف</item>
+        <item quantity="one">لوتو! صف واحد</item>
+        <item quantity="two">لوتو! صفان</item>
+        <item quantity="few">لوتو! %1$d صفوف</item>
+        <item quantity="many">لوتو! %1$d صفاً</item>
+        <item quantity="other">لوتو! %1$d</item>
+    </plurals>
+    <string name="scan_successful_message">البطاقة %1$d: تم تطبيق المسح.</string>
+    <string name="clear_card_confirmation_title">إفراغ البطاقة؟</string>
+    <string name="clear_card_confirmation_message">ستُمحى كل العلامات من هذه البطاقة.</string>
+    <string name="clear_button">نعم، أفرغ</string>
+    <string name="delete_card_confirmation_title">حذف البطاقة؟</string>
+    <string name="delete_card_confirmation_message">ستُحذف هذه البطاقة وكل علاماتها.</string>
+    <string name="delete_button">نعم، احذف</string>
+    <string name="marks_cleared_message">تمت إزالة العلامات</string>
+    <string name="card_deleted_message">تم حذف البطاقة</string>
+    <string name="actions">الإجراءات</string>
+    <string name="scan">مسح</string>
+    <string name="clear">إفراغ</string>
+    <string name="delete">حذف</string>
+    <string name="share">مشاركة</string>
+    <string name="rename_card">إعادة تسمية البطاقة</string>
+    <string name="win_label">الفوز:</string>
+    <string name="edit_card_name_dialog_title">تعديل اسم البطاقة</string>
+    <string name="name_label">الاسم</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">انقر على رقم تم سحبه</string>
+    <string name="last_drawn">الأخير</string>
+    <string name="remaining_numbers">%1$d متبقياً</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">مسح البطاقة (تلقائي)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">مسح مجدداً</string>
+    <string name="scan_confirm_accept">تطبيق</string>
+    <string name="scan_confirm_message">الأرقام المكتشفة: %1$d من %2$d</string>
+    <string name="scan_confirm_title">التحقق من المسح</string>
+    <string name="scan_preview_legend">الخانات الملونة = أرقام مكتشفة، الخانات الفارغة = غير مكتشفة.</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">أدخل رقماً أو اتركه فارغاً</string>
+    <string name="ok">موافق</string>
+    <string name="number_input_dialog_supporting_text">المسموح: %1$d–%2$d؛ فارغ = بدون رقم</string>
+    <string name="camera_permission_denied_title">الوصول إلى الكاميرا مطلوب</string>
+    <string name="camera_permission_denied_message">لمسح البطاقات، يحتاج التطبيق للوصول إلى الكاميرا.</string>
+    <string name="request_again">طلب مجدداً</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">آخر إجراء</string>
+    <string name="undo_change_win_rows">تم تغيير صفوف الفوز</string>
+    <string name="undo_add_card">تمت إضافة بطاقة جديدة</string>
+    <string name="undo_card_deleted">تم حذف البطاقة %1$d</string>
+    <string name="undo_card_cleared">تم إفراغ البطاقة</string>
+    <string name="undo_clear_marks_for_card">تم محو علامات البطاقة %1$d</string>
+    <string name="undo_cell_changed">تم تعديل خانة في البطاقة %1$d</string>
+    <string name="undo_scan_applied">تم تطبيق المسح على البطاقة %1$d</string>
+    <string name="undo_start_new_round">بدأت جولة جديدة</string>
+    <string name="undo_wipe_all">تم إفراغ كل البطاقات</string>
+    <string name="undo_number_marked">تم تعليم الرقم %1$d</string>
+    <string name="undo_history_cleared">تم مسح السجل</string>
+    <string name="undo_number_removed_from_history">تمت إزالة الرقم %1$d من السجل</string>
+    <string name="undo_card_name_changed">تم تغيير اسم البطاقة</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">لم تكتمل أي جولة بعد.</string>
+    <string name="statistics_daily_summaries_title">الملخصات اليومية</string>
+    <string name="statistics_no_daily_summaries">لا توجد ملخصات يومية.</string>
+    <string name="statistics_date_label">ملخص اليوم – %1$s</string>
+    <string name="statistics_most_frequent_numbers">الأكثر سحباً: %1$s</string>
+    <string name="statistics_least_frequent_numbers">الأقل سحباً: %1$s</string>
+    <string name="statistics_missing_numbers">لم تُسحب بعد: %1$s</string>
+    <string name="statistics_completed_rounds_title">الجولات المكتملة</string>
+    <string name="statistics_no_completed_rounds">لا توجد جولات مكتملة.</string>
+    <string name="statistics_round_header">الجولة %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">الأرقام المسحوبة: %1$s</string>
+    <string name="statistics_delete_all_button">إعادة ضبط الإحصائيات</string>
+    <string name="statistics_delete_all_confirmation_title">إعادة ضبط الإحصائيات؟</string>
+    <string name="statistics_delete_all_confirmation_message">حذف كل الإحصائيات المحفوظة؟ لا يمكن التراجع.</string>
+    <string name="statistics_delete_all_confirm_button">حذف</string>
+    <string name="statistics_rounds_and_draws">الجولات: %1$d · الأرقام المسحوبة: %2$d</string>
+    <string name="statistics_round_winners_line">الفائزون: %1$d · أقصى صفوف كاملة: %2$d</string>
+    <string name="statistics_global_top5">الأكثر سحباً (كل الجولات): %1$s</string>
+    <string name="statistics_chart_title">أكثر 10 أرقام سحباً</string>
+    <string name="statistics_heatmap_title">خريطة التكرار (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: نقص %2$d</string>
+    <string name="row_singular">صف</string>
+    <string name="row_plural">صفوف</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">قانوني</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="terms_of_service">شروط الاستخدام</string>
+    <string name="legal_info_title">إشعار قانوني</string>
+    <string name="legal_info_body">Lottomatch مطور بواسطة Aegeri App Studio ويعمل بالكامل بدون اتصال. التفاصيل في سياسة الخصوصية وشروط الاستخدام.</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">حول التطبيق</string>
+    <string name="feedback">ملاحظات</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">ملاحظات حول Lottomatch (Android)</string>
+    <string name="feedback_email_chooser">إرسال الملاحظات عبر…</string>
+
+    <string name="rating_dialog_title">هل أعجبك Lottomatch؟</string>
+    <string name="rating_dialog_body">إذا ساعدك التطبيق على فحص بطاقاتك أسرع، نسعد بتقييم على Play Store.</string>
+    <string name="rating_now">قيِّم الآن</string>
+    <string name="rating_later">لاحقاً</string>
+    <string name="rating_never">لا تسأل مجدداً</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">لا توجد بطاقات بعد</string>
+    <string name="no_cards_body">أضف بطاقة جديدة من القائمة وامسح تذكرتك الأولى.</string>
+    <string name="no_cards_cta">إنشاء أول بطاقة</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">امسح بطاقة</string>
+    <string name="onboarding_body_1">أضف بطاقة جديدة وامسحها بالكاميرا. سيتم التعرف على الأرقام تلقائياً.</string>
+    <string name="onboarding_title_2">علِّم الأرقام</string>
+    <string name="onboarding_body_2">أدخل الأرقام المسحوبة — واحداً تلو الآخر أو دفعة واحدة. اضغط مطولاً على خانة لتعديلها.</string>
+    <string name="onboarding_title_3">تحقق من الفوز</string>
+    <string name="onboarding_body_3">اختر كم صفاً يلزم للفوز. عند الإصابة يتساقط القُصاصات!</string>
+    <string name="onboarding_skip">تخطٍ</string>
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_done">هيا بنا!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">بطاقات أكثر وإحصائيات متقدمة</string>
+    <string name="paywall_feature_cards">حتى 30 بطاقة في الوقت نفسه</string>
+    <string name="paywall_feature_heatmap">خريطة تكرار جميع الأرقام 1–90</string>
+    <string name="paywall_feature_support">ادعم تطوير التطبيق</string>
+    <string name="paywall_buy_button">فتح — %1$s</string>
+    <string name="paywall_buy_loading">جاري الاتصال بـ Play Store…</string>
+    <string name="paywall_restore">استعادة الشراء</string>
+    <string name="paywall_purchase_success">تم تفعيل Premium، شكراً!</string>
+    <string name="paywall_purchase_cancelled">تم إلغاء الشراء</string>
+    <string name="paywall_purchase_error">فشل الشراء: %1$s</string>
+    <string name="paywall_unavailable">Premium غير متاح حالياً. حاول لاحقاً.</string>
+    <string name="paywall_already_owned">لديك Premium بالفعل — شكراً!</string>
+    <string name="card_limit_reached">تم بلوغ حد البطاقات. احصل على Premium حتى 30 بطاقة.</string>
+    <string name="premium_locked_heatmap_title">ميزة Premium</string>
+    <string name="premium_locked_heatmap_body">خريطة التكرار جزء من Lottomatch Premium.</string>
+    <string name="premium_unlock_cta">فتح Premium</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — عرض سريع</string>
+    <string name="widget_no_cards">لا توجد بطاقات</string>
+    <string name="widget_to_win_label">للفوز</string>
+    <string name="widget_lotto_message">لوتو!</string>
+    <string name="widget_last_drawn">الأخير: %1$d</string>
+</resources>

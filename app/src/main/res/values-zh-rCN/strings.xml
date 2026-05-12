@@ -1,0 +1,199 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">菜单</string>
+    <string name="undo">撤销</string>
+    <string name="new_card">新建卡片</string>
+    <string name="start_new_round">开始新一轮</string>
+    <string name="delete_all_cards">删除全部卡片</string>
+    <string name="history">历史</string>
+    <string name="statistics">统计</string>
+    <string name="info">信息</string>
+    <string name="scan_or_enter_numbers_prompt">请先扫描卡片或手动输入数字。</string>
+    <string name="invalid_number_prompt">仅支持 1–90 之间的数字。</string>
+    <string name="number_already_drawn_prompt">数字 %1$d 已经被抽中。</string>
+    <string name="reset_all_confirmation_title">全部重置?</string>
+    <string name="reset_all_confirmation_message">确定要删除所有卡片、标记和历史记录吗?</string>
+    <string name="reset_all_confirm_button">全部重置</string>
+    <string name="cancel">取消</string>
+    <string name="undo_confirmation_title">撤销?</string>
+    <string name="close">关闭</string>
+    <string name="info_dialog_title">使用说明</string>
+    <string name="info_bullet_1">从菜单添加一张新卡片。</string>
+    <string name="info_bullet_2">最多可以添加 30 张卡片。</string>
+    <string name="info_bullet_3">在每张卡片上点击「扫描」来录入您的票据。</string>
+    <string name="info_bullet_4">扫描后请检查数字是否识别正确。</string>
+    <string name="info_bullet_5">长按格子可修改数字。</string>
+    <string name="info_bullet_6">在顶部选择需要几行才算获胜。</string>
+    <string name="info_bullet_7">开始新一轮即可继续使用相同的卡片。</string>
+    <string name="info_bullet_8">点击卡片名称即可重命名。</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">统计</string>
+    <string name="probability_label">每个未抽中数字的概率:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">已抽中数字 (%1$d)</string>
+    <string name="no_numbers_drawn_yet">还没有抽中任何数字。</string>
+    <string name="undrawn_numbers_label">未抽中数字 (%1$d)</string>
+    <string name="all_numbers_drawn">所有数字都已抽中!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">数字历史</string>
+    <string name="no_numbers_entered_yet">还没有输入任何数字。</string>
+    <string name="last_number_label">最近数字: %1$d</string>
+    <string name="clear_history_button">清空历史</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">卡片 %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="other">还差 %1$d 个数字获胜</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="other">宾果! %1$d 行</item>
+    </plurals>
+    <string name="scan_successful_message">卡片 %1$d: 扫描已应用。</string>
+    <string name="clear_card_confirmation_title">清空卡片?</string>
+    <string name="clear_card_confirmation_message">这张卡片的所有标记都会被清除。</string>
+    <string name="clear_button">是的,清空</string>
+    <string name="delete_card_confirmation_title">删除卡片?</string>
+    <string name="delete_card_confirmation_message">这张卡片及其所有标记都会被删除。</string>
+    <string name="delete_button">是的,删除</string>
+    <string name="marks_cleared_message">标记已清除</string>
+    <string name="card_deleted_message">卡片已删除</string>
+    <string name="actions">操作</string>
+    <string name="scan">扫描</string>
+    <string name="clear">清空</string>
+    <string name="delete">删除</string>
+    <string name="share">分享</string>
+    <string name="rename_card">重命名卡片</string>
+    <string name="win_label">获胜:</string>
+    <string name="edit_card_name_dialog_title">修改卡片名称</string>
+    <string name="name_label">名称</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">点击已抽中的数字</string>
+    <string name="last_drawn">最近</string>
+    <string name="remaining_numbers">还剩 %1$d</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">扫描卡片 (自动)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">重新扫描</string>
+    <string name="scan_confirm_accept">应用</string>
+    <string name="scan_confirm_message">已识别数字: %1$d / %2$d</string>
+    <string name="scan_confirm_title">检查扫描结果</string>
+    <string name="scan_preview_legend">彩色格 = 已识别数字, 空格 = 未识别。</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">请输入数字或留空</string>
+    <string name="ok">确定</string>
+    <string name="number_input_dialog_supporting_text">允许: %1$d–%2$d; 留空 = 无数字</string>
+    <string name="camera_permission_denied_title">需要相机权限</string>
+    <string name="camera_permission_denied_message">为了扫描卡片,应用需要访问相机。</string>
+    <string name="request_again">再次请求</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">上一步操作</string>
+    <string name="undo_change_win_rows">获胜行数已修改</string>
+    <string name="undo_add_card">新卡片已添加</string>
+    <string name="undo_card_deleted">卡片 %1$d 已删除</string>
+    <string name="undo_card_cleared">卡片已清空</string>
+    <string name="undo_clear_marks_for_card">卡片 %1$d 的标记已清除</string>
+    <string name="undo_cell_changed">卡片 %1$d 的格子已修改</string>
+    <string name="undo_scan_applied">已应用扫描到卡片 %1$d</string>
+    <string name="undo_start_new_round">新一轮已开始</string>
+    <string name="undo_wipe_all">所有卡片已清空</string>
+    <string name="undo_number_marked">数字 %1$d 已标记</string>
+    <string name="undo_history_cleared">历史已清空</string>
+    <string name="undo_number_removed_from_history">数字 %1$d 已从历史中移除</string>
+    <string name="undo_card_name_changed">卡片名称已修改</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">还没有完成的轮次。</string>
+    <string name="statistics_daily_summaries_title">每日概览</string>
+    <string name="statistics_no_daily_summaries">暂无每日概览。</string>
+    <string name="statistics_date_label">每日概览 – %1$s</string>
+    <string name="statistics_most_frequent_numbers">最常出现的数字: %1$s</string>
+    <string name="statistics_least_frequent_numbers">最少出现的数字: %1$s</string>
+    <string name="statistics_missing_numbers">尚未抽中: %1$s</string>
+    <string name="statistics_completed_rounds_title">已完成的轮次</string>
+    <string name="statistics_no_completed_rounds">没有已完成的轮次。</string>
+    <string name="statistics_round_header">第 %1$d 轮 (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">已抽中数字: %1$s</string>
+    <string name="statistics_delete_all_button">重置统计</string>
+    <string name="statistics_delete_all_confirmation_title">重置统计?</string>
+    <string name="statistics_delete_all_confirmation_message">删除所有已保存的统计数据? 此操作无法撤销。</string>
+    <string name="statistics_delete_all_confirm_button">删除</string>
+    <string name="statistics_rounds_and_draws">轮次: %1$d · 抽中数字: %2$d</string>
+    <string name="statistics_round_winners_line">获胜者: %1$d · 最大完整行: %2$d</string>
+    <string name="statistics_global_top5">最常出现 (全部轮次): %1$s</string>
+    <string name="statistics_chart_title">最常出现的 10 个数字</string>
+    <string name="statistics_heatmap_title">频次概览 (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: 还差 %2$d</string>
+    <string name="row_singular">行</string>
+    <string name="row_plural">行</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">法律信息</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="terms_of_service">使用条款</string>
+    <string name="legal_info_title">法律声明</string>
+    <string name="legal_info_body">Lottomatch 由 Aegeri App Studio 开发,完全离线运行。详细信息请参阅隐私政策和使用条款。</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">关于本应用</string>
+    <string name="feedback">反馈</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Lottomatch 反馈 (Android)</string>
+    <string name="feedback_email_chooser">通过以下方式发送反馈…</string>
+
+    <string name="rating_dialog_title">喜欢 Lottomatch 吗?</string>
+    <string name="rating_dialog_body">如果这款应用让您更快地核对卡片,欢迎在 Play 商店上评分。</string>
+    <string name="rating_now">立即评分</string>
+    <string name="rating_later">稍后</string>
+    <string name="rating_never">不再询问</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">还没有卡片</string>
+    <string name="no_cards_body">从菜单添加一张新卡片,扫描您的第一张票据。</string>
+    <string name="no_cards_cta">创建第一张卡片</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">扫描卡片</string>
+    <string name="onboarding_body_1">添加一张新卡片并用相机扫描。数字会自动识别。</string>
+    <string name="onboarding_title_2">标记数字</string>
+    <string name="onboarding_body_2">输入抽中的数字 — 可以一次输入多个。长按格子即可编辑。</string>
+    <string name="onboarding_title_3">检查获胜</string>
+    <string name="onboarding_body_3">选择需要几行才算获胜。命中后会有彩纸雨!</string>
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_done">开始!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">更多卡片和进阶统计</string>
+    <string name="paywall_feature_cards">最多 30 张卡片同时</string>
+    <string name="paywall_feature_heatmap">1–90 所有数字的频次热力图</string>
+    <string name="paywall_feature_support">支持应用开发</string>
+    <string name="paywall_buy_button">解锁 — %1$s</string>
+    <string name="paywall_buy_loading">正在连接 Play 商店…</string>
+    <string name="paywall_restore">恢复购买</string>
+    <string name="paywall_purchase_success">Premium 已激活,谢谢!</string>
+    <string name="paywall_purchase_cancelled">购买已取消</string>
+    <string name="paywall_purchase_error">购买失败: %1$s</string>
+    <string name="paywall_unavailable">Premium 暂时不可用,请稍后再试。</string>
+    <string name="paywall_already_owned">您已拥有 Premium — 谢谢!</string>
+    <string name="card_limit_reached">已达卡片上限。升级 Premium 最多 30 张。</string>
+    <string name="premium_locked_heatmap_title">Premium 功能</string>
+    <string name="premium_locked_heatmap_body">频次热力图属于 Lottomatch Premium。</string>
+    <string name="premium_unlock_cta">解锁 Premium</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — 快速查看</string>
+    <string name="widget_no_cards">无卡片</string>
+    <string name="widget_to_win_label">差几个</string>
+    <string name="widget_lotto_message">宾果!</string>
+    <string name="widget_last_drawn">最近: %1$d</string>
+</resources>

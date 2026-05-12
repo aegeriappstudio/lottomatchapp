@@ -1,0 +1,201 @@
+<resources>
+    <string name="app_name">Lottomatch</string>
+
+    <!-- LottoAppScreen -->
+    <string name="menu">मेन्यू</string>
+    <string name="undo">पूर्ववत्</string>
+    <string name="new_card">नया कार्ड</string>
+    <string name="start_new_round">नया राउंड शुरू करें</string>
+    <string name="delete_all_cards">सभी कार्ड हटाएँ</string>
+    <string name="history">इतिहास</string>
+    <string name="statistics">आँकड़े</string>
+    <string name="info">जानकारी</string>
+    <string name="scan_or_enter_numbers_prompt">पहले एक कार्ड स्कैन करें या नंबर दर्ज करें।</string>
+    <string name="invalid_number_prompt">केवल 1 से 90 तक के नंबर मान्य हैं।</string>
+    <string name="number_already_drawn_prompt">नंबर %1$d पहले ही निकल चुका है।</string>
+    <string name="reset_all_confirmation_title">सब रीसेट करें?</string>
+    <string name="reset_all_confirmation_message">क्या आप वाकई सभी कार्ड, चिह्न और नंबर-इतिहास मिटाना चाहते हैं?</string>
+    <string name="reset_all_confirm_button">सब रीसेट</string>
+    <string name="cancel">रद्द</string>
+    <string name="undo_confirmation_title">पूर्ववत् करें?</string>
+    <string name="close">बंद करें</string>
+    <string name="info_dialog_title">कैसे इस्तेमाल करें</string>
+    <string name="info_bullet_1">मेन्यू से नया कार्ड जोड़ें।</string>
+    <string name="info_bullet_2">आप 30 तक कार्ड जोड़ सकते हैं।</string>
+    <string name="info_bullet_3">हर कार्ड पर «स्कैन» दबाकर अपना टिकट कैप्चर करें।</string>
+    <string name="info_bullet_4">स्कैन के बाद नंबरों की सटीकता जाँचें।</string>
+    <string name="info_bullet_5">किसी बॉक्स को लंबा दबाकर नंबर बदलें।</string>
+    <string name="info_bullet_6">ऊपर चुनें कि जीतने के लिए कितनी पंक्तियाँ चाहिए।</string>
+    <string name="info_bullet_7">समान कार्ड के साथ खेलना जारी रखने के लिए नया राउंड शुरू करें।</string>
+    <string name="info_bullet_8">कार्ड का नाम बदलने के लिए उस पर टैप करें।</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">आँकड़े</string>
+    <string name="probability_label">हर अनछुए नंबर की संभावना:</string>
+    <string name="probability_value">%1$s (%2$s)</string>
+    <string name="drawn_numbers_label">निकले हुए नंबर (%1$d)</string>
+    <string name="no_numbers_drawn_yet">अभी तक कोई नंबर नहीं निकला।</string>
+    <string name="undrawn_numbers_label">अभी तक न निकले नंबर (%1$d)</string>
+    <string name="all_numbers_drawn">सभी नंबर निकल चुके हैं!</string>
+
+    <!-- History Dialog -->
+    <string name="history_dialog_title">नंबर इतिहास</string>
+    <string name="no_numbers_entered_yet">अभी तक कोई नंबर दर्ज नहीं हुआ।</string>
+    <string name="last_number_label">अंतिम नंबर: %1$d</string>
+    <string name="clear_history_button">इतिहास साफ़ करें</string>
+
+    <!-- LottoCardPanel -->
+    <string name="card_title">कार्ड %1$d</string>
+    <plurals name="numbers_to_win_label">
+        <item quantity="one">जीतने के लिए %1$d नंबर बाकी</item>
+        <item quantity="other">जीतने के लिए %1$d नंबर बाकी</item>
+    </plurals>
+    <plurals name="lotto_win_message">
+        <item quantity="one">तंबोला! %1$d पंक्ति</item>
+        <item quantity="other">तंबोला! %1$d पंक्तियाँ</item>
+    </plurals>
+    <string name="scan_successful_message">कार्ड %1$d: स्कैन लागू किया गया।</string>
+    <string name="clear_card_confirmation_title">कार्ड साफ़ करें?</string>
+    <string name="clear_card_confirmation_message">इस कार्ड के सभी चिह्न हटा दिए जाएँगे।</string>
+    <string name="clear_button">हाँ, साफ़ करें</string>
+    <string name="delete_card_confirmation_title">कार्ड हटाएँ?</string>
+    <string name="delete_card_confirmation_message">यह कार्ड और इसके सारे चिह्न हटा दिए जाएँगे।</string>
+    <string name="delete_button">हाँ, हटाएँ</string>
+    <string name="marks_cleared_message">चिह्न हटा दिए गए</string>
+    <string name="card_deleted_message">कार्ड हटाया गया</string>
+    <string name="actions">क्रियाएँ</string>
+    <string name="scan">स्कैन</string>
+    <string name="clear">साफ़ करें</string>
+    <string name="delete">हटाएँ</string>
+    <string name="share">शेयर</string>
+    <string name="rename_card">कार्ड का नाम बदलें</string>
+    <string name="win_label">जीत:</string>
+    <string name="edit_card_name_dialog_title">कार्ड का नाम संपादित करें</string>
+    <string name="name_label">नाम</string>
+
+    <!-- Number Pad -->
+    <string name="tap_number_label">निकले हुए नंबर पर टैप करें</string>
+    <string name="last_drawn">अंतिम</string>
+    <string name="remaining_numbers">%1$d बाकी</string>
+
+    <!-- Scanner -->
+    <string name="scan_lotto_card_title">कार्ड स्कैन करें (ऑटो)</string>
+    <string name="numbers_found_count">%1$d/15</string>
+    <string name="scan_confirm_retry">फिर से स्कैन</string>
+    <string name="scan_confirm_accept">लागू करें</string>
+    <string name="scan_confirm_message">पहचाने गए नंबर: %1$d में से %2$d</string>
+    <string name="scan_confirm_title">स्कैन जाँचें</string>
+    <string name="scan_preview_legend">रंगीन बॉक्स = पहचाने नंबर, खाली बॉक्स = नहीं पहचाने।</string>
+
+    <!-- Dialogs -->
+    <string name="number_input_dialog_title">नंबर दर्ज करें या खाली रखें</string>
+    <string name="ok">ठीक</string>
+    <string name="number_input_dialog_supporting_text">अनुमत: %1$d–%2$d; खाली = बिना नंबर</string>
+    <string name="camera_permission_denied_title">कैमरा अनुमति आवश्यक</string>
+    <string name="camera_permission_denied_message">कार्ड स्कैन करने के लिए ऐप को कैमरा एक्सेस चाहिए।</string>
+    <string name="request_again">फिर से अनुमति माँगें</string>
+
+    <!-- Undo labels -->
+    <string name="undo_default_label">अंतिम क्रिया</string>
+    <string name="undo_change_win_rows">जीतने की पंक्तियाँ बदली गईं</string>
+    <string name="undo_add_card">नया कार्ड जोड़ा गया</string>
+    <string name="undo_card_deleted">कार्ड %1$d हटाया गया</string>
+    <string name="undo_card_cleared">कार्ड साफ़ किया गया</string>
+    <string name="undo_clear_marks_for_card">कार्ड %1$d के चिह्न हटाए गए</string>
+    <string name="undo_cell_changed">कार्ड %1$d का बॉक्स बदला</string>
+    <string name="undo_scan_applied">कार्ड %1$d पर स्कैन लागू</string>
+    <string name="undo_start_new_round">नया राउंड शुरू</string>
+    <string name="undo_wipe_all">सभी कार्ड साफ़</string>
+    <string name="undo_number_marked">नंबर %1$d चिह्नित</string>
+    <string name="undo_history_cleared">इतिहास साफ़</string>
+    <string name="undo_number_removed_from_history">नंबर %1$d इतिहास से हटाया</string>
+    <string name="undo_card_name_changed">कार्ड का नाम बदला</string>
+
+    <!-- Statistics sheet -->
+    <string name="statistics_no_rounds_yet">अभी तक कोई राउंड पूरा नहीं हुआ।</string>
+    <string name="statistics_daily_summaries_title">दैनिक सारांश</string>
+    <string name="statistics_no_daily_summaries">कोई दैनिक सारांश नहीं।</string>
+    <string name="statistics_date_label">दिन का सारांश – %1$s</string>
+    <string name="statistics_most_frequent_numbers">सबसे अधिक बार आए: %1$s</string>
+    <string name="statistics_least_frequent_numbers">सबसे कम बार आए: %1$s</string>
+    <string name="statistics_missing_numbers">अभी नहीं आए: %1$s</string>
+    <string name="statistics_completed_rounds_title">पूरे हुए राउंड</string>
+    <string name="statistics_no_completed_rounds">कोई पूरे हुए राउंड नहीं।</string>
+    <string name="statistics_round_header">राउंड %1$d (%2$s)</string>
+    <string name="statistics_drawn_numbers_label">निकले नंबर: %1$s</string>
+    <string name="statistics_delete_all_button">आँकड़े रीसेट</string>
+    <string name="statistics_delete_all_confirmation_title">आँकड़े रीसेट करें?</string>
+    <string name="statistics_delete_all_confirmation_message">सभी सहेजे गए आँकड़े मिटाएँ? यह वापस नहीं किया जा सकता।</string>
+    <string name="statistics_delete_all_confirm_button">हटाएँ</string>
+    <string name="statistics_rounds_and_draws">राउंड: %1$d · निकले नंबर: %2$d</string>
+    <string name="statistics_round_winners_line">विजेता: %1$d · अधिकतम पूरी पंक्तियाँ: %2$d</string>
+    <string name="statistics_global_top5">सबसे अधिक (सभी राउंड): %1$s</string>
+    <string name="statistics_chart_title">शीर्ष 10 बार आए नंबर</string>
+    <string name="statistics_heatmap_title">आवृत्ति अवलोकन (1–90)</string>
+    <string name="history_card_summary_line">  • %1$s: %2$d कम थे</string>
+    <string name="row_singular">पंक्ति</string>
+    <string name="row_plural">पंक्तियाँ</string>
+
+    <!-- Legal / privacy -->
+    <string name="legal">कानूनी</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="terms_of_service">सेवा की शर्तें</string>
+    <string name="legal_info_title">कानूनी सूचना</string>
+    <string name="legal_info_body">Lottomatch को Aegeri App Studio ने बनाया है और यह पूरी तरह ऑफ़लाइन काम करता है। विवरण गोपनीयता नीति और सेवा की शर्तों में हैं।</string>
+
+    <!-- Feedback &amp; rating -->
+    <string name="about_app">ऐप के बारे में</string>
+    <string name="feedback">फ़ीडबैक</string>
+    <string name="feedback_email_address" translatable="false">aegeriappstudio@outlook.com</string>
+    <string name="feedback_email_subject">Lottomatch फ़ीडबैक (Android)</string>
+    <string name="feedback_email_chooser">के साथ फ़ीडबैक भेजें…</string>
+
+    <string name="rating_dialog_title">क्या Lottomatch पसंद आया?</string>
+    <string name="rating_dialog_body">अगर ऐप आपके कार्ड जल्दी जाँचने में मदद कर रहा है, तो Play Store पर रेटिंग देकर खुशी होगी।</string>
+    <string name="rating_now">अभी रेट करें</string>
+    <string name="rating_later">बाद में</string>
+    <string name="rating_never">फिर से न पूछें</string>
+
+    <!-- Empty state -->
+    <string name="no_cards_title">अभी कोई कार्ड नहीं</string>
+    <string name="no_cards_body">मेन्यू से एक नया कार्ड जोड़ें और अपना पहला टिकट स्कैन करें।</string>
+    <string name="no_cards_cta">पहला कार्ड बनाएँ</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">कार्ड स्कैन करें</string>
+    <string name="onboarding_body_1">नया कार्ड जोड़ें और कैमरे से स्कैन करें। नंबर अपने आप पहचाने जाते हैं।</string>
+    <string name="onboarding_title_2">नंबर चिह्नित करें</string>
+    <string name="onboarding_body_2">निकले नंबर दर्ज करें — एक या कई एक साथ। बॉक्स को संपादित करने के लिए लंबा दबाएँ।</string>
+    <string name="onboarding_title_3">जीत जाँचें</string>
+    <string name="onboarding_body_3">चुनें कि जीतने के लिए कितनी पंक्तियाँ चाहिए। हिट होने पर कन्फ़ेटी मिलेगी!</string>
+    <string name="onboarding_skip">छोड़ें</string>
+    <string name="onboarding_next">अगला</string>
+    <string name="onboarding_done">चलो शुरू करें!</string>
+
+    <!-- Premium -->
+    <string name="premium_menu_label">Lottomatch Premium</string>
+    <string name="paywall_title">Lottomatch Premium</string>
+    <string name="paywall_subtitle">ज़्यादा कार्ड और उन्नत आँकड़े</string>
+    <string name="paywall_feature_cards">एक साथ 30 कार्ड तक</string>
+    <string name="paywall_feature_heatmap">1–90 सभी नंबरों की आवृत्ति हीटमैप</string>
+    <string name="paywall_feature_support">ऐप के विकास का समर्थन करें</string>
+    <string name="paywall_buy_button">अनलॉक करें — %1$s</string>
+    <string name="paywall_buy_loading">Play Store से जुड़ रहा है…</string>
+    <string name="paywall_restore">खरीद पुनर्स्थापित करें</string>
+    <string name="paywall_purchase_success">Premium सक्रिय, धन्यवाद!</string>
+    <string name="paywall_purchase_cancelled">खरीद रद्द</string>
+    <string name="paywall_purchase_error">खरीद विफल: %1$s</string>
+    <string name="paywall_unavailable">Premium अभी उपलब्ध नहीं। बाद में आज़माएँ।</string>
+    <string name="paywall_already_owned">आपके पास Premium पहले से है — धन्यवाद!</string>
+    <string name="card_limit_reached">कार्ड सीमा पूरी। Premium से 30 कार्ड तक।</string>
+    <string name="premium_locked_heatmap_title">Premium सुविधा</string>
+    <string name="premium_locked_heatmap_body">आवृत्ति हीटमैप Lottomatch Premium का हिस्सा है।</string>
+    <string name="premium_unlock_cta">Premium अनलॉक करें</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Lottomatch — त्वरित दृश्य</string>
+    <string name="widget_no_cards">कोई कार्ड नहीं</string>
+    <string name="widget_to_win_label">जीतने तक</string>
+    <string name="widget_lotto_message">तंबोला!</string>
+    <string name="widget_last_drawn">अंतिम: %1$d</string>
+</resources>
