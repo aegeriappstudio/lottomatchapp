@@ -23,7 +23,7 @@ android {
         applicationId = "ch.lottomatchapp.app"
         minSdk = 23
         targetSdk = 36
-        versionCode = 12
+        versionCode = 13
         versionName = "2.0"
         // multiDexEnabled = true // nur nötig, falls du wirklich >64k Methoden brauchst
 
