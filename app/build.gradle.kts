@@ -23,8 +23,8 @@ android {
         applicationId = "ch.lottomatchapp.app"
         minSdk = 23
         targetSdk = 36
-        versionCode = 11
-        versionName = "1.11"
+        versionCode = 12
+        versionName = "2.0"
         // multiDexEnabled = true // nur nötig, falls du wirklich >64k Methoden brauchst
 
         // Nur 64-Bit-ABIs ausliefern.
@@ -36,6 +36,18 @@ android {
         ndk {
             abiFilters += setOf("arm64-v8a", "x86_64")
         }
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        // Debug: keep defaults (no minify, debuggable, etc.)
     }
 
     buildFeatures {
