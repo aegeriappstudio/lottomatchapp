@@ -184,6 +184,14 @@
     <string name="theme_classic_description">Nowoczesny niebieski, domyślny wygląd.</string>
     <string name="theme_tombola_label">Tombola</string>
     <string name="theme_tombola_description">Ciepła świąteczna paleta — bordo i złoto.</string>
+    <string name="theme_casino_label">Kasyno</string>
+    <string name="theme_casino_description">Szmaragdowe sukno, złoto i czerwony akcent ruletki.</string>
+    <string name="theme_sunset_label">Zachód słońca</string>
+    <string name="theme_sunset_description">Pomarańcz, róż i fiolet o złotej godzinie.</string>
+    <string name="theme_midnight_label">Północ</string>
+    <string name="theme_midnight_description">Głęboki fiolet z cyjanowymi akcentami — elegancki nocny wygląd.</string>
+    <string name="theme_forest_label">Las</string>
+    <string name="theme_forest_description">Leśna zieleń, ziemiste tony i bursztynowy akcent.</string>
     <string name="paywall_feature_themes">Motyw Premium: ciepły design Tombola</string>
 
     <!-- Privacy / Consent -->

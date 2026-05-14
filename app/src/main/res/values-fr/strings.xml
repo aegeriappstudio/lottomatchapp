@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Bleu moderne, l\'aspect par défaut.</string>
     <string name="theme_tombola_label">Tombola</string>
     <string name="theme_tombola_description">Palette festive et chaude — bordeaux et or.</string>
+    <string name="theme_casino_label">Casino</string>
+    <string name="theme_casino_description">Feutre émeraude, or et un accent rouge roulette.</string>
+    <string name="theme_sunset_label">Crépuscule</string>
+    <string name="theme_sunset_description">Orange, rose et violet à l\'heure dorée.</string>
+    <string name="theme_midnight_label">Minuit</string>
+    <string name="theme_midnight_description">Violet profond avec des touches cyan — look nocturne élégant.</string>
+    <string name="theme_forest_label">Forêt</string>
+    <string name="theme_forest_description">Vert forêt, tons terreux et accent ambré.</string>
     <string name="paywall_feature_themes">Thème Premium : design Tombola chaleureux</string>
 
     <!-- Privacy / Consent -->

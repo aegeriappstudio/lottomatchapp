@@ -178,6 +178,14 @@
     <string name="theme_classic_description">모던 블루, 기본 모양.</string>
     <string name="theme_tombola_label">톰볼라</string>
     <string name="theme_tombola_description">따뜻하고 축제 같은 팔레트 — 버건디와 골드.</string>
+    <string name="theme_casino_label">카지노</string>
+    <string name="theme_casino_description">에메랄드 펠트, 골드, 룰렛 레드 포인트.</string>
+    <string name="theme_sunset_label">노을</string>
+    <string name="theme_sunset_description">골든아워의 오렌지, 핑크, 퍼플.</string>
+    <string name="theme_midnight_label">한밤중</string>
+    <string name="theme_midnight_description">사이언 포인트의 깊은 보라 — 우아한 밤의 느낌.</string>
+    <string name="theme_forest_label">숲</string>
+    <string name="theme_forest_description">포레스트 그린, 어스 톤, 앰버 포인트.</string>
     <string name="paywall_feature_themes">프리미엄 테마: 따뜻한 톰볼라 디자인</string>
 
     <!-- Privacy / Consent -->

@@ -178,6 +178,14 @@
     <string name="theme_classic_description">モダンなブルー、デフォルトの外観。</string>
     <string name="theme_tombola_label">トンボラ</string>
     <string name="theme_tombola_description">温かく祝祭的なパレット — バーガンディとゴールド。</string>
+    <string name="theme_casino_label">カジノ</string>
+    <string name="theme_casino_description">エメラルドのフェルト、ゴールド、ルーレットの赤いアクセント。</string>
+    <string name="theme_sunset_label">夕焼け</string>
+    <string name="theme_sunset_description">ゴールデンアワーのオレンジ、ピンク、パープル。</string>
+    <string name="theme_midnight_label">真夜中</string>
+    <string name="theme_midnight_description">シアンのアクセント付きの深い紫 — エレガントな夜のルック。</string>
+    <string name="theme_forest_label">森</string>
+    <string name="theme_forest_description">フォレストグリーン、アースカラー、アンバーのアクセント。</string>
     <string name="paywall_feature_themes">プレミアムテーマ：温かいトンボラ・デザイン</string>
 
     <!-- Privacy / Consent -->

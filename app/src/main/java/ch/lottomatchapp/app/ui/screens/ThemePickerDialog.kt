@@ -4,10 +4,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -22,9 +25,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import ch.lottomatchapp.app.R
+import ch.lottomatchapp.app.ui.theme.CasinoLightPrimary
+import ch.lottomatchapp.app.ui.theme.ForestLightPrimary
+import ch.lottomatchapp.app.ui.theme.LightPrimary
+import ch.lottomatchapp.app.ui.theme.MidnightLightPrimary
+import ch.lottomatchapp.app.ui.theme.SunsetLightPrimary
 import ch.lottomatchapp.app.ui.theme.ThemeVariant
 import ch.lottomatchapp.app.ui.theme.TombolaLightPrimary
-import ch.lottomatchapp.app.ui.theme.LightPrimary
+
+private data class ThemeOptionSpec(
+    val variant: ThemeVariant,
+    val labelRes: Int,
+    val descriptionRes: Int,
+    val swatchColor: Color
+)
+
+private val themeOptions = listOf(
+    ThemeOptionSpec(ThemeVariant.Classic,  R.string.theme_classic_label,  R.string.theme_classic_description,  LightPrimary),
+    ThemeOptionSpec(ThemeVariant.Tombola,  R.string.theme_tombola_label,  R.string.theme_tombola_description,  TombolaLightPrimary),
+    ThemeOptionSpec(ThemeVariant.Casino,   R.string.theme_casino_label,   R.string.theme_casino_description,   CasinoLightPrimary),
+    ThemeOptionSpec(ThemeVariant.Sunset,   R.string.theme_sunset_label,   R.string.theme_sunset_description,   SunsetLightPrimary),
+    ThemeOptionSpec(ThemeVariant.Midnight, R.string.theme_midnight_label, R.string.theme_midnight_description, MidnightLightPrimary),
+    ThemeOptionSpec(ThemeVariant.Forest,   R.string.theme_forest_label,   R.string.theme_forest_description,   ForestLightPrimary),
+)
 
 @Composable
 fun ThemePickerDialog(
@@ -36,21 +59,20 @@ fun ThemePickerDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.theme_picker_title)) },
         text = {
-            Column {
-                ThemeOption(
-                    label = stringResource(R.string.theme_classic_label),
-                    description = stringResource(R.string.theme_classic_description),
-                    swatchColor = LightPrimary,
-                    selected = currentVariant == ThemeVariant.Classic,
-                    onClick = { onSelect(ThemeVariant.Classic) }
-                )
-                ThemeOption(
-                    label = stringResource(R.string.theme_tombola_label),
-                    description = stringResource(R.string.theme_tombola_description),
-                    swatchColor = TombolaLightPrimary,
-                    selected = currentVariant == ThemeVariant.Tombola,
-                    onClick = { onSelect(ThemeVariant.Tombola) }
-                )
+            Column(
+                modifier = Modifier
+                    .heightIn(max = 500.dp)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                themeOptions.forEach { option ->
+                    ThemeOption(
+                        label = stringResource(option.labelRes),
+                        description = stringResource(option.descriptionRes),
+                        swatchColor = option.swatchColor,
+                        selected = currentVariant == option.variant,
+                        onClick = { onSelect(option.variant) }
+                    )
+                }
             }
         },
         confirmButton = {

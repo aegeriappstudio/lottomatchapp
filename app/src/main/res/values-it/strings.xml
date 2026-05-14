@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Blu moderno, l\'aspetto predefinito.</string>
     <string name="theme_tombola_label">Tombola</string>
     <string name="theme_tombola_description">Palette festiva e calda — bordeaux e oro.</string>
+    <string name="theme_casino_label">Casinò</string>
+    <string name="theme_casino_description">Panno smeraldo, oro e un tocco di rosso roulette.</string>
+    <string name="theme_sunset_label">Tramonto</string>
+    <string name="theme_sunset_description">Arancio, rosa e viola dell\'ora dorata.</string>
+    <string name="theme_midnight_label">Mezzanotte</string>
+    <string name="theme_midnight_description">Viola profondo con accenti ciano — look notturno elegante.</string>
+    <string name="theme_forest_label">Bosco</string>
+    <string name="theme_forest_description">Verde foresta, toni terrosi e accento ambrato.</string>
     <string name="paywall_feature_themes">Tema Premium: design Tombola caldo</string>
 
     <!-- Privacy / Consent -->

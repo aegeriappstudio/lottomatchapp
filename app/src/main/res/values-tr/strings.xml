@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Modern mavi, varsayılan görünüm.</string>
     <string name="theme_tombola_label">Tombala</string>
     <string name="theme_tombola_description">Sıcak şenlikli palet — bordo ve altın.</string>
+    <string name="theme_casino_label">Casino</string>
+    <string name="theme_casino_description">Zümrüt çuha, altın ve rulet kırmızısı vurgu.</string>
+    <string name="theme_sunset_label">Gün batımı</string>
+    <string name="theme_sunset_description">Altın saatte turuncu, pembe ve mor.</string>
+    <string name="theme_midnight_label">Gece yarısı</string>
+    <string name="theme_midnight_description">Cyan vurgulu derin mor — zarif gece görünümü.</string>
+    <string name="theme_forest_label">Orman</string>
+    <string name="theme_forest_description">Orman yeşili, toprak tonları ve amber vurgu.</string>
     <string name="paywall_feature_themes">Premium tema: sıcak Tombala tasarımı</string>
 
     <!-- Privacy / Consent -->

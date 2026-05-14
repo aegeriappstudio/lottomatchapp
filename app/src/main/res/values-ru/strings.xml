@@ -184,6 +184,14 @@
     <string name="theme_classic_description">Современный синий — оформление по умолчанию.</string>
     <string name="theme_tombola_label">Томбола</string>
     <string name="theme_tombola_description">Тёплая праздничная палитра — бордо и золото.</string>
+    <string name="theme_casino_label">Казино</string>
+    <string name="theme_casino_description">Изумрудное сукно, золото и красный акцент рулетки.</string>
+    <string name="theme_sunset_label">Закат</string>
+    <string name="theme_sunset_description">Оранжевый, розовый и фиолетовый в золотой час.</string>
+    <string name="theme_midnight_label">Полночь</string>
+    <string name="theme_midnight_description">Глубокий фиолетовый с акцентами циан — элегантный ночной вид.</string>
+    <string name="theme_forest_label">Лес</string>
+    <string name="theme_forest_description">Лесная зелень, земляные тона и янтарный акцент.</string>
     <string name="paywall_feature_themes">Premium-тема: тёплый дизайн «Томбола»</string>
 
     <!-- Privacy / Consent -->

@@ -178,6 +178,14 @@
     <string name="theme_classic_description">现代蓝色，默认外观。</string>
     <string name="theme_tombola_label">宾果</string>
     <string name="theme_tombola_description">温暖喜庆的配色 — 酒红与金色。</string>
+    <string name="theme_casino_label">赌场</string>
+    <string name="theme_casino_description">翡翠绿台呢、金色和轮盘红点缀。</string>
+    <string name="theme_sunset_label">日落</string>
+    <string name="theme_sunset_description">黄金时刻的橙色、粉色和紫色。</string>
+    <string name="theme_midnight_label">午夜</string>
+    <string name="theme_midnight_description">深紫色搭配青色亮点 — 优雅的夜间风格。</string>
+    <string name="theme_forest_label">森林</string>
+    <string name="theme_forest_description">森林绿、大地色调和琥珀色点缀。</string>
     <string name="paywall_feature_themes">Premium 主题：温暖的宾果风格</string>
 
     <!-- Privacy / Consent -->

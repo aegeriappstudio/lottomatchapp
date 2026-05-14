@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Modernes Blau, der Standard.</string>
     <string name="theme_tombola_label">Tombola</string>
     <string name="theme_tombola_description">Warme, festliche Palette — Burgund und Gold.</string>
+    <string name="theme_casino_label">Casino</string>
+    <string name="theme_casino_description">Smaragdfilz, Gold und roter Roulette-Akzent.</string>
+    <string name="theme_sunset_label">Sonnenuntergang</string>
+    <string name="theme_sunset_description">Warmes Orange, Pink und Lila in der goldenen Stunde.</string>
+    <string name="theme_midnight_label">Mitternacht</string>
+    <string name="theme_midnight_description">Tiefes Lila mit Cyan-Akzenten — eleganter Nacht-Look.</string>
+    <string name="theme_forest_label">Wald</string>
+    <string name="theme_forest_description">Waldgrün, Erdtöne und Bernstein als Akzent.</string>
     <string name="paywall_feature_themes">Premium-Design: warmer Tombola-Look</string>
 
     <!-- Privacy / Consent -->

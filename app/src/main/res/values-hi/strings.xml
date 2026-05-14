@@ -180,6 +180,14 @@
     <string name="theme_classic_description">आधुनिक नीला, डिफ़ॉल्ट लुक।</string>
     <string name="theme_tombola_label">तंबोला</string>
     <string name="theme_tombola_description">गर्म त्योहारी पैलेट — बरगंडी और सुनहरा।</string>
+    <string name="theme_casino_label">कैसीनो</string>
+    <string name="theme_casino_description">पन्ना हरा फेल्ट, सोना और रूलेट लाल छटा।</string>
+    <string name="theme_sunset_label">सूर्यास्त</string>
+    <string name="theme_sunset_description">गोल्डन आवर का नारंगी, गुलाबी और बैंगनी।</string>
+    <string name="theme_midnight_label">मध्यरात्रि</string>
+    <string name="theme_midnight_description">सियान छटा के साथ गहरा बैंगनी — सुरुचिपूर्ण रात्रि लुक।</string>
+    <string name="theme_forest_label">वन</string>
+    <string name="theme_forest_description">वन हरा, मिट्टी के रंग और एम्बर छटा।</string>
     <string name="paywall_feature_themes">प्रीमियम थीम: गर्म तंबोला डिज़ाइन</string>
 
     <!-- Privacy / Consent -->

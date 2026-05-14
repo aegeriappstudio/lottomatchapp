@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Modern blauw, het standaarduiterlijk.</string>
     <string name="theme_tombola_label">Tombola</string>
     <string name="theme_tombola_description">Warme, feestelijke palet — bordeaux en goud.</string>
+    <string name="theme_casino_label">Casino</string>
+    <string name="theme_casino_description">Smaragdkleurig vilt, goud en een roulette-rood accent.</string>
+    <string name="theme_sunset_label">Zonsondergang</string>
+    <string name="theme_sunset_description">Oranje, roze en paars op het gouden uur.</string>
+    <string name="theme_midnight_label">Middernacht</string>
+    <string name="theme_midnight_description">Diep paars met cyaan accenten — elegante nachtelijke look.</string>
+    <string name="theme_forest_label">Bos</string>
+    <string name="theme_forest_description">Bosgroen, aardetinten en een vleugje amber.</string>
     <string name="paywall_feature_themes">Premium-thema: warm Tombola-design</string>
 
     <!-- Privacy / Consent -->

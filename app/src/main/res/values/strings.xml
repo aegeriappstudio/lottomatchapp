@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Modern blue, the default look.</string>
     <string name="theme_tombola_label">Tombola</string>
     <string name="theme_tombola_description">Warm festive palette — burgundy and gold.</string>
+    <string name="theme_casino_label">Casino</string>
+    <string name="theme_casino_description">Emerald felt, gold and a roulette-red accent.</string>
+    <string name="theme_sunset_label">Sunset</string>
+    <string name="theme_sunset_description">Warm orange, pink and purple at golden hour.</string>
+    <string name="theme_midnight_label">Midnight</string>
+    <string name="theme_midnight_description">Deep purple with cyan highlights — elegant night look.</string>
+    <string name="theme_forest_label">Forest</string>
+    <string name="theme_forest_description">Forest green, earth tones, amber accent.</string>
     <string name="paywall_feature_themes">Premium theme: warm Tombola design</string>
 
     <!-- Privacy / Consent -->

@@ -180,6 +180,14 @@
     <string name="theme_classic_description">Azul moderno, el aspecto por defecto.</string>
     <string name="theme_tombola_label">Tómbola</string>
     <string name="theme_tombola_description">Paleta festiva y cálida — burdeos y oro.</string>
+    <string name="theme_casino_label">Casino</string>
+    <string name="theme_casino_description">Tapete esmeralda, oro y un toque de rojo ruleta.</string>
+    <string name="theme_sunset_label">Atardecer</string>
+    <string name="theme_sunset_description">Naranja, rosa y violeta en la hora dorada.</string>
+    <string name="theme_midnight_label">Medianoche</string>
+    <string name="theme_midnight_description">Violeta profundo con acentos cian — look nocturno elegante.</string>
+    <string name="theme_forest_label">Bosque</string>
+    <string name="theme_forest_description">Verde bosque, tonos tierra y un toque ámbar.</string>
     <string name="paywall_feature_themes">Tema Premium: diseño Tómbola cálido</string>
 
     <!-- Privacy / Consent -->

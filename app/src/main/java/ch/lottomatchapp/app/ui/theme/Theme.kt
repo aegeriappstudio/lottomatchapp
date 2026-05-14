@@ -14,8 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-/** Theme-Variante. Tombola ist Premium-only und wird vom ViewModel gegated. */
-enum class ThemeVariant { Classic, Tombola }
+/** Theme-Variante. Alle ausser Classic sind Premium-only und werden vom ViewModel gegated. */
+enum class ThemeVariant { Classic, Tombola, Casino, Sunset, Midnight, Forest }
 
 /* ----------------------- Classic ColorSchemes (alle User) ----------------------- */
 
@@ -113,6 +113,102 @@ val TombolaDarkScheme: ColorScheme = darkColorScheme(
     outline = TombolaDarkOutline
 )
 
+/* ----------------------- Casino ColorSchemes (Premium) ----------------------- */
+
+val CasinoLightScheme: ColorScheme = lightColorScheme(
+    primary = CasinoLightPrimary, onPrimary = CasinoLightOnPrimary,
+    primaryContainer = CasinoLightPrimaryContainer, onPrimaryContainer = CasinoLightOnPrimaryContainer,
+    secondary = CasinoLightSecondary, onSecondary = CasinoLightOnSecondary,
+    tertiary = CasinoLightTertiary, onTertiary = CasinoLightOnTertiary,
+    background = CasinoLightBackground, onBackground = CasinoLightTextPrimary,
+    surface = CasinoLightSurface, onSurface = CasinoLightTextPrimary,
+    surfaceVariant = CasinoLightSurfaceVariant, onSurfaceVariant = CasinoLightTextSecondary,
+    outline = CasinoLightOutline
+)
+
+val CasinoDarkScheme: ColorScheme = darkColorScheme(
+    primary = CasinoDarkPrimary, onPrimary = CasinoDarkOnPrimary,
+    primaryContainer = CasinoDarkPrimaryContainer, onPrimaryContainer = CasinoDarkOnPrimaryContainer,
+    secondary = CasinoDarkSecondary, onSecondary = CasinoDarkOnSecondary,
+    tertiary = CasinoDarkTertiary, onTertiary = CasinoDarkOnTertiary,
+    background = CasinoDarkBackground, onBackground = CasinoDarkTextPrimary,
+    surface = CasinoDarkSurface, onSurface = CasinoDarkTextPrimary,
+    surfaceVariant = CasinoDarkSurfaceVariant, onSurfaceVariant = CasinoDarkTextSecondary,
+    outline = CasinoDarkOutline
+)
+
+/* ----------------------- Sunset ColorSchemes (Premium) ----------------------- */
+
+val SunsetLightScheme: ColorScheme = lightColorScheme(
+    primary = SunsetLightPrimary, onPrimary = SunsetLightOnPrimary,
+    primaryContainer = SunsetLightPrimaryContainer, onPrimaryContainer = SunsetLightOnPrimaryContainer,
+    secondary = SunsetLightSecondary, onSecondary = SunsetLightOnSecondary,
+    tertiary = SunsetLightTertiary, onTertiary = SunsetLightOnTertiary,
+    background = SunsetLightBackground, onBackground = SunsetLightTextPrimary,
+    surface = SunsetLightSurface, onSurface = SunsetLightTextPrimary,
+    surfaceVariant = SunsetLightSurfaceVariant, onSurfaceVariant = SunsetLightTextSecondary,
+    outline = SunsetLightOutline
+)
+
+val SunsetDarkScheme: ColorScheme = darkColorScheme(
+    primary = SunsetDarkPrimary, onPrimary = SunsetDarkOnPrimary,
+    primaryContainer = SunsetDarkPrimaryContainer, onPrimaryContainer = SunsetDarkOnPrimaryContainer,
+    secondary = SunsetDarkSecondary, onSecondary = SunsetDarkOnSecondary,
+    tertiary = SunsetDarkTertiary, onTertiary = SunsetDarkOnTertiary,
+    background = SunsetDarkBackground, onBackground = SunsetDarkTextPrimary,
+    surface = SunsetDarkSurface, onSurface = SunsetDarkTextPrimary,
+    surfaceVariant = SunsetDarkSurfaceVariant, onSurfaceVariant = SunsetDarkTextSecondary,
+    outline = SunsetDarkOutline
+)
+
+/* ----------------------- Midnight ColorSchemes (Premium) ----------------------- */
+
+val MidnightLightScheme: ColorScheme = lightColorScheme(
+    primary = MidnightLightPrimary, onPrimary = MidnightLightOnPrimary,
+    primaryContainer = MidnightLightPrimaryContainer, onPrimaryContainer = MidnightLightOnPrimaryContainer,
+    secondary = MidnightLightSecondary, onSecondary = MidnightLightOnSecondary,
+    tertiary = MidnightLightTertiary, onTertiary = MidnightLightOnTertiary,
+    background = MidnightLightBackground, onBackground = MidnightLightTextPrimary,
+    surface = MidnightLightSurface, onSurface = MidnightLightTextPrimary,
+    surfaceVariant = MidnightLightSurfaceVariant, onSurfaceVariant = MidnightLightTextSecondary,
+    outline = MidnightLightOutline
+)
+
+val MidnightDarkScheme: ColorScheme = darkColorScheme(
+    primary = MidnightDarkPrimary, onPrimary = MidnightDarkOnPrimary,
+    primaryContainer = MidnightDarkPrimaryContainer, onPrimaryContainer = MidnightDarkOnPrimaryContainer,
+    secondary = MidnightDarkSecondary, onSecondary = MidnightDarkOnSecondary,
+    tertiary = MidnightDarkTertiary, onTertiary = MidnightDarkOnTertiary,
+    background = MidnightDarkBackground, onBackground = MidnightDarkTextPrimary,
+    surface = MidnightDarkSurface, onSurface = MidnightDarkTextPrimary,
+    surfaceVariant = MidnightDarkSurfaceVariant, onSurfaceVariant = MidnightDarkTextSecondary,
+    outline = MidnightDarkOutline
+)
+
+/* ----------------------- Forest ColorSchemes (Premium) ----------------------- */
+
+val ForestLightScheme: ColorScheme = lightColorScheme(
+    primary = ForestLightPrimary, onPrimary = ForestLightOnPrimary,
+    primaryContainer = ForestLightPrimaryContainer, onPrimaryContainer = ForestLightOnPrimaryContainer,
+    secondary = ForestLightSecondary, onSecondary = ForestLightOnSecondary,
+    tertiary = ForestLightTertiary, onTertiary = ForestLightOnTertiary,
+    background = ForestLightBackground, onBackground = ForestLightTextPrimary,
+    surface = ForestLightSurface, onSurface = ForestLightTextPrimary,
+    surfaceVariant = ForestLightSurfaceVariant, onSurfaceVariant = ForestLightTextSecondary,
+    outline = ForestLightOutline
+)
+
+val ForestDarkScheme: ColorScheme = darkColorScheme(
+    primary = ForestDarkPrimary, onPrimary = ForestDarkOnPrimary,
+    primaryContainer = ForestDarkPrimaryContainer, onPrimaryContainer = ForestDarkOnPrimaryContainer,
+    secondary = ForestDarkSecondary, onSecondary = ForestDarkOnSecondary,
+    tertiary = ForestDarkTertiary, onTertiary = ForestDarkOnTertiary,
+    background = ForestDarkBackground, onBackground = ForestDarkTextPrimary,
+    surface = ForestDarkSurface, onSurface = ForestDarkTextPrimary,
+    surfaceVariant = ForestDarkSurfaceVariant, onSurfaceVariant = ForestDarkTextSecondary,
+    outline = ForestDarkOutline
+)
+
 /* -------------------------- Typography --------------------------- */
 
 val LottomatchTypography: Typography = Typography(
@@ -201,8 +297,12 @@ fun LottomatchTheme(
     content: @Composable () -> Unit
 ) {
     val scheme = when (themeVariant) {
-        ThemeVariant.Tombola -> if (darkTheme) TombolaDarkScheme else TombolaLightScheme
-        ThemeVariant.Classic -> if (darkTheme) DarkScheme else LightScheme
+        ThemeVariant.Tombola  -> if (darkTheme) TombolaDarkScheme  else TombolaLightScheme
+        ThemeVariant.Casino   -> if (darkTheme) CasinoDarkScheme   else CasinoLightScheme
+        ThemeVariant.Sunset   -> if (darkTheme) SunsetDarkScheme   else SunsetLightScheme
+        ThemeVariant.Midnight -> if (darkTheme) MidnightDarkScheme else MidnightLightScheme
+        ThemeVariant.Forest   -> if (darkTheme) ForestDarkScheme   else ForestLightScheme
+        ThemeVariant.Classic  -> if (darkTheme) DarkScheme         else LightScheme
     }
 
     MaterialTheme(

@@ -188,6 +188,14 @@
     <string name="theme_classic_description">أزرق عصري، المظهر الافتراضي.</string>
     <string name="theme_tombola_label">تومبولا</string>
     <string name="theme_tombola_description">لوحة احتفالية دافئة — عنابي وذهبي.</string>
+    <string name="theme_casino_label">كازينو</string>
+    <string name="theme_casino_description">جوخ زمردي، ذهبي ولمسة حمراء من الروليت.</string>
+    <string name="theme_sunset_label">غروب</string>
+    <string name="theme_sunset_description">برتقالي ووردي وبنفسجي في الساعة الذهبية.</string>
+    <string name="theme_midnight_label">منتصف الليل</string>
+    <string name="theme_midnight_description">بنفسجي عميق مع لمسات سماوية — مظهر ليلي أنيق.</string>
+    <string name="theme_forest_label">غابة</string>
+    <string name="theme_forest_description">أخضر الغابة وألوان ترابية ولمسة كهرمانية.</string>
     <string name="paywall_feature_themes">مظهر Premium: تصميم تومبولا دافئ</string>
 
     <!-- Privacy / Consent -->
