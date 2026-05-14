@@ -70,6 +70,7 @@
     <string name="share">Partager</string>
     <string name="rename_card">Renommer la carte</string>
     <string name="win_label">Gain :</string>
+    <string name="win_rule_label">Lignes pour gagner</string>
     <string name="edit_card_name_dialog_title">Modifier le nom de la carte</string>
     <string name="name_label">Nom</string>
 

@@ -63,7 +63,7 @@ import ch.lottomatchapp.app.ui.components.LottoCardPanel
 import ch.lottomatchapp.app.ui.components.NumberFrequencyChart
 import ch.lottomatchapp.app.ui.components.NumberFrequencyHeatmap
 import ch.lottomatchapp.app.ui.components.NumberPad90
-import ch.lottomatchapp.app.ui.components.WinRulePicker
+import ch.lottomatchapp.app.ui.components.WinRuleBar
 import ch.lottomatchapp.app.util.Analytics
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -187,7 +187,6 @@ fun LottoAppScreen(
                     )
                 },
                 actions = {
-                    WinRulePicker(value = winRows, onChange = { viewModel.setWinRows(it) })
                     if (canUndo) {
                         IconButton(onClick = { askUndo = true }) {
                             Icon(Icons.AutoMirrored.Filled.Undo, contentDescription = stringResource(R.string.undo))
@@ -238,6 +237,7 @@ fun LottoAppScreen(
                 .imePadding()
                 .navigationBarsPadding()
         ) {
+            WinRuleBar(value = winRows, onChange = { viewModel.setWinRows(it) })
             DrawnNumbersTape(history = history, lastNumber = lastNumber)
             if (sortedCards.isEmpty()) {
                 Box(

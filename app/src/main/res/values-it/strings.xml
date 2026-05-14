@@ -70,6 +70,7 @@
     <string name="share">Condividi</string>
     <string name="rename_card">Rinomina cartella</string>
     <string name="win_label">Vittoria:</string>
+    <string name="win_rule_label">Righe per vincere</string>
     <string name="edit_card_name_dialog_title">Modifica nome cartella</string>
     <string name="name_label">Nome</string>
 

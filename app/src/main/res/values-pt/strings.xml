@@ -70,6 +70,7 @@
     <string name="share">Compartilhar</string>
     <string name="rename_card">Renomear cartela</string>
     <string name="win_label">Vitória:</string>
+    <string name="win_rule_label">Linhas para vencer</string>
     <string name="edit_card_name_dialog_title">Alterar nome da cartela</string>
     <string name="name_label">Nome</string>
 

@@ -68,6 +68,7 @@
     <string name="share">共有</string>
     <string name="rename_card">カード名を変更</string>
     <string name="win_label">勝利:</string>
+    <string name="win_rule_label">勝利に必要な行</string>
     <string name="edit_card_name_dialog_title">カード名を編集</string>
     <string name="name_label">名前</string>
 

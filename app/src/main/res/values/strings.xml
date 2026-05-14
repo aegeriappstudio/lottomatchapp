@@ -70,6 +70,7 @@
     <string name="share">Share</string>
     <string name="rename_card">Rename card</string>
     <string name="win_label">Win:</string>
+    <string name="win_rule_label">Rows to win</string>
     <string name="edit_card_name_dialog_title">Edit Card Name</string>
     <string name="name_label">Name</string>
 

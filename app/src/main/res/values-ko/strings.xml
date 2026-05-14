@@ -68,6 +68,7 @@
     <string name="share">공유</string>
     <string name="rename_card">카드 이름 변경</string>
     <string name="win_label">승리:</string>
+    <string name="win_rule_label">승리에 필요한 줄</string>
     <string name="edit_card_name_dialog_title">카드 이름 편집</string>
     <string name="name_label">이름</string>
 

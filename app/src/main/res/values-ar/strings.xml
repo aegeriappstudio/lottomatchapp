@@ -78,6 +78,7 @@
     <string name="share">مشاركة</string>
     <string name="rename_card">إعادة تسمية البطاقة</string>
     <string name="win_label">الفوز:</string>
+    <string name="win_rule_label">صفوف للفوز</string>
     <string name="edit_card_name_dialog_title">تعديل اسم البطاقة</string>
     <string name="name_label">الاسم</string>
 

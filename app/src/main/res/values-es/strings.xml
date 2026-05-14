@@ -70,6 +70,7 @@
     <string name="share">Compartir</string>
     <string name="rename_card">Renombrar cartón</string>
     <string name="win_label">Ganar:</string>
+    <string name="win_rule_label">Líneas para ganar</string>
     <string name="edit_card_name_dialog_title">Cambiar nombre del cartón</string>
     <string name="name_label">Nombre</string>
 

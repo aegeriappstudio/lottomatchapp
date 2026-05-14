@@ -74,6 +74,7 @@
     <string name="share">Поделиться</string>
     <string name="rename_card">Переименовать карточку</string>
     <string name="win_label">Выигрыш:</string>
+    <string name="win_rule_label">Рядов для выигрыша</string>
     <string name="edit_card_name_dialog_title">Изменить название карточки</string>
     <string name="name_label">Название</string>
 

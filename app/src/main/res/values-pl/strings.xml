@@ -74,6 +74,7 @@
     <string name="share">Udostępnij</string>
     <string name="rename_card">Zmień nazwę kartki</string>
     <string name="win_label">Wygrana:</string>
+    <string name="win_rule_label">Rzędy do wygranej</string>
     <string name="edit_card_name_dialog_title">Zmień nazwę kartki</string>
     <string name="name_label">Nazwa</string>
 

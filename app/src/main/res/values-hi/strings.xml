@@ -70,6 +70,7 @@
     <string name="share">शेयर</string>
     <string name="rename_card">कार्ड का नाम बदलें</string>
     <string name="win_label">जीत:</string>
+    <string name="win_rule_label">जीतने की पंक्तियाँ</string>
     <string name="edit_card_name_dialog_title">कार्ड का नाम संपादित करें</string>
     <string name="name_label">नाम</string>
 

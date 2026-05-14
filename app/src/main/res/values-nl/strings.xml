@@ -70,6 +70,7 @@
     <string name="share">Delen</string>
     <string name="rename_card">Kaart hernoemen</string>
     <string name="win_label">Winst:</string>
+    <string name="win_rule_label">Rijen om te winnen</string>
     <string name="edit_card_name_dialog_title">Kaartnaam wijzigen</string>
     <string name="name_label">Naam</string>
 

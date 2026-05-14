@@ -70,6 +70,7 @@
     <string name="share">Paylaş</string>
     <string name="rename_card">Kartı yeniden adlandır</string>
     <string name="win_label">Kazanç:</string>
+    <string name="win_rule_label">Kazanma sıraları</string>
     <string name="edit_card_name_dialog_title">Kart adını değiştir</string>
     <string name="name_label">Ad</string>
 

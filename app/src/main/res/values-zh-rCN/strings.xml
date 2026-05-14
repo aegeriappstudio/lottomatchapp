@@ -68,6 +68,7 @@
     <string name="share">分享</string>
     <string name="rename_card">重命名卡片</string>
     <string name="win_label">获胜:</string>
+    <string name="win_rule_label">获胜行数</string>
     <string name="edit_card_name_dialog_title">修改卡片名称</string>
     <string name="name_label">名称</string>
 
