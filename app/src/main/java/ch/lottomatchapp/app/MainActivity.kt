@@ -1,7 +1,9 @@
 package ch.lottomatchapp.app
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
@@ -23,7 +25,12 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        enableEdgeToEdge()
+        // Edge-to-edge mit transparenten System-Bars; Scrim wird automatisch
+        // gewählt je nach Helligkeit des Hintergrunds (Theme-aware).
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
+        )
 
         Analytics.init(applicationContext)
         // Tracking nur einschalten wenn bereits zugestimmt wurde (sonst bleibt

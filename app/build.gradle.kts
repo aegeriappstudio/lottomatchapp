@@ -23,7 +23,7 @@ android {
         applicationId = "ch.lottomatchapp.app"
         minSdk = 23
         targetSdk = 36
-        versionCode = 14
+        versionCode = 15
         versionName = "2.0"
         // multiDexEnabled = true // nur nötig, falls du wirklich >64k Methoden brauchst
 
@@ -116,8 +116,8 @@ dependencies {
     implementation("nl.dionsegijn:konfetti-compose:2.0.4")
 
     // ---- Glance (Home-Screen Widget) ----
-    implementation("androidx.glance:glance-appwidget:1.1.0")
-    implementation("androidx.glance:glance-material3:1.1.0")
+    implementation("androidx.glance:glance-appwidget:1.1.1")
+    implementation("androidx.glance:glance-material3:1.1.1")
 
     // ---- Google Play Billing (In-App Purchases) ----
     implementation("com.android.billingclient:billing-ktx:7.1.1")
