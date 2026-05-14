@@ -11,6 +11,23 @@
     <!-- Kamera -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Werbe-ID wird nicht verwendet: Firebase Analytics fällt automatisch
+         auf die pseudonyme App-Instance-ID zurück. tools:node="remove" zieht
+         die Permission, die Firebase per Manifest-Merge einzieht, wieder raus,
+         damit Play Console "Werbe-ID = Nein" konsistent passt. -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.ACCESS_ADSERVICES_AD_ID"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.ACCESS_ADSERVICES_TOPICS"
+        tools:node="remove" />
+
     <!-- Kamera-Features optional deklarieren -->
     <uses-feature
         android:name="android.hardware.camera.any"
