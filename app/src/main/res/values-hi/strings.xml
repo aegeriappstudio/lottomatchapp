@@ -173,6 +173,15 @@
     <string name="onboarding_next">अगला</string>
     <string name="onboarding_done">चलो शुरू करें!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">ऐप थीम</string>
+    <string name="theme_picker_title">थीम चुनें</string>
+    <string name="theme_classic_label">क्लासिक</string>
+    <string name="theme_classic_description">आधुनिक नीला, डिफ़ॉल्ट लुक।</string>
+    <string name="theme_tombola_label">तंबोला</string>
+    <string name="theme_tombola_description">गर्म त्योहारी पैलेट — बरगंडी और सुनहरा।</string>
+    <string name="paywall_feature_themes">प्रीमियम थीम: गर्म तंबोला डिज़ाइन</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">गोपनीयता</string>
     <string name="consent_body">Lottomatch यह समझने और क्रैश ढूँढने के लिए Firebase Analytics और Crashlytics उपयोग करता है कि ऐप कैसे इस्तेमाल होता है। केवल अनाम उपयोग डेटा एकत्रित होता है — कोई व्यक्तिगत जानकारी नहीं। आप गोपनीयता सेटिंग्स में कभी भी बदल सकते हैं।</string>

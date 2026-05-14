@@ -171,6 +171,15 @@
     <string name="onboarding_next">下一步</string>
     <string name="onboarding_done">开始!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">应用主题</string>
+    <string name="theme_picker_title">选择主题</string>
+    <string name="theme_classic_label">经典</string>
+    <string name="theme_classic_description">现代蓝色，默认外观。</string>
+    <string name="theme_tombola_label">宾果</string>
+    <string name="theme_tombola_description">温暖喜庆的配色 — 酒红与金色。</string>
+    <string name="paywall_feature_themes">Premium 主题：温暖的宾果风格</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">隐私</string>
     <string name="consent_body">Lottomatch 使用 Firebase Analytics 和 Crashlytics 来了解应用的使用情况并发现崩溃。只收集匿名使用数据 — 不收集任何个人信息。您可以随时在隐私设置中更改。</string>

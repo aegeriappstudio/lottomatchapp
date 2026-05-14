@@ -56,6 +56,7 @@ import ch.lottomatchapp.app.LottoViewModel
 import ch.lottomatchapp.app.R
 import ch.lottomatchapp.app.data.ConsentStatus
 import ch.lottomatchapp.app.data.LottoCard
+import ch.lottomatchapp.app.ui.theme.ThemeVariant
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.ui.components.DrawnNumbersTape
@@ -90,6 +91,7 @@ fun LottoAppScreen(
     val isPremium by viewModel.isPremium.collectAsState()
     val maxCards by viewModel.maxCards.collectAsState()
     val consentStatus by viewModel.consentStatus.collectAsState()
+    val themePreference by viewModel.themePreference.collectAsState()
 
     val context = LocalContext.current
     val haptics = LocalHapticFeedback.current
@@ -112,6 +114,7 @@ fun LottoAppScreen(
     var showMainMenu by remember { mutableStateOf(false) }
     var showPaywall by remember { mutableStateOf(false) }
     var showPrivacySettings by remember { mutableStateOf(false) }
+    var showThemePicker by remember { mutableStateOf(false) }
     var onboardingDone by remember { mutableStateOf(prefs.getBoolean("onboarding_seen", false)) }
     var entryError by remember { mutableStateOf<String?>(null) }
     var scanMessage by remember { mutableStateOf<String?>(null) }
@@ -501,6 +504,10 @@ fun LottoAppScreen(
                 showMainMenu = false
                 showPrivacySettings = true
             },
+            onShowThemePicker = {
+                showMainMenu = false
+                showThemePicker = true
+            },
             isPremium = isPremium,
             historyEnabled = history.isNotEmpty()
         )
@@ -572,6 +579,14 @@ fun LottoAppScreen(
             consentStatus = consentStatus,
             onConsentChange = { viewModel.setConsent(it) },
             onDismiss = { showPrivacySettings = false }
+        )
+    }
+
+    if (showThemePicker) {
+        ThemePickerDialog(
+            currentVariant = themePreference,
+            onSelect = { viewModel.setThemeVariant(it) },
+            onDismiss = { showThemePicker = false }
         )
     }
 
@@ -726,6 +741,7 @@ private fun MainMenuSheet(
     onShowAbout: () -> Unit,
     onShowPaywall: () -> Unit,
     onShowPrivacySettings: () -> Unit,
+    onShowThemePicker: () -> Unit,
     isPremium: Boolean,
     historyEnabled: Boolean
 ) {
@@ -783,6 +799,19 @@ private fun MainMenuSheet(
                 leadingContent = { Icon(Icons.Default.PrivacyTip, contentDescription = null) },
                 modifier = Modifier.clickable(onClick = onShowPrivacySettings)
             )
+            if (isPremium) {
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.theme_menu_label)) },
+                    leadingContent = {
+                        Icon(
+                            Icons.Default.WorkspacePremium,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    },
+                    modifier = Modifier.clickable(onClick = onShowThemePicker)
+                )
+            }
         }
     }
 }

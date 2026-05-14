@@ -6,8 +6,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
 import ch.lottomatchapp.app.billing.BillingManager
 import ch.lottomatchapp.app.billing.LocalBillingManager
 import ch.lottomatchapp.app.data.ConsentRepository
@@ -44,10 +48,18 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CompositionLocalProvider(LocalBillingManager provides billingManager) {
-                LottomatchTheme {
-                    LottoAppScreen()
-                }
+                LottomatchApp()
             }
+        }
+    }
+
+    @Composable
+    private fun LottomatchApp(viewModel: LottoViewModel = viewModel()) {
+        // Theme-Variante kommt aus dem ViewModel; gated über Premium so dass
+        // nicht-Premium-Nutzer auch dann Classic sehen, wenn Tombola gespeichert war.
+        val themeVariant by viewModel.themeVariant.collectAsState()
+        LottomatchTheme(themeVariant = themeVariant) {
+            LottoAppScreen(viewModel = viewModel)
         }
     }
 

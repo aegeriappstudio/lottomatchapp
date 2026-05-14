@@ -173,6 +173,15 @@
     <string name="onboarding_next">İleri</string>
     <string name="onboarding_done">Başlayalım!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">Uygulama teması</string>
+    <string name="theme_picker_title">Tema seç</string>
+    <string name="theme_classic_label">Klasik</string>
+    <string name="theme_classic_description">Modern mavi, varsayılan görünüm.</string>
+    <string name="theme_tombola_label">Tombala</string>
+    <string name="theme_tombola_description">Sıcak şenlikli palet — bordo ve altın.</string>
+    <string name="paywall_feature_themes">Premium tema: sıcak Tombala tasarımı</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">Gizlilik</string>
     <string name="consent_body">Lottomatch, uygulamanın nasıl kullanıldığını anlamak ve hataları bulmak için Firebase Analytics ve Crashlytics kullanır. Yalnızca anonim kullanım verileri toplanır — hiçbir kişisel bilgi yok. Tercihini istediğin zaman gizlilik ayarlarından değiştirebilirsin.</string>

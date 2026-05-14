@@ -10,6 +10,8 @@ import ch.lottomatchapp.app.data.LottoCard
 import ch.lottomatchapp.app.data.LottoDataRepository
 import ch.lottomatchapp.app.data.LottoUndoState
 import ch.lottomatchapp.app.data.PremiumRepository
+import ch.lottomatchapp.app.data.ThemeRepository
+import ch.lottomatchapp.app.ui.theme.ThemeVariant
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.util.Analytics
@@ -31,9 +33,27 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = LottoDataRepository.getInstance(application)
     private val premiumRepo = PremiumRepository.getInstance(application)
     private val consentRepo = ConsentRepository.getInstance(application)
+    private val themeRepo = ThemeRepository.getInstance(application)
 
     val isPremium: StateFlow<Boolean> = premiumRepo.isPremium
     val consentStatus: StateFlow<ConsentStatus> = consentRepo.status
+
+    /**
+     * Aktive Theme-Variante. Tombola ist Premium-only — bei non-Premium
+     * Nutzern fällt das automatisch auf Classic zurück, selbst wenn der
+     * Repo-Wert Tombola ist (z.B. nach Refund).
+     */
+    val themeVariant: StateFlow<ThemeVariant> =
+        kotlinx.coroutines.flow.combine(themeRepo.selected, premiumRepo.isPremium) { variant, premium ->
+            if (premium) variant else ThemeVariant.Classic
+        }.stateIn(viewModelScope, SharingStarted.Eagerly, ThemeVariant.Classic)
+
+    /** Vom User gewählte Variante (ohne Premium-Gate; für den Theme-Picker). */
+    val themePreference: StateFlow<ThemeVariant> = themeRepo.selected
+
+    fun setThemeVariant(variant: ThemeVariant) {
+        themeRepo.setVariant(variant)
+    }
 
     fun setConsent(granted: Boolean) {
         consentRepo.setStatus(if (granted) ConsentStatus.Granted else ConsentStatus.Denied)

@@ -118,6 +118,7 @@ fun PaywallSheet(onDismiss: () -> Unit) {
 
             FeatureBullet(stringResource(R.string.paywall_feature_cards))
             FeatureBullet(stringResource(R.string.paywall_feature_heatmap))
+            FeatureBullet(stringResource(R.string.paywall_feature_themes))
             FeatureBullet(stringResource(R.string.paywall_feature_support))
 
             Spacer(Modifier.height(24.dp))

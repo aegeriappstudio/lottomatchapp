@@ -171,6 +171,15 @@
     <string name="onboarding_next">다음</string>
     <string name="onboarding_done">시작!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">앱 테마</string>
+    <string name="theme_picker_title">테마 선택</string>
+    <string name="theme_classic_label">클래식</string>
+    <string name="theme_classic_description">모던 블루, 기본 모양.</string>
+    <string name="theme_tombola_label">톰볼라</string>
+    <string name="theme_tombola_description">따뜻하고 축제 같은 팔레트 — 버건디와 골드.</string>
+    <string name="paywall_feature_themes">프리미엄 테마: 따뜻한 톰볼라 디자인</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">개인정보</string>
     <string name="consent_body">Lottomatch 는 앱이 어떻게 사용되는지 이해하고 오류를 찾기 위해 Firebase Analytics 와 Crashlytics 를 사용합니다. 익명 사용 데이터만 수집되며 개인 정보는 수집되지 않습니다. 개인정보 설정에서 언제든 변경할 수 있어요.</string>

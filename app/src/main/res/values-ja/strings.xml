@@ -171,6 +171,15 @@
     <string name="onboarding_next">次へ</string>
     <string name="onboarding_done">はじめる!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">アプリのテーマ</string>
+    <string name="theme_picker_title">テーマを選択</string>
+    <string name="theme_classic_label">クラシック</string>
+    <string name="theme_classic_description">モダンなブルー、デフォルトの外観。</string>
+    <string name="theme_tombola_label">トンボラ</string>
+    <string name="theme_tombola_description">温かく祝祭的なパレット — バーガンディとゴールド。</string>
+    <string name="paywall_feature_themes">プレミアムテーマ：温かいトンボラ・デザイン</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">プライバシー</string>
     <string name="consent_body">Lottomatch は、アプリの使われ方を理解しクラッシュを発見するために Firebase Analytics と Crashlytics を使用します。匿名の利用データのみを収集し、個人情報は一切収集しません。プライバシー設定でいつでも変更できます。</string>

@@ -173,6 +173,15 @@
     <string name="onboarding_next">Volgende</string>
     <string name="onboarding_done">We gaan!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">App-thema</string>
+    <string name="theme_picker_title">Kies een thema</string>
+    <string name="theme_classic_label">Klassiek</string>
+    <string name="theme_classic_description">Modern blauw, het standaarduiterlijk.</string>
+    <string name="theme_tombola_label">Tombola</string>
+    <string name="theme_tombola_description">Warme, feestelijke palet — bordeaux en goud.</string>
+    <string name="paywall_feature_themes">Premium-thema: warm Tombola-design</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">Privacy</string>
     <string name="consent_body">Lottomatch gebruikt Firebase Analytics en Crashlytics om te begrijpen hoe de app wordt gebruikt en om crashes te vinden. Er worden alleen anonieme gebruiksgegevens verzameld — geen persoonlijke informatie. Je kunt dit altijd wijzigen in privacy-instellingen.</string>

@@ -181,6 +181,15 @@
     <string name="onboarding_next">التالي</string>
     <string name="onboarding_done">هيا بنا!</string>
 
+    <!-- Theme / Appearance (Premium) -->
+    <string name="theme_menu_label">مظهر التطبيق</string>
+    <string name="theme_picker_title">اختر المظهر</string>
+    <string name="theme_classic_label">كلاسيكي</string>
+    <string name="theme_classic_description">أزرق عصري، المظهر الافتراضي.</string>
+    <string name="theme_tombola_label">تومبولا</string>
+    <string name="theme_tombola_description">لوحة احتفالية دافئة — عنابي وذهبي.</string>
+    <string name="paywall_feature_themes">مظهر Premium: تصميم تومبولا دافئ</string>
+
     <!-- Privacy / Consent -->
     <string name="consent_title">الخصوصية</string>
     <string name="consent_body">يستخدم Lottomatch خدمتي Firebase Analytics و Crashlytics لفهم طريقة استخدام التطبيق واكتشاف الأعطال. يتم جمع بيانات استخدام مجهولة الهوية فقط — لا توجد معلومات شخصية. يمكنك تغيير اختيارك في أي وقت من إعدادات الخصوصية.</string>

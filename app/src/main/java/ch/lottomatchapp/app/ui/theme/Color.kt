@@ -46,3 +46,49 @@ val DarkTextPrimary      = Color(0xFFF9FAFB)
 val DarkTextSecondary    = Color(0xFF9CA3AF)
 
 val DarkOutline          = Color(0x4DF9FAFB)   // 30% weiss
+
+
+/* ---------------- Tombola Light (Premium) ---------------- */
+/* Warm, festlich — Burgund-Rot mit Gold-Akzent, cremiger Hintergrund. */
+
+val TombolaLightBackground       = Color(0xFFFFF8EC)   // warmer Cream
+val TombolaLightSurface          = Color(0xFFFFFEF6)   // hellster Cream
+val TombolaLightSurfaceVariant   = Color(0xFFF5E5C8)   // Champagner-Beige
+
+val TombolaLightPrimary          = Color(0xFFB7361C)   // tiefes Tombola-Rot
+val TombolaLightOnPrimary        = Color(0xFFFFFFFF)
+val TombolaLightPrimaryContainer = Color(0xFFFFD7CB)
+val TombolaLightOnPrimaryContainer = Color(0xFF400500)
+
+val TombolaLightSecondary        = Color(0xFFC97A1A)   // Tombola-Gold
+val TombolaLightOnSecondary      = Color(0xFFFFFFFF)
+
+val TombolaLightTertiary         = Color(0xFF4F7A2F)   // gedämpftes Festtags-Grün
+val TombolaLightOnTertiary       = Color(0xFFFFFFFF)
+
+val TombolaLightTextPrimary      = Color(0xFF2B1810)
+val TombolaLightTextSecondary    = Color(0xFF6E5641)
+
+val TombolaLightOutline          = Color(0x55473628)
+
+/* ---------------- Tombola Dark (Premium) ---------------- */
+
+val TombolaDarkBackground        = Color(0xFF1B0F08)   // dunkles Holz
+val TombolaDarkSurface           = Color(0xFF2A1B12)
+val TombolaDarkSurfaceVariant    = Color(0xFF3D2A1E)
+
+val TombolaDarkPrimary           = Color(0xFFFFB0A0)   // weiches helles Rot
+val TombolaDarkOnPrimary         = Color(0xFF5C1100)
+val TombolaDarkPrimaryContainer  = Color(0xFF7A2510)
+val TombolaDarkOnPrimaryContainer = Color(0xFFFFD7CB)
+
+val TombolaDarkSecondary         = Color(0xFFE6B05A)   // warmes Gold
+val TombolaDarkOnSecondary       = Color(0xFF3C2400)
+
+val TombolaDarkTertiary          = Color(0xFF9CC178)   // helles Grün
+val TombolaDarkOnTertiary        = Color(0xFF1A2A04)
+
+val TombolaDarkTextPrimary       = Color(0xFFFBE9D2)
+val TombolaDarkTextSecondary     = Color(0xFFCDB99A)
+
+val TombolaDarkOutline           = Color(0x66FBE9D2)
