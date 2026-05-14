@@ -23,7 +23,7 @@ android {
         applicationId = "ch.lottomatchapp.app"
         minSdk = 23
         targetSdk = 36
-        versionCode = 13
+        versionCode = 14
         versionName = "2.0"
         // multiDexEnabled = true // nur nötig, falls du wirklich >64k Methoden brauchst
 
@@ -46,6 +46,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // Native-Debug-Symbole (ML Kit, CameraX) ins AAB einpacken,
+            // damit Play / Crashlytics native Crashes deobfuscaten können.
+            // SYMBOL_TABLE = klein (Funktionsnamen), FULL = Voll-Symbole.
+            ndk {
+                debugSymbolLevel = "SYMBOL_TABLE"
+            }
         }
         // Debug: keep defaults (no minify, debuggable, etc.)
     }
