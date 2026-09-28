@@ -8,9 +8,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ch.lottomatchapp.app.billing.BillingManager
 import ch.lottomatchapp.app.billing.LocalBillingManager
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
     private fun LottomatchApp(viewModel: LottoViewModel = viewModel()) {
         // Theme-Variante kommt aus dem ViewModel; gated über Premium so dass
         // nicht-Premium-Nutzer auch dann Classic sehen, wenn ein Premium-Theme gespeichert war.
-        val themeVariant by viewModel.themeVariant.collectAsState()
+        val themeVariant by viewModel.themeVariant.collectAsStateWithLifecycle()
         LottomatchTheme(themeVariant = themeVariant) {
             LottoAppScreen(viewModel = viewModel)
         }

@@ -20,6 +20,7 @@ import androidx.compose.material3.*
 import androidx.compose.ui.text.style.TextAlign
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ch.lottomatchapp.app.AddCardResult
 import ch.lottomatchapp.app.LottoViewModel
@@ -59,20 +61,23 @@ import java.util.concurrent.TimeUnit
 fun LottoAppScreen(
     viewModel: LottoViewModel = viewModel()
 ) {
-    val cards by viewModel.cards.collectAsState()
-    val winRows by viewModel.winRows.collectAsState()
-    val history by viewModel.history.collectAsState()
-    val canUndo by viewModel.canUndo.collectAsState()
-    val undoAction by viewModel.undoAction.collectAsState()
-    val lastNumber by viewModel.lastNumber.collectAsState()
-    val allRounds by viewModel.allRounds.collectAsState()
-    val allSummaries by viewModel.allSummaries.collectAsState()
-    val isPremium by viewModel.isPremium.collectAsState()
-    val maxCards by viewModel.maxCards.collectAsState()
-    val consentStatus by viewModel.consentStatus.collectAsState()
-    val themePreference by viewModel.themePreference.collectAsState()
+    val cards by viewModel.cards.collectAsStateWithLifecycle()
+    val winRows by viewModel.winRows.collectAsStateWithLifecycle()
+    val history by viewModel.history.collectAsStateWithLifecycle()
+    val canUndo by viewModel.canUndo.collectAsStateWithLifecycle()
+    val undoAction by viewModel.undoAction.collectAsStateWithLifecycle()
+    val lastNumber by viewModel.lastNumber.collectAsStateWithLifecycle()
+    val allRounds by viewModel.allRounds.collectAsStateWithLifecycle()
+    val allSummaries by viewModel.allSummaries.collectAsStateWithLifecycle()
+    val isPremium by viewModel.isPremium.collectAsStateWithLifecycle()
+    val maxCards by viewModel.maxCards.collectAsStateWithLifecycle()
+    val consentStatus by viewModel.consentStatus.collectAsStateWithLifecycle()
+    val themePreference by viewModel.themePreference.collectAsStateWithLifecycle()
 
     val context = LocalContext.current
+    // Strings ausserhalb der Composition (Lambdas, Coroutinen) über LocalResources
+    // auflösen: konfigurations-aware, im Gegensatz zu LocalContext.getString().
+    val resources = LocalResources.current
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -166,7 +171,7 @@ fun LottoAppScreen(
      * User inzwischen etwas anderes gemacht (z.B. eine Zahl getippt), passiert nichts.
      */
     fun showUndoSnackbar(message: String, token: Long) {
-        val undoLbl = context.getString(R.string.undo)
+        val undoLbl = resources.getString(R.string.undo)
         scope.launch {
             val result = snackbarHostState.showSnackbar(
                 message = message,
@@ -306,12 +311,12 @@ fun LottoAppScreen(
                                 when (value) {
                                     SwipeToDismissBoxValue.StartToEnd -> {
                                         val token = viewModel.clearMarksOnCard(originalIndex)
-                                        showUndoSnackbar(context.getString(R.string.marks_cleared_message), token)
+                                        showUndoSnackbar(resources.getString(R.string.marks_cleared_message), token)
                                         false
                                     }
                                     SwipeToDismissBoxValue.EndToStart -> {
                                         val token = viewModel.deleteCard(originalIndex)
-                                        showUndoSnackbar(context.getString(R.string.card_deleted_message), token)
+                                        showUndoSnackbar(resources.getString(R.string.card_deleted_message), token)
                                         false
                                     }
                                     else -> false
@@ -360,7 +365,7 @@ fun LottoAppScreen(
                 onPickNumber = { n ->
                     val hasAnyNumbers = cards.any { it.countNumbers() > 0 }
                     if (!hasAnyNumbers) {
-                        val msg = context.getString(R.string.scan_or_enter_numbers_prompt)
+                        val msg = resources.getString(R.string.scan_or_enter_numbers_prompt)
                         entryError = msg
                         scope.launch {
                             delay(3000)

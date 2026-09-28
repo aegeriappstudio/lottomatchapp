@@ -26,16 +26,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ch.lottomatchapp.app.R
 import ch.lottomatchapp.app.billing.BillingEvent
 import ch.lottomatchapp.app.billing.LocalBillingManager
@@ -53,10 +54,12 @@ fun PaywallSheet(onDismiss: () -> Unit) {
 
     val context = LocalContext.current
     val activity = remember(context) { context.findActivity() }
+    // Konfigurations-aware Strings für die Snackbars im Event-Collector.
+    val resources = LocalResources.current
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val productDetails by billing.productDetails.collectAsState()
-    val isReady by billing.isReady.collectAsState()
+    val productDetails by billing.productDetails.collectAsStateWithLifecycle()
+    val isReady by billing.isReady.collectAsStateWithLifecycle()
     val price = productDetails?.oneTimePurchaseOfferDetails?.formattedPrice
 
     LaunchedEffect(billing) {
@@ -64,23 +67,23 @@ fun PaywallSheet(onDismiss: () -> Unit) {
             when (event) {
                 is BillingEvent.PurchaseSuccess -> {
                     snackbarHostState.showSnackbar(
-                        context.getString(R.string.paywall_purchase_success)
+                        resources.getString(R.string.paywall_purchase_success)
                     )
                     onDismiss()
                 }
                 is BillingEvent.PurchaseCancelled -> {
                     snackbarHostState.showSnackbar(
-                        context.getString(R.string.paywall_purchase_cancelled)
+                        resources.getString(R.string.paywall_purchase_cancelled)
                     )
                 }
                 is BillingEvent.PurchaseError -> {
                     snackbarHostState.showSnackbar(
-                        context.getString(R.string.paywall_purchase_error, event.message)
+                        resources.getString(R.string.paywall_purchase_error, event.message)
                     )
                 }
                 is BillingEvent.NotAvailable -> {
                     snackbarHostState.showSnackbar(
-                        context.getString(R.string.paywall_unavailable)
+                        resources.getString(R.string.paywall_unavailable)
                     )
                 }
             }
