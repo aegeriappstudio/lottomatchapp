@@ -186,7 +186,7 @@
     <string name="theme_midnight_description">シアンのアクセント付きの深い紫 — エレガントな夜のルック。</string>
     <string name="theme_forest_label">森</string>
     <string name="theme_forest_description">フォレストグリーン、アースカラー、アンバーのアクセント。</string>
-    <string name="paywall_feature_themes">プレミアムテーマ：温かいトンボラ・デザイン</string>
+    <string name="paywall_feature_themes">選べる5つのプレミアムテーマ</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">プライバシー</string>

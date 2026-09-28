@@ -188,7 +188,7 @@
     <string name="theme_midnight_description">Violeta profundo con acentos cian — look nocturno elegante.</string>
     <string name="theme_forest_label">Bosque</string>
     <string name="theme_forest_description">Verde bosque, tonos tierra y un toque ámbar.</string>
-    <string name="paywall_feature_themes">Tema Premium: diseño Tómbola cálido</string>
+    <string name="paywall_feature_themes">5 temas Premium para elegir</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">Privacidad</string>

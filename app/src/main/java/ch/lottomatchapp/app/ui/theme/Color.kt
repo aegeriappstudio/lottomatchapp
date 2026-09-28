@@ -61,7 +61,7 @@ val TombolaLightPrimaryContainer = Color(0xFFFFD7CB)
 val TombolaLightOnPrimaryContainer = Color(0xFF400500)
 
 val TombolaLightSecondary        = Color(0xFFC97A1A)   // Tombola-Gold
-val TombolaLightOnSecondary      = Color(0xFFFFFFFF)
+val TombolaLightOnSecondary      = Color(0xFF2B1810)   // dunkel für AA-Kontrast auf Gold
 
 val TombolaLightTertiary         = Color(0xFF4F7A2F)   // gedämpftes Festtags-Grün
 val TombolaLightOnTertiary       = Color(0xFFFFFFFF)
@@ -95,16 +95,16 @@ val TombolaDarkOutline           = Color(0x66FBE9D2)
 
 
 /* ---------------- Casino Light (Premium) ---------------- */
-/* Spielhaus-Look: Smaragdfilz, Gold und ein roter Akzent. */
+/* Spielhaus-Look: Smaragd-Petrol, Gold und ein roter Akzent (bewusst abgesetzt von Forest). */
 
 val CasinoLightBackground         = Color(0xFFF1F8EE)
 val CasinoLightSurface            = Color(0xFFFAFFF5)
 val CasinoLightSurfaceVariant     = Color(0xFFDCEDC8)
 
-val CasinoLightPrimary            = Color(0xFF1B5E20)
+val CasinoLightPrimary            = Color(0xFF00695C)
 val CasinoLightOnPrimary          = Color(0xFFFFFFFF)
-val CasinoLightPrimaryContainer   = Color(0xFFA5D6A7)
-val CasinoLightOnPrimaryContainer = Color(0xFF0A2F0E)
+val CasinoLightPrimaryContainer   = Color(0xFFB2DFDB)
+val CasinoLightOnPrimaryContainer = Color(0xFF00201C)
 
 val CasinoLightSecondary          = Color(0xFFE0A000)   // Casino-Gold
 val CasinoLightOnSecondary        = Color(0xFF1A0E00)
@@ -123,10 +123,10 @@ val CasinoDarkBackground          = Color(0xFF0D1F12)
 val CasinoDarkSurface             = Color(0xFF152C1B)
 val CasinoDarkSurfaceVariant      = Color(0xFF2E4A35)
 
-val CasinoDarkPrimary             = Color(0xFF81C784)
-val CasinoDarkOnPrimary           = Color(0xFF0A2F0E)
-val CasinoDarkPrimaryContainer    = Color(0xFF2E7D32)
-val CasinoDarkOnPrimaryContainer  = Color(0xFFC8E6C9)
+val CasinoDarkPrimary             = Color(0xFF4DB6AC)
+val CasinoDarkOnPrimary           = Color(0xFF00201C)
+val CasinoDarkPrimaryContainer    = Color(0xFF00504A)
+val CasinoDarkOnPrimaryContainer  = Color(0xFFB2DFDB)
 
 val CasinoDarkSecondary           = Color(0xFFFFCA28)
 val CasinoDarkOnSecondary         = Color(0xFF3A2400)
@@ -146,7 +146,7 @@ val SunsetLightBackground         = Color(0xFFFFF3E0)
 val SunsetLightSurface            = Color(0xFFFFFAF5)
 val SunsetLightSurfaceVariant     = Color(0xFFFFE0B2)
 
-val SunsetLightPrimary            = Color(0xFFE65100)
+val SunsetLightPrimary            = Color(0xFFC43E00)   // abgedunkelt für AA-Kontrast mit Weiss
 val SunsetLightOnPrimary          = Color(0xFFFFFFFF)
 val SunsetLightPrimaryContainer   = Color(0xFFFFCC80)
 val SunsetLightOnPrimaryContainer = Color(0xFF4A1A00)
@@ -245,7 +245,7 @@ val ForestLightSecondary          = Color(0xFF6D4C41)
 val ForestLightOnSecondary        = Color(0xFFFFFFFF)
 
 val ForestLightTertiary           = Color(0xFFF57C00)   // Bernstein
-val ForestLightOnTertiary         = Color(0xFFFFFFFF)
+val ForestLightOnTertiary         = Color(0xFF3A2400)   // dunkel für AA-Kontrast auf Bernstein
 
 val ForestLightTextPrimary        = Color(0xFF1A2E1F)
 val ForestLightTextSecondary      = Color(0xFF555E47)

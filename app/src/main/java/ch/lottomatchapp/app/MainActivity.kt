@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun LottomatchApp(viewModel: LottoViewModel = viewModel()) {
         // Theme-Variante kommt aus dem ViewModel; gated über Premium so dass
-        // nicht-Premium-Nutzer auch dann Classic sehen, wenn Tombola gespeichert war.
+        // nicht-Premium-Nutzer auch dann Classic sehen, wenn ein Premium-Theme gespeichert war.
         val themeVariant by viewModel.themeVariant.collectAsState()
         LottomatchTheme(themeVariant = themeVariant) {
             LottoAppScreen(viewModel = viewModel)

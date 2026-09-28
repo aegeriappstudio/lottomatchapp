@@ -188,7 +188,7 @@
     <string name="theme_midnight_description">Cyan vurgulu derin mor — zarif gece görünümü.</string>
     <string name="theme_forest_label">Orman</string>
     <string name="theme_forest_description">Orman yeşili, toprak tonları ve amber vurgu.</string>
-    <string name="paywall_feature_themes">Premium tema: sıcak Tombala tasarımı</string>
+    <string name="paywall_feature_themes">Seçebileceğiniz 5 Premium tema</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">Gizlilik</string>

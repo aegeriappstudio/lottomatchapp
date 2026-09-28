@@ -188,7 +188,7 @@
     <string name="theme_midnight_description">Tiefes Lila mit Cyan-Akzenten — eleganter Nacht-Look.</string>
     <string name="theme_forest_label">Wald</string>
     <string name="theme_forest_description">Waldgrün, Erdtöne und Bernstein als Akzent.</string>
-    <string name="paywall_feature_themes">Premium-Design: warmer Tombola-Look</string>
+    <string name="paywall_feature_themes">5 Premium-Designs zur Auswahl</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">Datenschutz</string>

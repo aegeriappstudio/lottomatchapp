@@ -186,7 +186,7 @@
     <string name="theme_midnight_description">사이언 포인트의 깊은 보라 — 우아한 밤의 느낌.</string>
     <string name="theme_forest_label">숲</string>
     <string name="theme_forest_description">포레스트 그린, 어스 톤, 앰버 포인트.</string>
-    <string name="paywall_feature_themes">프리미엄 테마: 따뜻한 톰볼라 디자인</string>
+    <string name="paywall_feature_themes">선택 가능한 프리미엄 테마 5종</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">개인정보</string>

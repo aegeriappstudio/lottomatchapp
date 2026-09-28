@@ -39,9 +39,9 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     val consentStatus: StateFlow<ConsentStatus> = consentRepo.status
 
     /**
-     * Aktive Theme-Variante. Tombola ist Premium-only — bei non-Premium
-     * Nutzern fällt das automatisch auf Classic zurück, selbst wenn der
-     * Repo-Wert Tombola ist (z.B. nach Refund).
+     * Aktive Theme-Variante. Alle Varianten ausser Classic sind Premium-only —
+     * bei non-Premium Nutzern fällt das automatisch auf Classic zurück, selbst
+     * wenn im Repo ein Premium-Theme gespeichert ist (z.B. nach Refund).
      */
     val themeVariant: StateFlow<ThemeVariant> =
         kotlinx.coroutines.flow.combine(themeRepo.selected, premiumRepo.isPremium) { variant, premium ->

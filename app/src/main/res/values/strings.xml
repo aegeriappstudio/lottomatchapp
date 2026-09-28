@@ -188,7 +188,7 @@
     <string name="theme_midnight_description">Deep purple with cyan highlights — elegant night look.</string>
     <string name="theme_forest_label">Forest</string>
     <string name="theme_forest_description">Forest green, earth tones, amber accent.</string>
-    <string name="paywall_feature_themes">Premium theme: warm Tombola design</string>
+    <string name="paywall_feature_themes">5 premium themes to choose from</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">Privacy</string>

@@ -188,7 +188,7 @@
     <string name="theme_midnight_description">Violet profond avec des touches cyan — look nocturne élégant.</string>
     <string name="theme_forest_label">Forêt</string>
     <string name="theme_forest_description">Vert forêt, tons terreux et accent ambré.</string>
-    <string name="paywall_feature_themes">Thème Premium : design Tombola chaleureux</string>
+    <string name="paywall_feature_themes">5 thèmes Premium au choix</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">Confidentialité</string>

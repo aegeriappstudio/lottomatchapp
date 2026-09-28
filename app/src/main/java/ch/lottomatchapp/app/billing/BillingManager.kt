@@ -79,6 +79,8 @@ class BillingManager(
                 .enableOneTimeProducts()
                 .build()
         )
+        // Billing 8+: Client verbindet sich nach Abbruch selbst neu.
+        .enableAutoServiceReconnection()
         .build()
 
     fun connect() {
@@ -128,9 +130,13 @@ class BillingManager(
             )
             .build()
 
-        billingClient.queryProductDetailsAsync(params) { result, list ->
+        billingClient.queryProductDetailsAsync(params) { result, detailsResult ->
             if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                _productDetails.value = list.firstOrNull()
+                // Billing 8+: Liste steckt im QueryProductDetailsResult.
+                _productDetails.value = detailsResult.productDetailsList.firstOrNull()
+                if (detailsResult.unfetchedProductList.isNotEmpty()) {
+                    Log.w(TAG, "Unfetched products: ${detailsResult.unfetchedProductList}")
+                }
             } else {
                 Log.w(TAG, "queryProductDetails failed: ${result.debugMessage}")
             }

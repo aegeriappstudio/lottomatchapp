@@ -188,7 +188,7 @@
     <string name="theme_midnight_description">सियान छटा के साथ गहरा बैंगनी — सुरुचिपूर्ण रात्रि लुक।</string>
     <string name="theme_forest_label">वन</string>
     <string name="theme_forest_description">वन हरा, मिट्टी के रंग और एम्बर छटा।</string>
-    <string name="paywall_feature_themes">प्रीमियम थीम: गर्म तंबोला डिज़ाइन</string>
+    <string name="paywall_feature_themes">चुनने के लिए 5 प्रीमियम थीम</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">गोपनीयता</string>

@@ -1,5 +1,7 @@
 package ch.lottomatchapp.app.ui.screens
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,29 +27,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import ch.lottomatchapp.app.R
-import ch.lottomatchapp.app.ui.theme.CasinoLightPrimary
-import ch.lottomatchapp.app.ui.theme.ForestLightPrimary
-import ch.lottomatchapp.app.ui.theme.LightPrimary
-import ch.lottomatchapp.app.ui.theme.MidnightLightPrimary
-import ch.lottomatchapp.app.ui.theme.SunsetLightPrimary
 import ch.lottomatchapp.app.ui.theme.ThemeVariant
-import ch.lottomatchapp.app.ui.theme.TombolaLightPrimary
+import ch.lottomatchapp.app.ui.theme.colorScheme
 
-private data class ThemeOptionSpec(
-    val variant: ThemeVariant,
-    val labelRes: Int,
-    val descriptionRes: Int,
-    val swatchColor: Color
-)
+/** Label- und Beschreibungs-Ressource je Variante; exhaustiv, damit neue Varianten nicht vergessen gehen. */
+private fun ThemeVariant.labelRes(): Int = when (this) {
+    ThemeVariant.Classic  -> R.string.theme_classic_label
+    ThemeVariant.Tombola  -> R.string.theme_tombola_label
+    ThemeVariant.Casino   -> R.string.theme_casino_label
+    ThemeVariant.Sunset   -> R.string.theme_sunset_label
+    ThemeVariant.Midnight -> R.string.theme_midnight_label
+    ThemeVariant.Forest   -> R.string.theme_forest_label
+}
 
-private val themeOptions = listOf(
-    ThemeOptionSpec(ThemeVariant.Classic,  R.string.theme_classic_label,  R.string.theme_classic_description,  LightPrimary),
-    ThemeOptionSpec(ThemeVariant.Tombola,  R.string.theme_tombola_label,  R.string.theme_tombola_description,  TombolaLightPrimary),
-    ThemeOptionSpec(ThemeVariant.Casino,   R.string.theme_casino_label,   R.string.theme_casino_description,   CasinoLightPrimary),
-    ThemeOptionSpec(ThemeVariant.Sunset,   R.string.theme_sunset_label,   R.string.theme_sunset_description,   SunsetLightPrimary),
-    ThemeOptionSpec(ThemeVariant.Midnight, R.string.theme_midnight_label, R.string.theme_midnight_description, MidnightLightPrimary),
-    ThemeOptionSpec(ThemeVariant.Forest,   R.string.theme_forest_label,   R.string.theme_forest_description,   ForestLightPrimary),
-)
+private fun ThemeVariant.descriptionRes(): Int = when (this) {
+    ThemeVariant.Classic  -> R.string.theme_classic_description
+    ThemeVariant.Tombola  -> R.string.theme_tombola_description
+    ThemeVariant.Casino   -> R.string.theme_casino_description
+    ThemeVariant.Sunset   -> R.string.theme_sunset_description
+    ThemeVariant.Midnight -> R.string.theme_midnight_description
+    ThemeVariant.Forest   -> R.string.theme_forest_description
+}
 
 @Composable
 fun ThemePickerDialog(
@@ -64,13 +64,16 @@ fun ThemePickerDialog(
                     .heightIn(max = 500.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                themeOptions.forEach { option ->
+                val dark = isSystemInDarkTheme()
+                ThemeVariant.entries.forEach { variant ->
+                    val scheme = variant.colorScheme(dark)
                     ThemeOption(
-                        label = stringResource(option.labelRes),
-                        description = stringResource(option.descriptionRes),
-                        swatchColor = option.swatchColor,
-                        selected = currentVariant == option.variant,
-                        onClick = { onSelect(option.variant) }
+                        label = stringResource(variant.labelRes()),
+                        description = stringResource(variant.descriptionRes()),
+                        swatchColor = scheme.primary,
+                        swatchRingColor = scheme.secondary,
+                        selected = currentVariant == variant,
+                        onClick = { onSelect(variant) }
                     )
                 }
             }
@@ -88,6 +91,7 @@ private fun ThemeOption(
     label: String,
     description: String,
     swatchColor: Color,
+    swatchRingColor: Color,
     selected: Boolean,
     onClick: () -> Unit
 ) {
@@ -103,6 +107,7 @@ private fun ThemeOption(
         Surface(
             shape = CircleShape,
             color = swatchColor,
+            border = BorderStroke(3.dp, swatchRingColor),
             modifier = Modifier.size(28.dp)
         ) {}
         Column(modifier = Modifier.weight(1f)) {

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Persistiert die vom Nutzer gewählte Theme-Variante.
  *
- * Nutzer können Tombola nur auswählen wenn Premium aktiv ist —
+ * Nutzer können Premium-Themes nur auswählen wenn Premium aktiv ist —
  * das Gating passiert im ViewModel über die isPremium-Flow,
  * damit ein Refund/Downgrade automatisch zurück auf Classic fällt.
  */

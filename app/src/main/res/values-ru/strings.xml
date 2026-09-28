@@ -192,7 +192,7 @@
     <string name="theme_midnight_description">Глубокий фиолетовый с акцентами циан — элегантный ночной вид.</string>
     <string name="theme_forest_label">Лес</string>
     <string name="theme_forest_description">Лесная зелень, земляные тона и янтарный акцент.</string>
-    <string name="paywall_feature_themes">Premium-тема: тёплый дизайн «Томбола»</string>
+    <string name="paywall_feature_themes">5 Premium-тем на выбор</string>
 
     <!-- Privacy / Consent -->
     <string name="consent_title">Конфиденциальность</string>
