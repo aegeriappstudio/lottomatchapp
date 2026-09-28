@@ -1,6 +1,7 @@
 package ch.lottomatchapp.app.data
 
 import android.content.Context
+import android.util.Log
 import ch.lottomatchapp.app.persistence.decodeState
 import ch.lottomatchapp.app.persistence.encodeState
 import ch.lottomatchapp.app.stats.DailySummary
@@ -17,6 +18,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+
+private const val TAG = "LottoDataRepository"
 
 /**
  * Zentrales Repository für Spielzustand (Karten, History, Undo) und Statistiken.
@@ -48,6 +51,9 @@ class LottoDataRepository private constructor(context: Context) {
     private fun loadInitialState(): AppData {
         val encoded = prefs.getString(KEY_STATE, null)
         val persisted = encoded?.let { decodeState(it) }
+        if (encoded != null && persisted == null) {
+            Log.w(TAG, "Persisted game state could not be decoded, falling back to defaults")
+        }
 
         val cards = persisted?.cards ?: listOf(LottoCard.empty(name = "Card 1"))
         val winRows = persisted?.winRows ?: 1
@@ -90,6 +96,7 @@ class LottoDataRepository private constructor(context: Context) {
         ioScope.launch {
             // Widget refreshen (no-op falls keins installiert)
             runCatching { widget.updateAll(appContext) }
+                .onFailure { e -> Log.w(TAG, "Widget update failed", e) }
         }
     }
 

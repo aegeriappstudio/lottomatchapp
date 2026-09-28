@@ -83,6 +83,7 @@
     <string name="scan_confirm_retry">다시 스캔</string>
     <string name="scan_confirm_accept">적용</string>
     <string name="scan_confirm_message">감지된 숫자: %1$d / %2$d</string>
+    <string name="scanner_camera_error">카메라를 시작할 수 없습니다.</string>
     <string name="scan_confirm_title">스캔 확인</string>
     <string name="scan_preview_legend">색칠된 칸 = 감지된 숫자, 빈 칸 = 감지되지 않음.</string>
 

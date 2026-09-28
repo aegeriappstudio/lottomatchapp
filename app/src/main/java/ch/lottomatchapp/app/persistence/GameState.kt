@@ -11,6 +11,46 @@ data class PersistedState(
     val lastNumber: Int?
 )
 
+/**
+ * Kartennamen dürfen keine Trennzeichen des Formats (`|` `;` `:` `,` Zeilenumbruch)
+ * enthalten, sonst bricht [decodeState] ab. Prozent-Escaping analog zu URL-Encoding;
+ * bestehende Namen ohne `%` bleiben unverändert und decodieren wie bisher.
+ */
+internal fun escapeName(name: String): String = buildString(name.length) {
+    for (ch in name) {
+        when (ch) {
+            '%' -> append("%25")
+            '|' -> append("%7C")
+            ':' -> append("%3A")
+            ';' -> append("%3B")
+            ',' -> append("%2C")
+            '\n' -> append("%0A")
+            '\r' -> append("%0D")
+            else -> append(ch)
+        }
+    }
+}
+
+internal fun unescapeName(escaped: String): String {
+    if (!escaped.contains('%')) return escaped
+    val sb = StringBuilder(escaped.length)
+    var i = 0
+    while (i < escaped.length) {
+        val ch = escaped[i]
+        val hi = if (ch == '%' && i + 2 < escaped.length) escaped[i + 1].digitToIntOrNull(16) else null
+        val lo = if (hi != null) escaped[i + 2].digitToIntOrNull(16) else null
+        if (hi != null && lo != null) {
+            sb.append((hi * 16 + lo).toChar())
+            i += 3
+        } else {
+            // Kein gültiges Escape (z.B. Legacy-Name mit '%'): Zeichen unverändert übernehmen
+            sb.append(ch)
+            i++
+        }
+    }
+    return sb.toString()
+}
+
 internal fun encodeState(winRows: Int, cards: List<LottoCard>, history: List<Int>, lastNumber: Int?): String {
     val sb = StringBuilder()
     sb.append(winRows).append('\n')
@@ -19,7 +59,7 @@ internal fun encodeState(winRows: Int, cards: List<LottoCard>, history: List<Int
     sb.append(
         cards.joinToString("|") { card ->
             buildString {
-                append(card.name).append(';')
+                append(escapeName(card.name)).append(';')
                 append(card.rows).append('x').append(card.cols).append(':')
                 append(
                     card.cells.joinToString(",") { cell ->
@@ -60,7 +100,7 @@ internal fun decodeState(data: String): PersistedState? {
                     val body = headerBody[1]
 
                     val nameDim = header.split(';')
-                    val name = if (nameDim.size > 1) nameDim[0] else "Lotto Card"
+                    val name = if (nameDim.size > 1) unescapeName(nameDim[0]) else "Lotto Card"
                     val dims = if (nameDim.size > 1) nameDim[1] else nameDim[0]
 
                     val rc = dims.split('x')

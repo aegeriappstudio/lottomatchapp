@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">Scan again</string>
     <string name="scan_confirm_accept">Apply</string>
     <string name="scan_confirm_message">Detected numbers: %1$d of %2$d</string>
+    <string name="scanner_camera_error">Camera could not be started.</string>
     <string name="scan_confirm_title">Check scan</string>
     <string name="scan_preview_legend">Coloured cells = detected numbers, empty cells = not detected.</string>
 

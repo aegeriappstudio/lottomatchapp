@@ -153,7 +153,9 @@ fun LottoAppScreen(
         }
     }
     var konfettiTrigger by remember { mutableIntStateOf(0) }
-    var lastTotalCompletedRows by remember { mutableIntStateOf(0) }
+    // Mit dem aktuellen Wert initialisieren: Konfetti nur bei neu abgeschlossenen Reihen,
+    // nicht beim App-Start / bei Rotation mit bereits gewinnenden Karten.
+    var lastTotalCompletedRows by remember { mutableIntStateOf(totalCompletedRows) }
 
     LaunchedEffect(winningIndex) {
         if (winningIndex >= 0) {

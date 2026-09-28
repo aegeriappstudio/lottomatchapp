@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">फिर से स्कैन</string>
     <string name="scan_confirm_accept">लागू करें</string>
     <string name="scan_confirm_message">पहचाने गए नंबर: %1$d में से %2$d</string>
+    <string name="scanner_camera_error">कैमरा शुरू नहीं हो सका।</string>
     <string name="scan_confirm_title">स्कैन जाँचें</string>
     <string name="scan_preview_legend">रंगीन बॉक्स = पहचाने नंबर, खाली बॉक्स = नहीं पहचाने।</string>
 

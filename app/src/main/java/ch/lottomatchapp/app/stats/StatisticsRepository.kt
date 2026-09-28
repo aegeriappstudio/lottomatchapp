@@ -97,6 +97,7 @@ class StatisticsRepository(context: Context) {
                 val type = object : TypeToken<List<CardState>>() {}.type
                 gson.fromJson<List<CardState>>(entity.cardStatesJson, type) ?: emptyList()
             } catch (e: Exception) {
+                Log.w(TAG, "Could not parse cardStatesJson for round ${entity.roundNumber}, using empty list", e)
                 emptyList()
             }
             RoundStatistics(

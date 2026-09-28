@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">Tekrar tara</string>
     <string name="scan_confirm_accept">Uygula</string>
     <string name="scan_confirm_message">Bulunan sayılar: %2$d içinden %1$d</string>
+    <string name="scanner_camera_error">Kamera başlatılamadı.</string>
     <string name="scan_confirm_title">Taramayı kontrol et</string>
     <string name="scan_preview_legend">Renkli kareler = bulunan sayılar, boş kareler = bulunamadı.</string>
 

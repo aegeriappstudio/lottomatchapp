@@ -87,16 +87,24 @@ fun LottoCardPanel(
         label = "winBorderWidth"
     )
 
-    // Sweep-Animation als Reveal beim Lotto-Treffer
+    // Sweep-Animation, Haptik und Meldung nur beim Übergang in den Gewinnzustand.
+    // wasWinning startet mit dem aktuellen Wert, damit eine bereits gewinnende Karte
+    // beim (Re-)Eintritt in die Composition (Scrollen, Rotation, Neustart) nicht erneut feuert.
+    val winMessage = pluralStringResource(R.plurals.lotto_win_message, completed.size, completed.size)
     val sweepProgress = remember { Animatable(2f) }
+    var wasWinning by remember { mutableStateOf(hasWin) }
     LaunchedEffect(hasWin) {
-        if (hasWin) {
+        val isNewWin = hasWin && !wasWinning
+        wasWinning = hasWin
+        if (isNewWin) {
+            haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+            onWinMessage(winMessage)
             sweepProgress.snapTo(-0.2f)
             sweepProgress.animateTo(
                 targetValue = 1.2f,
                 animationSpec = tween(durationMillis = 850, easing = FastOutSlowInEasing)
             )
-        } else {
+        } else if (!hasWin) {
             sweepProgress.snapTo(2f)
         }
     }
@@ -205,14 +213,6 @@ fun LottoCardPanel(
                     editingIndex = idx
                 }
             )
-
-            val winMessage = pluralStringResource(R.plurals.lotto_win_message, completed.size, completed.size)
-            LaunchedEffect(card.cells, winRowsRequired) {
-                if (hasWin) {
-                    haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                    onWinMessage(winMessage)
-                }
-            }
 
             if (showNameDialog) {
                 EditNameDialog(

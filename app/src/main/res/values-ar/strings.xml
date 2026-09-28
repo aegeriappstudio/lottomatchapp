@@ -93,6 +93,7 @@
     <string name="scan_confirm_retry">مسح مجدداً</string>
     <string name="scan_confirm_accept">تطبيق</string>
     <string name="scan_confirm_message">الأرقام المكتشفة: %1$d من %2$d</string>
+    <string name="scanner_camera_error">تعذّر تشغيل الكاميرا.</string>
     <string name="scan_confirm_title">التحقق من المسح</string>
     <string name="scan_preview_legend">الخانات الملونة = أرقام مكتشفة، الخانات الفارغة = غير مكتشفة.</string>
 

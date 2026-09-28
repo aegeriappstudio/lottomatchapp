@@ -25,6 +25,12 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
+# ThemeVariant wird per name() in den SharedPreferences gespeichert und via valueOf() gelesen (ThemeRepository).
+-keepclassmembers enum ch.lottomatchapp.app.ui.theme.ThemeVariant {
+    <fields>;
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
 
 # Konfetti / Glance / Room / Firebase / ML Kit / Play Billing all ship
 # their own consumer-proguard-rules, no extra rules needed here.

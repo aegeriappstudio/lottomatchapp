@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">Rescanner</string>
     <string name="scan_confirm_accept">Appliquer</string>
     <string name="scan_confirm_message">Numéros détectés : %1$d sur %2$d</string>
+    <string name="scanner_camera_error">Impossible de démarrer la caméra.</string>
     <string name="scan_confirm_title">Vérifier le scan</string>
     <string name="scan_preview_legend">Cases colorées = numéros détectés, cases vides = non détectés.</string>
 

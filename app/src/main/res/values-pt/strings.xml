@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">Escanear de novo</string>
     <string name="scan_confirm_accept">Aplicar</string>
     <string name="scan_confirm_message">Números detectados: %1$d de %2$d</string>
+    <string name="scanner_camera_error">Não foi possível iniciar a câmera.</string>
     <string name="scan_confirm_title">Verificar escaneamento</string>
     <string name="scan_preview_legend">Casas coloridas = números detectados, casas vazias = não detectados.</string>
 

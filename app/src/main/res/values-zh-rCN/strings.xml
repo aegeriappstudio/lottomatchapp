@@ -83,6 +83,7 @@
     <string name="scan_confirm_retry">重新扫描</string>
     <string name="scan_confirm_accept">应用</string>
     <string name="scan_confirm_message">已识别数字: %1$d / %2$d</string>
+    <string name="scanner_camera_error">无法启动相机。</string>
     <string name="scan_confirm_title">检查扫描结果</string>
     <string name="scan_preview_legend">彩色格 = 已识别数字, 空格 = 未识别。</string>
 

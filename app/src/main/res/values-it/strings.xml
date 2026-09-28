@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">Scansiona di nuovo</string>
     <string name="scan_confirm_accept">Applica</string>
     <string name="scan_confirm_message">Numeri rilevati: %1$d di %2$d</string>
+    <string name="scanner_camera_error">Impossibile avviare la fotocamera.</string>
     <string name="scan_confirm_title">Verifica scansione</string>
     <string name="scan_preview_legend">Caselle colorate = numeri rilevati, caselle vuote = non rilevati.</string>
 

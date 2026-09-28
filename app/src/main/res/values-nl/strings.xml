@@ -85,6 +85,7 @@
     <string name="scan_confirm_retry">Opnieuw scannen</string>
     <string name="scan_confirm_accept">Toepassen</string>
     <string name="scan_confirm_message">Gevonden nummers: %1$d van %2$d</string>
+    <string name="scanner_camera_error">De camera kon niet worden gestart.</string>
     <string name="scan_confirm_title">Scan controleren</string>
     <string name="scan_preview_legend">Gekleurde vakjes = gevonden nummers, lege vakjes = niet herkend.</string>
 

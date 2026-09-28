@@ -33,6 +33,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -58,6 +59,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import android.util.Log
+import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.math.max
 
@@ -98,7 +100,23 @@ private fun ScanLottoCardContent(
     var fired by remember { mutableStateOf(false) }
     var pendingCard by remember { mutableStateOf<LottoCard?>(null) }
     var showConfirm by remember { mutableStateOf(false) }
+    var scanError by remember { mutableStateOf<String?>(null) }
     val frameAccumulator = remember { FrameAccumulator(bufferSize = 5, requiredHits = 3) }
+    val cameraErrorMessage = stringResource(R.string.scanner_camera_error)
+
+    // OCR-Client, Analyse-Executor und Kamera-Provider leben so lange wie dieses
+    // Composable und werden beim Verlassen der Composition sauber freigegeben.
+    val recognizer = remember { TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS) }
+    val analysisExecutor = remember { Executors.newSingleThreadExecutor() }
+    var cameraProvider by remember { mutableStateOf<ProcessCameraProvider?>(null) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            cameraProvider?.unbindAll()
+            recognizer.close()
+            analysisExecutor.shutdown()
+        }
+    }
 
     val progress = (bestCount / 15f).coerceIn(0f, 1f)
 
@@ -133,12 +151,19 @@ private fun ScanLottoCardContent(
 
                     val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
                     cameraProviderFuture.addListener({
-                        val cameraProvider = cameraProviderFuture.get()
+                        // Composable wurde inzwischen verlassen: nicht mehr binden
+                        if (analysisExecutor.isShutdown) return@addListener
+                        val provider = try {
+                            cameraProviderFuture.get()
+                        } catch (e: Exception) {
+                            Log.e(TAG, "Failed to obtain camera provider", e)
+                            scanError = cameraErrorMessage
+                            return@addListener
+                        }
+                        cameraProvider = provider
                         val preview = Preview.Builder().build().also {
                             it.setSurfaceProvider(previewView.surfaceProvider)
                         }
-                        val recognizer =
-                            TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
                         val analysis = ImageAnalysis.Builder()
                             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                             .setResolutionSelector(
@@ -153,7 +178,9 @@ private fun ScanLottoCardContent(
                             )
                             .build()
                             .also { ia ->
-                                ia.setAnalyzer(ContextCompat.getMainExecutor(ctx)) { imgProxy ->
+                                // Analyse (Bitmap-Konvertierung + Preprocessing) auf eigenem Thread,
+                                // die ML-Kit-Listener laufen weiterhin auf dem Main-Thread.
+                                ia.setAnalyzer(analysisExecutor) { imgProxy ->
                                     val mediaImage = imgProxy.image
                                     if (mediaImage != null && !fired && isProcessingFrame.compareAndSet(false, true)) {
                                         // Bild-Preprocessing: Kontrast + Entsättigung
@@ -193,8 +220,8 @@ private fun ScanLottoCardContent(
                                 }
                             }
                         try {
-                            cameraProvider.unbindAll()
-                            cameraProvider.bindToLifecycle(
+                            provider.unbindAll()
+                            provider.bindToLifecycle(
                                 lifecycleOwner,
                                 CameraSelector.DEFAULT_BACK_CAMERA,
                                 preview,
@@ -202,9 +229,8 @@ private fun ScanLottoCardContent(
                             )
                         } catch (e: Exception) {
                             Log.e(TAG, "Failed to bind camera use cases", e)
+                            scanError = cameraErrorMessage
                         }
-
-
                     }, ContextCompat.getMainExecutor(context))
                     previewView
                 },
@@ -247,6 +273,34 @@ private fun ScanLottoCardContent(
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                         color = if (progress < 0.7f) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onPrimary
                     )
+                }
+            }
+
+            // Kamera konnte nicht gestartet werden: Fehler statt leerer Vorschau anzeigen
+            scanError?.let { message ->
+                Surface(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(16.dp),
+                    shape = MaterialTheme.shapes.medium,
+                    color = MaterialTheme.colorScheme.errorContainer,
+                    contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                    shadowElevation = 4.dp
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = message,
+                            style = MaterialTheme.typography.bodyMedium,
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Button(onClick = onCancel) {
+                            Text(stringResource(R.string.close))
+                        }
+                    }
                 }
             }
         }

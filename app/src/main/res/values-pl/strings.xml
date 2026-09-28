@@ -89,6 +89,7 @@
     <string name="scan_confirm_retry">Skanuj ponownie</string>
     <string name="scan_confirm_accept">Zastosuj</string>
     <string name="scan_confirm_message">Wykryto liczby: %1$d z %2$d</string>
+    <string name="scanner_camera_error">Nie udało się uruchomić aparatu.</string>
     <string name="scan_confirm_title">Sprawdź skan</string>
     <string name="scan_preview_legend">Kolorowe pola = wykryte liczby, puste pola = nie wykryto.</string>
 
