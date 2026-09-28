@@ -20,3 +20,8 @@ app/google-services.json
 
 # Android Studio "Generate Signed App Bundle" output dir
 app/release/
+
+# Release-Signing: Zugangsdaten und Keystores nie committen
+keystore.properties
+*.jks
+*.keystore

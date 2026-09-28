@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -16,6 +18,15 @@ if (hasFirebaseConfig) {
     apply(plugin = libs.plugins.google.services.get().pluginId)
     apply(plugin = libs.plugins.firebase.crashlytics.get().pluginId)
 }
+
+// Release-Signing: Zugangsdaten liegen in keystore.properties im Projekt-Root
+// (gitignored). Fehlt die Datei, wird das Release-Bundle wie bisher unsigniert
+// gebaut und muss über Studio "Generate Signed Bundle" signiert werden.
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) keystorePropertiesFile.inputStream().use { load(it) }
+}
+val hasReleaseSigning = keystorePropertiesFile.exists()
 
 android {
     namespace = "ch.lottomatchapp.app"
@@ -42,8 +53,22 @@ android {
         }
     }
 
+    if (hasReleaseSigning) {
+        signingConfigs {
+            create("release") {
+                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
