@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Add up to 30 cards.</string>
     <string name="info_bullet_3">Tap Scan on a card to capture your lotto ticket.</string>
     <string name="info_bullet_4">After scanning, verify the recognised numbers.</string>
-    <string name="info_bullet_5">Long-press a cell to edit its number.</string>
+    <string name="info_bullet_5">Tap a cell to edit its number.</string>
     <string name="info_bullet_6">Choose at the top how many rows are required to win.</string>
     <string name="info_bullet_7">Start a new round to keep playing with the same cards.</string>
     <string name="info_bullet_8">Tap a card\'s name to rename it.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Scan a card</string>
     <string name="onboarding_body_1">Add a new card and scan it with the camera. The numbers will be detected automatically.</string>
     <string name="onboarding_title_2">Mark numbers</string>
-    <string name="onboarding_body_2">Enter the drawn numbers — one or many at once. Long-press a cell to edit it.</string>
+    <string name="onboarding_body_2">Enter the drawn numbers — one or many at once. Tap a cell to edit it.</string>
     <string name="onboarding_title_3">Check for wins</string>
     <string name="onboarding_body_3">Choose how many rows are required to win. There\'s confetti when you hit it!</string>
     <string name="onboarding_skip">Skip</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">to win</string>
     <string name="widget_lotto_message">LOTTO!</string>
     <string name="widget_last_drawn">Last: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Row %1$d, column %2$d: %3$d</string>
+    <string name="cell_description_empty">Row %1$d, column %2$d: empty</string>
+    <string name="cell_state_marked">marked</string>
+    <string name="numberpad_number_description">Number %1$d</string>
+    <string name="numberpad_state_drawn">drawn</string>
+    <string name="numberpad_collapse">Collapse number pad</string>
+    <string name="numberpad_expand">Expand number pad</string>
 </resources>

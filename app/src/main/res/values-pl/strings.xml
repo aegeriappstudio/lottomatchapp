@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Możesz dodać do 30 kartek.</string>
     <string name="info_bullet_3">Stuknij «Skanuj» na każdej kartce, aby zarejestrować swój los.</string>
     <string name="info_bullet_4">Po zeskanowaniu sprawdź, czy liczby są poprawne.</string>
-    <string name="info_bullet_5">Przytrzymaj pole, aby zmienić liczbę.</string>
+    <string name="info_bullet_5">Stuknij pole, aby zmienić liczbę.</string>
     <string name="info_bullet_6">U góry wybierz, ile rzędów potrzeba do wygranej.</string>
     <string name="info_bullet_7">Rozpocznij nową rundę, aby grać dalej tymi samymi kartkami.</string>
     <string name="info_bullet_8">Stuknij nazwę kartki, aby ją zmienić.</string>
@@ -174,7 +174,7 @@
     <string name="onboarding_title_1">Zeskanuj kartkę</string>
     <string name="onboarding_body_1">Dodaj nową kartkę i zeskanuj ją aparatem. Liczby zostaną rozpoznane automatycznie.</string>
     <string name="onboarding_title_2">Oznacz liczby</string>
-    <string name="onboarding_body_2">Wpisuj wylosowane liczby — pojedynczo lub wiele naraz. Przytrzymaj pole, aby je edytować.</string>
+    <string name="onboarding_body_2">Wpisuj wylosowane liczby — pojedynczo lub wiele naraz. Stuknij pole, aby je edytować.</string>
     <string name="onboarding_title_3">Sprawdź wygraną</string>
     <string name="onboarding_body_3">Wybierz, ile rzędów potrzeba do wygranej. Przy trafieniu sypie się confetti!</string>
     <string name="onboarding_skip">Pomiń</string>
@@ -234,4 +234,13 @@
     <string name="widget_to_win_label">do wygranej</string>
     <string name="widget_lotto_message">LOTTO!</string>
     <string name="widget_last_drawn">Ostatnia: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Rząd %1$d, kolumna %2$d: %3$d</string>
+    <string name="cell_description_empty">Rząd %1$d, kolumna %2$d: puste</string>
+    <string name="cell_state_marked">oznaczone</string>
+    <string name="numberpad_number_description">Liczba %1$d</string>
+    <string name="numberpad_state_drawn">wylosowana</string>
+    <string name="numberpad_collapse">Zwiń klawiaturę liczb</string>
+    <string name="numberpad_expand">Rozwiń klawiaturę liczb</string>
 </resources>

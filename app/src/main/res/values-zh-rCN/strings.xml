@@ -27,7 +27,7 @@
     <string name="info_bullet_2">最多可以添加 30 张卡片。</string>
     <string name="info_bullet_3">在每张卡片上点击「扫描」来录入您的票据。</string>
     <string name="info_bullet_4">扫描后请检查数字是否识别正确。</string>
-    <string name="info_bullet_5">长按格子可修改数字。</string>
+    <string name="info_bullet_5">点击格子可修改数字。</string>
     <string name="info_bullet_6">在顶部选择需要几行才算获胜。</string>
     <string name="info_bullet_7">开始新一轮即可继续使用相同的卡片。</string>
     <string name="info_bullet_8">点击卡片名称即可重命名。</string>
@@ -168,7 +168,7 @@
     <string name="onboarding_title_1">扫描卡片</string>
     <string name="onboarding_body_1">添加一张新卡片并用相机扫描。数字会自动识别。</string>
     <string name="onboarding_title_2">标记数字</string>
-    <string name="onboarding_body_2">输入抽中的数字 — 可以一次输入多个。长按格子即可编辑。</string>
+    <string name="onboarding_body_2">输入抽中的数字 — 可以一次输入多个。点击格子即可编辑。</string>
     <string name="onboarding_title_3">检查获胜</string>
     <string name="onboarding_body_3">选择需要几行才算获胜。命中后会有彩纸雨!</string>
     <string name="onboarding_skip">跳过</string>
@@ -228,4 +228,13 @@
     <string name="widget_to_win_label">差几个</string>
     <string name="widget_lotto_message">宾果!</string>
     <string name="widget_last_drawn">最近: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">第 %1$d 行第 %2$d 列: %3$d</string>
+    <string name="cell_description_empty">第 %1$d 行第 %2$d 列: 空</string>
+    <string name="cell_state_marked">已标记</string>
+    <string name="numberpad_number_description">数字 %1$d</string>
+    <string name="numberpad_state_drawn">已抽中</string>
+    <string name="numberpad_collapse">收起数字键盘</string>
+    <string name="numberpad_expand">展开数字键盘</string>
 </resources>

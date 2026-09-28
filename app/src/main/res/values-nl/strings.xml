@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Je kunt tot 30 kaarten toevoegen.</string>
     <string name="info_bullet_3">Tik op «Scannen» bij elke kaart om je speelkaart vast te leggen.</string>
     <string name="info_bullet_4">Controleer na het scannen of de nummers kloppen.</string>
-    <string name="info_bullet_5">Houd een vakje ingedrukt om het nummer te wijzigen.</string>
+    <string name="info_bullet_5">Tik op een vakje om het nummer te wijzigen.</string>
     <string name="info_bullet_6">Kies bovenaan hoeveel rijen er nodig zijn om te winnen.</string>
     <string name="info_bullet_7">Start een nieuwe ronde om met dezelfde kaarten verder te spelen.</string>
     <string name="info_bullet_8">Tik op de naam van een kaart om die te wijzigen.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Een kaart scannen</string>
     <string name="onboarding_body_1">Voeg een nieuwe kaart toe en scan die met de camera. De nummers worden automatisch herkend.</string>
     <string name="onboarding_title_2">Nummers markeren</string>
-    <string name="onboarding_body_2">Voer de getrokken nummers in — één of meerdere tegelijk. Houd een vakje ingedrukt om het te bewerken.</string>
+    <string name="onboarding_body_2">Voer de getrokken nummers in — één of meerdere tegelijk. Tik op een vakje om het te bewerken.</string>
     <string name="onboarding_title_3">Win controleren</string>
     <string name="onboarding_body_3">Kies hoeveel rijen er nodig zijn om te winnen. Bij een treffer komt er confetti!</string>
     <string name="onboarding_skip">Overslaan</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">tot winst</string>
     <string name="widget_lotto_message">BINGO!</string>
     <string name="widget_last_drawn">Laatst: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Rij %1$d, kolom %2$d: %3$d</string>
+    <string name="cell_description_empty">Rij %1$d, kolom %2$d: leeg</string>
+    <string name="cell_state_marked">gemarkeerd</string>
+    <string name="numberpad_number_description">Nummer %1$d</string>
+    <string name="numberpad_state_drawn">getrokken</string>
+    <string name="numberpad_collapse">Nummerveld inklappen</string>
+    <string name="numberpad_expand">Nummerveld uitklappen</string>
 </resources>

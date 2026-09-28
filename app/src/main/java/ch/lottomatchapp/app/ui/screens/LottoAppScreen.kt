@@ -23,8 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -75,7 +73,6 @@ fun LottoAppScreen(
     val themePreference by viewModel.themePreference.collectAsState()
 
     val context = LocalContext.current
-    val haptics = LocalHapticFeedback.current
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -238,10 +235,16 @@ fun LottoAppScreen(
             }
         }
     ) { padding ->
-        Box(modifier = Modifier.padding(padding).fillMaxSize()) {
+        BoxWithConstraints(modifier = Modifier.padding(padding).fillMaxSize()) {
+        // Tablets / breite Fenster (>= 600dp): Inhalt auf 640dp begrenzen und zentrieren,
+        // damit sich die Karten nicht über die ganze Breite ziehen. Phones bleiben unverändert.
+        val isWide = maxWidth >= 600.dp
+        val contentWidth = if (isWide) Modifier.widthIn(max = 640.dp).fillMaxWidth() else Modifier.fillMaxWidth()
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxHeight()
+                .then(contentWidth)
+                .align(Alignment.TopCenter)
                 .imePadding()
                 .navigationBarsPadding()
         ) {
@@ -363,8 +366,9 @@ fun LottoAppScreen(
                             delay(3000)
                             if (entryError == msg) entryError = null
                         }
-                    } else if (viewModel.markNumberAcrossAll(n)) {
-                        haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                    } else {
+                        // Haptik kommt bereits aus NumberPad90 (nah an der Geste), hier nicht doppelt.
+                        viewModel.markNumberAcrossAll(n)
                     }
                 },
                 modifier = Modifier

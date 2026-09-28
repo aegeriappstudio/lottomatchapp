@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,10 +31,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import ch.lottomatchapp.app.R
 
@@ -50,6 +57,11 @@ fun NumberPad90(
     initiallyExpanded: Boolean = true,
 ) {
     var expanded by remember { mutableStateOf(initiallyExpanded) }
+    val density = LocalDensity.current
+    val cellSpacing = 4.dp
+    // Wie im Karten-Raster: Schriftgrösse aus der Zellgrösse ableiten, moderat und
+    // gedeckelt mit der Systemschrift skalieren, damit zwei Ziffern nie abgeschnitten werden.
+    val fontScale = density.fontScale.coerceIn(1f, 1.2f)
 
     Column(
         modifier = modifier
@@ -80,31 +92,40 @@ fun NumberPad90(
                 Spacer(Modifier.width(6.dp))
                 Icon(
                     imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowUp,
-                    contentDescription = null,
+                    contentDescription = stringResource(
+                        if (expanded) R.string.numberpad_collapse else R.string.numberpad_expand
+                    ),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
 
         AnimatedVisibility(visible = expanded) {
-            Column(
-                modifier = Modifier.padding(top = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+            BoxWithConstraints(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
             ) {
-                for (rowIdx in 0 until 9) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        for (colIdx in 0 until 10) {
-                            val number = rowIdx * 10 + colIdx + 1
-                            val drawn = number in drawnNumbers
-                            NumberCell(
-                                number = number,
-                                drawn = drawn,
-                                onClick = { onPickNumber(number) },
-                                modifier = Modifier.weight(1f)
-                            )
+                val cellSize = (maxWidth - cellSpacing * 9) / 10
+                val numberFontSize = with(density) { (cellSize * 0.45f * fontScale).toSp() }
+
+                Column(verticalArrangement = Arrangement.spacedBy(cellSpacing)) {
+                    for (rowIdx in 0 until 9) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(cellSpacing)
+                        ) {
+                            for (colIdx in 0 until 10) {
+                                val number = rowIdx * 10 + colIdx + 1
+                                val drawn = number in drawnNumbers
+                                NumberCell(
+                                    number = number,
+                                    drawn = drawn,
+                                    fontSize = numberFontSize,
+                                    onClick = { onPickNumber(number) },
+                                    modifier = Modifier.weight(1f)
+                                )
+                            }
                         }
                     }
                 }
@@ -117,10 +138,13 @@ fun NumberPad90(
 private fun NumberCell(
     number: Int,
     drawn: Boolean,
+    fontSize: TextUnit,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val haptics = LocalHapticFeedback.current
+    val numberDescription = stringResource(R.string.numberpad_number_description, number)
+    val drawnState = stringResource(R.string.numberpad_state_drawn)
 
     val containerColor by animateColorAsState(
         targetValue = if (drawn) MaterialTheme.colorScheme.surface.copy(alpha = 0.4f)
@@ -137,7 +161,12 @@ private fun NumberCell(
         contentColor = contentColor,
         modifier = modifier
             .aspectRatio(1f)
-            .clickable(enabled = !drawn) {
+            .semantics {
+                contentDescription = numberDescription
+                if (drawn) stateDescription = drawnState
+            }
+            .clickable(enabled = !drawn, role = Role.Button) {
+                // Einzige Haptik beim Zahlen-Tipp (nicht zusätzlich im Screen).
                 haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                 onClick()
             }
@@ -146,7 +175,10 @@ private fun NumberCell(
             Text(
                 text = number.toString(),
                 style = MaterialTheme.typography.labelMedium,
+                fontSize = fontSize,
                 fontWeight = FontWeight.SemiBold,
+                maxLines = 1,
+                softWrap = false,
                 textDecoration = if (drawn) TextDecoration.LineThrough else null
             )
         }

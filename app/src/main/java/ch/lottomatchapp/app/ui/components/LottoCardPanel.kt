@@ -206,12 +206,11 @@ fun LottoCardPanel(
                 )
             }
 
+            // Tipp oder langes Drücken auf ein Feld öffnet den Editor (Haptik beim
+            // Long-Press macht das Grid selbst).
             LottoGrid(
                 card = card,
-                onLongPress = { idx ->
-                    haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                    editingIndex = idx
-                }
+                onCellClick = { idx -> editingIndex = idx }
             )
 
             if (showNameDialog) {

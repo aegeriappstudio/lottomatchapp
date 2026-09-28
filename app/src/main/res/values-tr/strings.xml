@@ -27,7 +27,7 @@
     <string name="info_bullet_2">En fazla 30 kart ekleyebilirsin.</string>
     <string name="info_bullet_3">Her kartta «Tara»ya dokunarak biletini yakala.</string>
     <string name="info_bullet_4">Taradıktan sonra sayıların doğru tanındığını kontrol et.</string>
-    <string name="info_bullet_5">Sayıyı değiştirmek için kareye uzun bas.</string>
+    <string name="info_bullet_5">Sayıyı değiştirmek için kareye dokun.</string>
     <string name="info_bullet_6">Yukarıdan kazanmak için kaç sıra gerektiğini seç.</string>
     <string name="info_bullet_7">Aynı kartlarla devam etmek için yeni bir tur başlat.</string>
     <string name="info_bullet_8">Kartın adına dokunarak yeniden adlandır.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Kart tara</string>
     <string name="onboarding_body_1">Yeni bir kart ekle ve kamerayla tara. Sayılar otomatik olarak tanınır.</string>
     <string name="onboarding_title_2">Sayıları işaretle</string>
-    <string name="onboarding_body_2">Çekilen sayıları gir — tek tek veya aynı anda birkaçı. Düzenlemek için kareye uzun bas.</string>
+    <string name="onboarding_body_2">Çekilen sayıları gir — tek tek veya aynı anda birkaçı. Düzenlemek için kareye dokun.</string>
     <string name="onboarding_title_3">Kazanmayı kontrol et</string>
     <string name="onboarding_body_3">Kazanmak için kaç sıra gerektiğini seç. Vurduğunda konfeti gelir!</string>
     <string name="onboarding_skip">Atla</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">kazanmaya</string>
     <string name="widget_lotto_message">TOMBALA!</string>
     <string name="widget_last_drawn">Son: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Satır %1$d, sütun %2$d: %3$d</string>
+    <string name="cell_description_empty">Satır %1$d, sütun %2$d: boş</string>
+    <string name="cell_state_marked">işaretli</string>
+    <string name="numberpad_number_description">Sayı %1$d</string>
+    <string name="numberpad_state_drawn">çekildi</string>
+    <string name="numberpad_collapse">Sayı tuş takımını daralt</string>
+    <string name="numberpad_expand">Sayı tuş takımını genişlet</string>
 </resources>

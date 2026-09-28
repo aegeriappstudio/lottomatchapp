@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Можно добавить до 30 карточек.</string>
     <string name="info_bullet_3">Нажми «Сканировать» на каждой карточке, чтобы оцифровать свой билет.</string>
     <string name="info_bullet_4">После сканирования проверь, правильно ли распознаны числа.</string>
-    <string name="info_bullet_5">Удерживай клетку, чтобы изменить число.</string>
+    <string name="info_bullet_5">Коснись клетки, чтобы изменить число.</string>
     <string name="info_bullet_6">Выбери сверху, сколько рядов нужно для выигрыша.</string>
     <string name="info_bullet_7">Запусти новый раунд, чтобы играть с теми же карточками.</string>
     <string name="info_bullet_8">Коснись названия карточки, чтобы переименовать.</string>
@@ -174,7 +174,7 @@
     <string name="onboarding_title_1">Сканируй карточку</string>
     <string name="onboarding_body_1">Добавь новую карточку и отсканируй её камерой. Числа распознаются автоматически.</string>
     <string name="onboarding_title_2">Отмечай числа</string>
-    <string name="onboarding_body_2">Вводи выпавшие числа — по одному или сразу несколько. Удерживай клетку, чтобы её редактировать.</string>
+    <string name="onboarding_body_2">Вводи выпавшие числа — по одному или сразу несколько. Коснись клетки, чтобы её редактировать.</string>
     <string name="onboarding_title_3">Проверяй выигрыш</string>
     <string name="onboarding_body_3">Выбери, сколько рядов нужно для выигрыша. При попадании — конфетти!</string>
     <string name="onboarding_skip">Пропустить</string>
@@ -234,4 +234,13 @@
     <string name="widget_to_win_label">до выигрыша</string>
     <string name="widget_lotto_message">ЛОТО!</string>
     <string name="widget_last_drawn">Последнее: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Ряд %1$d, столбец %2$d: %3$d</string>
+    <string name="cell_description_empty">Ряд %1$d, столбец %2$d: пусто</string>
+    <string name="cell_state_marked">отмечено</string>
+    <string name="numberpad_number_description">Число %1$d</string>
+    <string name="numberpad_state_drawn">выпало</string>
+    <string name="numberpad_collapse">Свернуть панель чисел</string>
+    <string name="numberpad_expand">Развернуть панель чисел</string>
 </resources>

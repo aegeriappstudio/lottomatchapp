@@ -27,7 +27,7 @@
     <string name="info_bullet_2">最大 30 枚のカードを追加できます。</string>
     <string name="info_bullet_3">各カードで「スキャン」をタップして自分のチケットを読み取ります。</string>
     <string name="info_bullet_4">スキャン後、数字が正しく認識されているか確認します。</string>
-    <string name="info_bullet_5">マスを長押しすると数字を変更できます。</string>
+    <string name="info_bullet_5">マスをタップすると数字を変更できます。</string>
     <string name="info_bullet_6">上で、勝ちに必要な行数を選びます。</string>
     <string name="info_bullet_7">同じカードで遊び続けるには新しいラウンドを始めます。</string>
     <string name="info_bullet_8">カード名をタップして変更できます。</string>
@@ -168,7 +168,7 @@
     <string name="onboarding_title_1">カードをスキャン</string>
     <string name="onboarding_body_1">新しいカードを追加し、カメラでスキャンします。数字は自動で認識されます。</string>
     <string name="onboarding_title_2">数字をマーク</string>
-    <string name="onboarding_body_2">出た数字を入力します — 一度に複数も可能。マスを長押しすると編集できます。</string>
+    <string name="onboarding_body_2">出た数字を入力します — 一度に複数も可能。マスをタップすると編集できます。</string>
     <string name="onboarding_title_3">勝利を確認</string>
     <string name="onboarding_body_3">勝ちに必要な行数を選びます。当たると紙吹雪!</string>
     <string name="onboarding_skip">スキップ</string>
@@ -228,4 +228,13 @@
     <string name="widget_to_win_label">勝ちまで</string>
     <string name="widget_lotto_message">ビンゴ!</string>
     <string name="widget_last_drawn">最後: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">%1$d 行目、%2$d 列目: %3$d</string>
+    <string name="cell_description_empty">%1$d 行目、%2$d 列目: 空</string>
+    <string name="cell_state_marked">マーク済み</string>
+    <string name="numberpad_number_description">数字 %1$d</string>
+    <string name="numberpad_state_drawn">出た数字</string>
+    <string name="numberpad_collapse">数字パッドを閉じる</string>
+    <string name="numberpad_expand">数字パッドを開く</string>
 </resources>

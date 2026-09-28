@@ -27,7 +27,7 @@
     <string name="info_bullet_2">आप 30 तक कार्ड जोड़ सकते हैं।</string>
     <string name="info_bullet_3">हर कार्ड पर «स्कैन» दबाकर अपना टिकट कैप्चर करें।</string>
     <string name="info_bullet_4">स्कैन के बाद नंबरों की सटीकता जाँचें।</string>
-    <string name="info_bullet_5">किसी बॉक्स को लंबा दबाकर नंबर बदलें।</string>
+    <string name="info_bullet_5">किसी बॉक्स पर टैप करके नंबर बदलें।</string>
     <string name="info_bullet_6">ऊपर चुनें कि जीतने के लिए कितनी पंक्तियाँ चाहिए।</string>
     <string name="info_bullet_7">समान कार्ड के साथ खेलना जारी रखने के लिए नया राउंड शुरू करें।</string>
     <string name="info_bullet_8">कार्ड का नाम बदलने के लिए उस पर टैप करें।</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">कार्ड स्कैन करें</string>
     <string name="onboarding_body_1">नया कार्ड जोड़ें और कैमरे से स्कैन करें। नंबर अपने आप पहचाने जाते हैं।</string>
     <string name="onboarding_title_2">नंबर चिह्नित करें</string>
-    <string name="onboarding_body_2">निकले नंबर दर्ज करें — एक या कई एक साथ। बॉक्स को संपादित करने के लिए लंबा दबाएँ।</string>
+    <string name="onboarding_body_2">निकले नंबर दर्ज करें — एक या कई एक साथ। बॉक्स को संपादित करने के लिए उस पर टैप करें।</string>
     <string name="onboarding_title_3">जीत जाँचें</string>
     <string name="onboarding_body_3">चुनें कि जीतने के लिए कितनी पंक्तियाँ चाहिए। हिट होने पर कन्फ़ेटी मिलेगी!</string>
     <string name="onboarding_skip">छोड़ें</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">जीतने तक</string>
     <string name="widget_lotto_message">तंबोला!</string>
     <string name="widget_last_drawn">अंतिम: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">पंक्ति %1$d, स्तंभ %2$d: %3$d</string>
+    <string name="cell_description_empty">पंक्ति %1$d, स्तंभ %2$d: खाली</string>
+    <string name="cell_state_marked">चिह्नित</string>
+    <string name="numberpad_number_description">नंबर %1$d</string>
+    <string name="numberpad_state_drawn">निकल चुका</string>
+    <string name="numberpad_collapse">नंबर पैड छोटा करें</string>
+    <string name="numberpad_expand">नंबर पैड खोलें</string>
 </resources>

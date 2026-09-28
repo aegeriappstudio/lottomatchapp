@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Nur Geräte mit Telephony-Hardware (typischerweise Smartphones) -->
-    <uses-feature
-        android:name="android.hardware.telephony"
-        android:required="true" />
-
     <!-- Kamera -->
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -49,7 +44,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lottomatch"
         android:usesCleartextTraffic="false"
-        tools:targetApi="31">
+        android:enableOnBackInvokedCallback="true"
+        android:localeConfig="@xml/locales_config"
+        tools:targetApi="33">
 
         <!-- Tracking standardmässig deaktiviert. Wird per Code aktiviert,
              nachdem der Nutzer im ConsentSheet zugestimmt hat. -->

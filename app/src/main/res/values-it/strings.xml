@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Puoi aggiungere fino a 30 cartelle.</string>
     <string name="info_bullet_3">Tocca «Scansiona» su ogni cartella per acquisire il tuo cartone.</string>
     <string name="info_bullet_4">Dopo la scansione, controlla che i numeri siano corretti.</string>
-    <string name="info_bullet_5">Tieni premuta una casella per modificarne il numero.</string>
+    <string name="info_bullet_5">Tocca una casella per modificarne il numero.</string>
     <string name="info_bullet_6">Scegli in alto quante righe servono per vincere.</string>
     <string name="info_bullet_7">Avvia una nuova partita per continuare con le stesse cartelle.</string>
     <string name="info_bullet_8">Tocca il nome della cartella per rinominarla.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Scansiona una cartella</string>
     <string name="onboarding_body_1">Aggiungi una nuova cartella e scansionala con la fotocamera. I numeri vengono riconosciuti automaticamente.</string>
     <string name="onboarding_title_2">Marca i numeri</string>
-    <string name="onboarding_body_2">Inserisci i numeri estratti — anche più alla volta. Tieni premuta una casella per modificarla.</string>
+    <string name="onboarding_body_2">Inserisci i numeri estratti — anche più alla volta. Tocca una casella per modificarla.</string>
     <string name="onboarding_title_3">Verifica la vittoria</string>
     <string name="onboarding_body_3">Scegli quante righe servono per vincere. Coriandoli garantiti!</string>
     <string name="onboarding_skip">Salta</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">per vincere</string>
     <string name="widget_lotto_message">TOMBOLA!</string>
     <string name="widget_last_drawn">Ultimo: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Riga %1$d, colonna %2$d: %3$d</string>
+    <string name="cell_description_empty">Riga %1$d, colonna %2$d: vuota</string>
+    <string name="cell_state_marked">marcato</string>
+    <string name="numberpad_number_description">Numero %1$d</string>
+    <string name="numberpad_state_drawn">estratto</string>
+    <string name="numberpad_collapse">Comprimi tastierino numerico</string>
+    <string name="numberpad_expand">Espandi tastierino numerico</string>
 </resources>

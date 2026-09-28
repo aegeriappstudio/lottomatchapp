@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Tu peux ajouter jusqu\'à 30 cartes.</string>
     <string name="info_bullet_3">Appuie sur « Scanner » pour capturer ta carte.</string>
     <string name="info_bullet_4">Après le scan, vérifie que les numéros sont corrects.</string>
-    <string name="info_bullet_5">Appuie longuement sur une case pour en changer le numéro.</string>
+    <string name="info_bullet_5">Appuie sur une case pour en changer le numéro.</string>
     <string name="info_bullet_6">Choisis en haut combien de lignes sont requises pour gagner.</string>
     <string name="info_bullet_7">Démarre une nouvelle partie pour rejouer avec les mêmes cartes.</string>
     <string name="info_bullet_8">Appuie sur le nom d\'une carte pour la renommer.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Scanner une carte</string>
     <string name="onboarding_body_1">Ajoute une nouvelle carte et scanne-la avec la caméra. Les numéros sont détectés automatiquement.</string>
     <string name="onboarding_title_2">Marquer les numéros</string>
-    <string name="onboarding_body_2">Saisis les numéros tirés — un ou plusieurs à la fois. Appuie longuement sur une case pour la modifier.</string>
+    <string name="onboarding_body_2">Saisis les numéros tirés — un ou plusieurs à la fois. Appuie sur une case pour la modifier.</string>
     <string name="onboarding_title_3">Vérifier le gain</string>
     <string name="onboarding_body_3">Choisis combien de lignes sont nécessaires pour gagner. Confettis garantis !</string>
     <string name="onboarding_skip">Passer</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">pour gagner</string>
     <string name="widget_lotto_message">LOTO !</string>
     <string name="widget_last_drawn">Dernier : %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Ligne %1$d, colonne %2$d : %3$d</string>
+    <string name="cell_description_empty">Ligne %1$d, colonne %2$d : vide</string>
+    <string name="cell_state_marked">marqué</string>
+    <string name="numberpad_number_description">Numéro %1$d</string>
+    <string name="numberpad_state_drawn">tiré</string>
+    <string name="numberpad_collapse">Réduire le pavé numérique</string>
+    <string name="numberpad_expand">Développer le pavé numérique</string>
 </resources>

@@ -27,7 +27,7 @@
     <string name="info_bullet_2">최대 30개의 카드를 추가할 수 있습니다.</string>
     <string name="info_bullet_3">각 카드에서 「스캔」을 눌러 본인의 티켓을 등록하세요.</string>
     <string name="info_bullet_4">스캔 후 숫자가 정확히 인식되었는지 확인하세요.</string>
-    <string name="info_bullet_5">칸을 길게 누르면 숫자를 변경할 수 있어요.</string>
+    <string name="info_bullet_5">칸을 누르면 숫자를 변경할 수 있어요.</string>
     <string name="info_bullet_6">상단에서 승리에 필요한 줄 수를 선택하세요.</string>
     <string name="info_bullet_7">같은 카드로 계속 플레이하려면 새 라운드를 시작하세요.</string>
     <string name="info_bullet_8">카드 이름을 눌러 변경할 수 있어요.</string>
@@ -168,7 +168,7 @@
     <string name="onboarding_title_1">카드 스캔</string>
     <string name="onboarding_body_1">새 카드를 추가하고 카메라로 스캔하세요. 숫자는 자동으로 인식됩니다.</string>
     <string name="onboarding_title_2">숫자 표시</string>
-    <string name="onboarding_body_2">뽑힌 숫자를 입력하세요 — 한 번에 여러 개도 가능. 칸을 길게 누르면 편집할 수 있어요.</string>
+    <string name="onboarding_body_2">뽑힌 숫자를 입력하세요 — 한 번에 여러 개도 가능. 칸을 누르면 편집할 수 있어요.</string>
     <string name="onboarding_title_3">승리 확인</string>
     <string name="onboarding_body_3">승리에 필요한 줄 수를 선택하세요. 맞히면 색종이가 뿌려져요!</string>
     <string name="onboarding_skip">건너뛰기</string>
@@ -228,4 +228,13 @@
     <string name="widget_to_win_label">승리까지</string>
     <string name="widget_lotto_message">빙고!</string>
     <string name="widget_last_drawn">마지막: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">%1$d행 %2$d열: %3$d</string>
+    <string name="cell_description_empty">%1$d행 %2$d열: 비어 있음</string>
+    <string name="cell_state_marked">표시됨</string>
+    <string name="numberpad_number_description">숫자 %1$d</string>
+    <string name="numberpad_state_drawn">뽑힘</string>
+    <string name="numberpad_collapse">숫자 패드 접기</string>
+    <string name="numberpad_expand">숫자 패드 펼치기</string>
 </resources>

@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Du kannst bis zu 30 Karten anlegen.</string>
     <string name="info_bullet_3">Tippe bei jeder Karte auf «Scannen», um deinen Spielzettel zu erfassen.</string>
     <string name="info_bullet_4">Prüfe nach dem Scan, ob die Zahlen korrekt erkannt wurden.</string>
-    <string name="info_bullet_5">Halte ein Feld lange gedrückt, um die Zahl zu ändern.</string>
+    <string name="info_bullet_5">Tippe auf ein Feld, um die Zahl zu ändern.</string>
     <string name="info_bullet_6">Wähle oben aus, wie viele Reihen für einen Gewinn nötig sind.</string>
     <string name="info_bullet_7">Starte eine neue Runde, um mit denselben Karten weiterzuspielen.</string>
     <string name="info_bullet_8">Tippe auf den Kartennamen, um ihn zu ändern.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Karte scannen</string>
     <string name="onboarding_body_1">Füge eine neue Karte hinzu und scanne sie mit der Kamera. Die Zahlen werden automatisch erkannt.</string>
     <string name="onboarding_title_2">Zahlen markieren</string>
-    <string name="onboarding_body_2">Gib die gezogenen Zahlen ein – auch mehrere auf einmal. Halte ein Feld lange gedrückt, um es zu bearbeiten.</string>
+    <string name="onboarding_body_2">Gib die gezogenen Zahlen ein – auch mehrere auf einmal. Tippe auf ein Feld, um es zu bearbeiten.</string>
     <string name="onboarding_title_3">Gewinn prüfen</string>
     <string name="onboarding_body_3">Wähle aus, wie viele Reihen für einen Gewinn nötig sind. Bei einem Treffer gibt\'s Konfetti!</string>
     <string name="onboarding_skip">Überspringen</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">bis Lotto</string>
     <string name="widget_lotto_message">LOTTO!</string>
     <string name="widget_last_drawn">Zuletzt: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Reihe %1$d, Spalte %2$d: %3$d</string>
+    <string name="cell_description_empty">Reihe %1$d, Spalte %2$d: leer</string>
+    <string name="cell_state_marked">markiert</string>
+    <string name="numberpad_number_description">Zahl %1$d</string>
+    <string name="numberpad_state_drawn">gezogen</string>
+    <string name="numberpad_collapse">Zahlenfeld einklappen</string>
+    <string name="numberpad_expand">Zahlenfeld ausklappen</string>
 </resources>

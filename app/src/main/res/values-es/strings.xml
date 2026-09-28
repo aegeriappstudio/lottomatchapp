@@ -27,7 +27,7 @@
     <string name="info_bullet_2">Puedes añadir hasta 30 cartones.</string>
     <string name="info_bullet_3">Toca «Escanear» en cada cartón para capturar tu boleto.</string>
     <string name="info_bullet_4">Después de escanear, verifica que los números sean correctos.</string>
-    <string name="info_bullet_5">Mantén pulsada una casilla para cambiar su número.</string>
+    <string name="info_bullet_5">Toca una casilla para cambiar su número.</string>
     <string name="info_bullet_6">Elige arriba cuántas líneas se necesitan para ganar.</string>
     <string name="info_bullet_7">Inicia una nueva ronda para seguir jugando con los mismos cartones.</string>
     <string name="info_bullet_8">Toca el nombre del cartón para cambiarlo.</string>
@@ -170,7 +170,7 @@
     <string name="onboarding_title_1">Escanear un cartón</string>
     <string name="onboarding_body_1">Añade un nuevo cartón y escanéalo con la cámara. Los números se detectarán automáticamente.</string>
     <string name="onboarding_title_2">Marcar números</string>
-    <string name="onboarding_body_2">Introduce los números cantados — uno o varios a la vez. Mantén pulsada una casilla para editarla.</string>
+    <string name="onboarding_body_2">Introduce los números cantados — uno o varios a la vez. Toca una casilla para editarla.</string>
     <string name="onboarding_title_3">Comprobar ganador</string>
     <string name="onboarding_body_3">Elige cuántas líneas hacen falta para ganar. ¡Habrá confeti al acertar!</string>
     <string name="onboarding_skip">Omitir</string>
@@ -230,4 +230,13 @@
     <string name="widget_to_win_label">para ganar</string>
     <string name="widget_lotto_message">¡LOTERÍA!</string>
     <string name="widget_last_drawn">Último: %1$d</string>
+
+    <!-- Accessibility (TalkBack) -->
+    <string name="cell_description_number">Fila %1$d, columna %2$d: %3$d</string>
+    <string name="cell_description_empty">Fila %1$d, columna %2$d: vacía</string>
+    <string name="cell_state_marked">marcado</string>
+    <string name="numberpad_number_description">Número %1$d</string>
+    <string name="numberpad_state_drawn">cantado</string>
+    <string name="numberpad_collapse">Contraer teclado numérico</string>
+    <string name="numberpad_expand">Expandir teclado numérico</string>
 </resources>
