@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.compose)
 }
 
 // Firebase-Plugins nur aktivieren wenn google-services.json vorhanden ist.
@@ -23,8 +24,8 @@ android {
         applicationId = "ch.lottomatchapp.app"
         minSdk = 23
         targetSdk = 36
-        versionCode = 17
-        versionName = "2.0"
+        versionCode = 18
+        versionName = "2.1"
         // multiDexEnabled = true // nur nötig, falls du wirklich >64k Methoden brauchst
 
         // Nur 64-Bit-ABIs ausliefern.
@@ -58,10 +59,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
     }
 
     compileOptions {
@@ -120,7 +117,7 @@ dependencies {
     implementation("androidx.glance:glance-material3:1.1.1")
 
     // ---- Google Play Billing (In-App Purchases) ----
-    implementation("com.android.billingclient:billing-ktx:7.1.1")
+    implementation("com.android.billingclient:billing-ktx:9.1.0")
 
     // ---- Firebase (Crashlytics + Analytics) ----
     // Die Dependencies werden immer eingezogen; das eigentliche Aktivieren
@@ -130,7 +127,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     // ---- Room Database ----
-    val roomVersion = "2.6.1"
+    val roomVersion = "2.8.5"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
