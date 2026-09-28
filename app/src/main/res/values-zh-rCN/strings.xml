@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">全部重置?</string>
     <string name="reset_all_confirmation_message">确定要删除所有卡片、标记和历史记录吗?</string>
     <string name="reset_all_confirm_button">全部重置</string>
+    <string name="new_round_confirmation_title">开始新一轮？</string>
+    <string name="new_round_confirmation_message">标记和数字历史将被清空；本轮会保存到统计中。</string>
+    <string name="new_round_confirm_button">开始</string>
     <string name="cancel">取消</string>
     <string name="undo_confirmation_title">撤销?</string>
     <string name="close">关闭</string>

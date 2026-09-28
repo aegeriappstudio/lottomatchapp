@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package ch.lottomatchapp.app.ui.screens
 
@@ -7,48 +7,27 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.material.icons.filled.CleaningServices
-import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.outlined.CreditCard
-import androidx.compose.material.icons.filled.Analytics
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.PrivacyTip
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.WorkspacePremium
-import androidx.compose.material.icons.outlined.DeleteForever
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.annotation.StringRes
-import android.content.Intent
-import android.net.Uri
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ch.lottomatchapp.app.AddCardResult
@@ -56,15 +35,19 @@ import ch.lottomatchapp.app.LottoViewModel
 import ch.lottomatchapp.app.R
 import ch.lottomatchapp.app.data.ConsentStatus
 import ch.lottomatchapp.app.data.LottoCard
-import ch.lottomatchapp.app.ui.theme.ThemeVariant
-import ch.lottomatchapp.app.stats.DailySummary
-import ch.lottomatchapp.app.stats.RoundStatistics
 import ch.lottomatchapp.app.ui.components.DrawnNumbersTape
 import ch.lottomatchapp.app.ui.components.LottoCardPanel
-import ch.lottomatchapp.app.ui.components.NumberFrequencyChart
-import ch.lottomatchapp.app.ui.components.NumberFrequencyHeatmap
 import ch.lottomatchapp.app.ui.components.NumberPad90
 import ch.lottomatchapp.app.ui.components.WinRuleBar
+import ch.lottomatchapp.app.ui.dialogs.AboutDialog
+import ch.lottomatchapp.app.ui.dialogs.DeleteAllConfirmationDialog
+import ch.lottomatchapp.app.ui.dialogs.HistoryDialog
+import ch.lottomatchapp.app.ui.dialogs.InfoDialog
+import ch.lottomatchapp.app.ui.dialogs.LegalDialog
+import ch.lottomatchapp.app.ui.dialogs.NewRoundConfirmationDialog
+import ch.lottomatchapp.app.ui.dialogs.PrivacySettingsDialog
+import ch.lottomatchapp.app.ui.dialogs.RatingDialog
+import ch.lottomatchapp.app.ui.dialogs.UndoConfirmationDialog
 import ch.lottomatchapp.app.util.Analytics
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -73,8 +56,6 @@ import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import java.util.concurrent.TimeUnit
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 @Composable
 fun LottoAppScreen(
@@ -84,7 +65,7 @@ fun LottoAppScreen(
     val winRows by viewModel.winRows.collectAsState()
     val history by viewModel.history.collectAsState()
     val canUndo by viewModel.canUndo.collectAsState()
-    val undoLabel by viewModel.undoLabel.collectAsState()
+    val undoAction by viewModel.undoAction.collectAsState()
     val lastNumber by viewModel.lastNumber.collectAsState()
     val allRounds by viewModel.allRounds.collectAsState()
     val allSummaries by viewModel.allSummaries.collectAsState()
@@ -103,19 +84,23 @@ fun LottoAppScreen(
         context.getSharedPreferences("ch.lottomatchapp.app.prefs", Context.MODE_PRIVATE)
     }
 
-    var showHistory by remember { mutableStateOf(false) }
-    var showInfoDialog by remember { mutableStateOf(!prefs.getBoolean("onboarding_seen", false)) }
-    var showLegalDialog by remember { mutableStateOf(false) }
-    var showRatingDialog by remember { mutableStateOf(false) }
-    var showDeleteAllDialog by remember { mutableStateOf(false) }
-    var showStatistics by remember { mutableStateOf(false) }
-    var showAboutDialog by remember { mutableStateOf(false) }
-    var askUndo by remember { mutableStateOf(false) }
-    var showMainMenu by remember { mutableStateOf(false) }
-    var showPaywall by remember { mutableStateOf(false) }
-    var showPrivacySettings by remember { mutableStateOf(false) }
-    var showThemePicker by remember { mutableStateOf(false) }
-    var onboardingDone by remember { mutableStateOf(prefs.getBoolean("onboarding_seen", false)) }
+    // Dialog-/Sheet-Flags überleben Rotation und Prozess-Tod (rememberSaveable).
+    // Onboarding-Status wird genau einmal aus den Prefs gelesen, nicht bei jeder Recomposition.
+    var onboardingDone by rememberSaveable { mutableStateOf(prefs.getBoolean("onboarding_seen", false)) }
+    var showHistory by rememberSaveable { mutableStateOf(false) }
+    var showInfoDialog by rememberSaveable { mutableStateOf(!onboardingDone) }
+    var showLegalDialog by rememberSaveable { mutableStateOf(false) }
+    var showRatingDialog by rememberSaveable { mutableStateOf(false) }
+    var showDeleteAllDialog by rememberSaveable { mutableStateOf(false) }
+    var showNewRoundDialog by rememberSaveable { mutableStateOf(false) }
+    var showStatistics by rememberSaveable { mutableStateOf(false) }
+    var showAboutDialog by rememberSaveable { mutableStateOf(false) }
+    var askUndo by rememberSaveable { mutableStateOf(false) }
+    var showMainMenu by rememberSaveable { mutableStateOf(false) }
+    var showPaywall by rememberSaveable { mutableStateOf(false) }
+    var showPrivacySettings by rememberSaveable { mutableStateOf(false) }
+    var showThemePicker by rememberSaveable { mutableStateOf(false) }
+    // Kurzlebige Hinweis-Banner (3 s, an rememberCoroutineScope gebunden): bewusst nur remember.
     var entryError by remember { mutableStateOf<String?>(null) }
     var scanMessage by remember { mutableStateOf<String?>(null) }
     var winMessage by remember { mutableStateOf<String?>(null) }
@@ -176,6 +161,24 @@ fun LottoAppScreen(
         val alreadyAsked = prefs.getBoolean("rating_asked", false)
         if (!alreadyAsked && launches >= 5) {
             showRatingDialog = true
+        }
+    }
+
+    /**
+     * Snackbar mit Undo, das nur die Aktion mit [token] rückgängig macht. Hat der
+     * User inzwischen etwas anderes gemacht (z.B. eine Zahl getippt), passiert nichts.
+     */
+    fun showUndoSnackbar(message: String, token: Long) {
+        val undoLbl = context.getString(R.string.undo)
+        scope.launch {
+            val result = snackbarHostState.showSnackbar(
+                message = message,
+                actionLabel = undoLbl,
+                duration = SnackbarDuration.Short
+            )
+            if (result == SnackbarResult.ActionPerformed) {
+                viewModel.undo(expectedToken = token)
+            }
         }
     }
 
@@ -299,35 +302,13 @@ fun LottoAppScreen(
                             confirmValueChange = { value ->
                                 when (value) {
                                     SwipeToDismissBoxValue.StartToEnd -> {
-                                        viewModel.clearMarksOnCard(originalIndex)
-                                        val msg = context.getString(R.string.marks_cleared_message)
-                                        val undoLbl = context.getString(R.string.undo)
-                                        scope.launch {
-                                            val result = snackbarHostState.showSnackbar(
-                                                message = msg,
-                                                actionLabel = undoLbl,
-                                                duration = SnackbarDuration.Short
-                                            )
-                                            if (result == SnackbarResult.ActionPerformed) {
-                                                viewModel.undo()
-                                            }
-                                        }
+                                        val token = viewModel.clearMarksOnCard(originalIndex)
+                                        showUndoSnackbar(context.getString(R.string.marks_cleared_message), token)
                                         false
                                     }
                                     SwipeToDismissBoxValue.EndToStart -> {
-                                        viewModel.deleteCard(originalIndex)
-                                        val msg = context.getString(R.string.card_deleted_message)
-                                        val undoLbl = context.getString(R.string.undo)
-                                        scope.launch {
-                                            val result = snackbarHostState.showSnackbar(
-                                                message = msg,
-                                                actionLabel = undoLbl,
-                                                duration = SnackbarDuration.Short
-                                            )
-                                            if (result == SnackbarResult.ActionPerformed) {
-                                                viewModel.undo()
-                                            }
-                                        }
+                                        val token = viewModel.deleteCard(originalIndex)
+                                        showUndoSnackbar(context.getString(R.string.card_deleted_message), token)
                                         false
                                     }
                                     else -> false
@@ -391,86 +372,21 @@ fun LottoAppScreen(
                     .padding(horizontal = 16.dp, vertical = 8.dp)
             )
 
-            AnimatedVisibility(
-                visible = entryError != null,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 4.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Surface(
-                        color = MaterialTheme.colorScheme.errorContainer,
-                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = entryError ?: "",
-                            modifier = Modifier.padding(12.dp),
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-            }
-
-            AnimatedVisibility(
-                visible = scanMessage != null,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 4.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Surface(
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = scanMessage ?: "",
-                            modifier = Modifier.padding(12.dp),
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-            }
-
-            AnimatedVisibility(
-                visible = winMessage != null,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 4.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Surface(
-                        color = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                        shape = RoundedCornerShape(8.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = winMessage ?: "",
-                            modifier = Modifier.padding(12.dp),
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-            }
+            MessageBanner(
+                message = entryError,
+                containerColor = MaterialTheme.colorScheme.errorContainer,
+                contentColor = MaterialTheme.colorScheme.onErrorContainer
+            )
+            MessageBanner(
+                message = scanMessage,
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            MessageBanner(
+                message = winMessage,
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+            )
         }
         if (konfettiTrigger > 0) {
             key(konfettiTrigger) {
@@ -489,12 +405,18 @@ fun LottoAppScreen(
         }
     }
 
+    val hasDrawnNumbers = history.isNotEmpty() || lastNumber != null
+
     if (showMainMenu) {
         MainMenuSheet(
             onDismiss = { showMainMenu = false },
-            onStartNewRound = { showMainMenu = false; viewModel.startNewRound() },
+            onStartNewRound = {
+                showMainMenu = false
+                // Ohne gezogene Zahlen gibt es nichts zu verlieren: direkt starten.
+                if (hasDrawnNumbers) showNewRoundDialog = true else viewModel.startNewRound()
+            },
             onDeleteAll = { showMainMenu = false; showDeleteAllDialog = true },
-            onShowHistory = { showMainMenu = false; if (history.isNotEmpty()) showHistory = true },
+            onShowHistory = { showMainMenu = false; if (hasDrawnNumbers) showHistory = true },
             onShowStatistics = { showMainMenu = false; showStatistics = true },
             onShowAbout = { showMainMenu = false; showAboutDialog = true },
             onShowPaywall = {
@@ -511,7 +433,7 @@ fun LottoAppScreen(
                 showThemePicker = true
             },
             isPremium = isPremium,
-            historyEnabled = history.isNotEmpty()
+            historyEnabled = hasDrawnNumbers
         )
     }
 
@@ -520,22 +442,23 @@ fun LottoAppScreen(
     }
 
     if (showDeleteAllDialog) {
-        AlertDialog(
-            onDismissRequest = { showDeleteAllDialog = false },
-            title = { Text(stringResource(R.string.reset_all_confirmation_title)) },
-            text = { Text(stringResource(R.string.reset_all_confirmation_message)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    viewModel.wipeAllCardsAndHistory()
-                    viewModel.setWinRows(1)
-                    showDeleteAllDialog = false
-                }) {
-                    Text(stringResource(R.string.reset_all_confirm_button))
-                }
+        DeleteAllConfirmationDialog(
+            onConfirm = {
+                viewModel.wipeAllCardsAndHistory()
+                viewModel.setWinRows(1)
+                showDeleteAllDialog = false
             },
-            dismissButton = {
-                TextButton(onClick = { showDeleteAllDialog = false }) { Text(stringResource(R.string.cancel)) }
-            }
+            onDismiss = { showDeleteAllDialog = false }
+        )
+    }
+
+    if (showNewRoundDialog) {
+        NewRoundConfirmationDialog(
+            onConfirm = {
+                showNewRoundDialog = false
+                viewModel.startNewRound()
+            },
+            onDismiss = { showNewRoundDialog = false }
         )
     }
 
@@ -555,7 +478,7 @@ fun LottoAppScreen(
     }
 
     if (showInfoDialog) {
-        if (!prefs.getBoolean("onboarding_seen", false)) {
+        if (!onboardingDone) {
             OnboardingSheet(onDismiss = {
                 showInfoDialog = false
                 onboardingDone = true
@@ -614,22 +537,19 @@ fun LottoAppScreen(
         )
     }
 
-    if (askUndo && canUndo) {
-        AlertDialog(
-            onDismissRequest = { askUndo = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    askUndo = false
-                    viewModel.undo()
-                }) { Text(stringResource(R.string.undo)) }
+    val currentUndoAction = undoAction
+    if (askUndo && canUndo && currentUndoAction != null) {
+        UndoConfirmationDialog(
+            actionLabel = currentUndoAction.label(),
+            onConfirm = {
+                askUndo = false
+                viewModel.undo()
             },
-            dismissButton = { TextButton(onClick = { askUndo = false }) { Text(stringResource(R.string.cancel)) } },
-            title = { Text(stringResource(R.string.undo_confirmation_title)) },
-            text = { Text(undoLabel) }
+            onDismiss = { askUndo = false }
         )
     }
 
-        if (showHistory) {
+    if (showHistory) {
         HistoryDialog(
             history = history,
             lastNumber = lastNumber,
@@ -650,623 +570,37 @@ fun LottoAppScreen(
 
 }
 
+/** Kurzlebiges Hinweis-Banner unter dem Zahlenfeld (Fehler, Scan-Hinweis, Gewinn). */
 @Composable
-private fun LockedHeatmapTeaser(onClick: () -> Unit, modifier: Modifier = Modifier) {
-    Surface(
-        shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.surfaceVariant,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)),
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-    ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Icon(
-                imageVector = Icons.Default.Lock,
-                contentDescription = null,
-                modifier = Modifier.size(32.dp),
-                tint = MaterialTheme.colorScheme.primary
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                text = stringResource(R.string.premium_locked_heatmap_title),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                text = stringResource(R.string.premium_locked_heatmap_body),
-                style = MaterialTheme.typography.bodySmall,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(Modifier.height(12.dp))
-            FilledTonalButton(onClick = onClick) {
-                Icon(
-                    imageVector = Icons.Default.WorkspacePremium,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp)
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(stringResource(R.string.premium_unlock_cta))
-            }
-        }
-    }
-}
-
-@Composable
-private fun CardSwipeBackground(direction: SwipeToDismissBoxValue) {
-    val color = when (direction) {
-        SwipeToDismissBoxValue.StartToEnd -> MaterialTheme.colorScheme.tertiaryContainer
-        SwipeToDismissBoxValue.EndToStart -> MaterialTheme.colorScheme.errorContainer
-        else -> Color.Transparent
-    }
-    val alignment = when (direction) {
-        SwipeToDismissBoxValue.StartToEnd -> Alignment.CenterStart
-        SwipeToDismissBoxValue.EndToStart -> Alignment.CenterEnd
-        else -> Alignment.Center
-    }
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .clip(MaterialTheme.shapes.medium)
-            .background(color)
-            .padding(horizontal = 24.dp),
-        contentAlignment = alignment
-    ) {
-        when (direction) {
-            SwipeToDismissBoxValue.StartToEnd -> Icon(
-                Icons.Default.CleaningServices,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onTertiaryContainer
-            )
-            SwipeToDismissBoxValue.EndToStart -> Icon(
-                Icons.Default.DeleteOutline,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onErrorContainer
-            )
-            else -> {}
-        }
-    }
-}
-
-@Composable
-private fun MainMenuSheet(
-    onDismiss: () -> Unit,
-    onStartNewRound: () -> Unit,
-    onDeleteAll: () -> Unit,
-    onShowHistory: () -> Unit,
-    onShowStatistics: () -> Unit,
-    onShowAbout: () -> Unit,
-    onShowPaywall: () -> Unit,
-    onShowPrivacySettings: () -> Unit,
-    onShowThemePicker: () -> Unit,
-    isPremium: Boolean,
-    historyEnabled: Boolean
+private fun MessageBanner(
+    message: String?,
+    containerColor: androidx.compose.ui.graphics.Color,
+    contentColor: androidx.compose.ui.graphics.Color
 ) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
-        Column(
+    AnimatedVisibility(
+        visible = message != null,
+        enter = fadeIn() + expandVertically(),
+        exit = fadeOut() + shrinkVertically()
+    ) {
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .navigationBarsPadding()
-                .padding(bottom = 24.dp)
+                .padding(horizontal = 16.dp, vertical = 4.dp),
+            contentAlignment = Alignment.Center
         ) {
-            ListItem(
-                headlineContent = { Text(stringResource(R.string.start_new_round)) },
-                leadingContent = { Icon(Icons.Default.Refresh, contentDescription = null) },
-                modifier = Modifier.clickable(onClick = onStartNewRound)
-            )
-            ListItem(
-                headlineContent = { Text(stringResource(R.string.delete_all_cards)) },
-                leadingContent = { Icon(Icons.Outlined.DeleteForever, contentDescription = null) },
-                modifier = Modifier.clickable(onClick = onDeleteAll)
-            )
-            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
-            ListItem(
-                headlineContent = { Text(stringResource(R.string.history)) },
-                leadingContent = { Icon(Icons.Default.History, contentDescription = null) },
-                modifier = Modifier
-                    .clickable(enabled = historyEnabled, onClick = onShowHistory)
-                    .then(if (!historyEnabled) Modifier.alpha(0.38f) else Modifier)
-            )
-            ListItem(
-                headlineContent = { Text(stringResource(R.string.statistics)) },
-                leadingContent = { Icon(Icons.Default.Analytics, contentDescription = null) },
-                modifier = Modifier.clickable(onClick = onShowStatistics)
-            )
-            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
-            if (!isPremium) {
-                ListItem(
-                    headlineContent = { Text(stringResource(R.string.premium_menu_label)) },
-                    leadingContent = {
-                        Icon(
-                            Icons.Default.WorkspacePremium,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    },
-                    modifier = Modifier.clickable(onClick = onShowPaywall)
-                )
-            }
-            ListItem(
-                headlineContent = { Text(stringResource(R.string.about_app)) },
-                leadingContent = { Icon(Icons.Outlined.Info, contentDescription = null) },
-                modifier = Modifier.clickable(onClick = onShowAbout)
-            )
-            ListItem(
-                headlineContent = { Text(stringResource(R.string.privacy_settings_label)) },
-                leadingContent = { Icon(Icons.Default.PrivacyTip, contentDescription = null) },
-                modifier = Modifier.clickable(onClick = onShowPrivacySettings)
-            )
-            if (isPremium) {
-                ListItem(
-                    headlineContent = { Text(stringResource(R.string.theme_menu_label)) },
-                    leadingContent = {
-                        Icon(
-                            Icons.Default.WorkspacePremium,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    },
-                    modifier = Modifier.clickable(onClick = onShowThemePicker)
-                )
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun HistoryDialog(
-    history: List<Int>,
-    lastNumber: Int?,
-    onDismiss: () -> Unit,
-    onRemoveNumber: (Int) -> Unit,
-    onClearHistory: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.close)) } },
-        title = { Text(stringResource(R.string.history_dialog_title)) },
-        text = {
-            Column {
-                if (history.isEmpty() && lastNumber == null) {
-                    Text(stringResource(R.string.no_numbers_entered_yet))
-                } else {
-                    if (history.isNotEmpty()) {
-                        FlowRow(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            history.forEach { n ->
-                                AssistChip(onClick = { onRemoveNumber(n) }, label = { Text(n.toString()) })
-                            }
-                        }
-                        Spacer(Modifier.height(12.dp))
-                    }
-                    lastNumber?.let { n ->
-                        Text(stringResource(R.string.last_number_label, n))
-                        Spacer(Modifier.height(12.dp))
-                    }
-                    TextButton(onClick = onClearHistory) {
-                        Text(stringResource(R.string.clear_history_button))
-                    }
-                }
-            }
-        }
-    )
-}
-
-
-private const val PRIVACY_POLICY_URL = "https://github.com/aegeriappstudio/lottomatchapp/wiki/Datenschutz-Lottomatch-App"
-private const val TERMS_URL = "https://github.com/aegeriappstudio/lottomatchapp/wiki/Nutzungsbedingungen-Lottomatch-App"
-private fun openUrl(context: Context, url: String) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    context.startActivity(intent)
-}
-
-private fun sendFeedbackEmail(context: Context) {
-    val feedbackEmail = context.getString(R.string.feedback_email_address)
-    val intent = Intent(Intent.ACTION_SENDTO).apply {
-        data = Uri.parse("mailto:")
-        putExtra(Intent.EXTRA_EMAIL, arrayOf(feedbackEmail))
-        putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.feedback_email_subject))
-    }
-    val chooser = Intent.createChooser(intent, context.getString(R.string.feedback_email_chooser))
-    context.startActivity(chooser)
-}
-
-@Composable
-private fun PrivacySettingsDialog(
-    consentStatus: ConsentStatus,
-    onConsentChange: (Boolean) -> Unit,
-    onDismiss: () -> Unit
-) {
-    val granted = consentStatus == ConsentStatus.Granted
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.privacy_settings_label)) },
-        text = {
-            Column {
+            Surface(
+                color = containerColor,
+                contentColor = contentColor,
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(
-                    text = stringResource(R.string.privacy_settings_body),
-                    style = MaterialTheme.typography.bodyMedium
+                    text = message ?: "",
+                    modifier = Modifier.padding(12.dp),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
                 )
-                Spacer(Modifier.height(16.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { onConsentChange(!granted) },
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(R.string.privacy_settings_toggle),
-                        modifier = Modifier.weight(1f),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                    Switch(checked = granted, onCheckedChange = onConsentChange)
-                }
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDismiss) {
-                Text(stringResource(R.string.close))
             }
         }
-    )
-}
-
-@Composable
-private fun LegalDialog(onDismiss: () -> Unit) {
-    val context = LocalContext.current
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {
-            TextButton(onClick = onDismiss) {
-                Text(stringResource(id = R.string.close))
-            }
-        },
-        title = { Text(stringResource(R.string.legal_info_title)) },
-        text = {
-            Column {
-                Text(stringResource(R.string.legal_info_body))
-                Spacer(Modifier.height(12.dp))
-                TextButton(onClick = { openUrl(context, PRIVACY_POLICY_URL); onDismiss() }) {
-                    Text(stringResource(R.string.privacy_policy))
-                }
-                TextButton(onClick = { openUrl(context, TERMS_URL); onDismiss() }) {
-                    Text(stringResource(R.string.terms_of_service))
-                }
-            }
-        }
-    )
-}
-
-@Composable
-private fun AboutDialog(
-    onDismiss: () -> Unit,
-    onShowInfo: () -> Unit,
-    onShowLegal: () -> Unit,
-    onSendFeedback: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {
-            TextButton(onClick = onDismiss) {
-                Text(stringResource(id = R.string.close))
-            }
-        },
-        title = { Text(stringResource(R.string.about_app)) },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(
-                    stringResource(R.string.legal_info_body),
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Spacer(Modifier.height(8.dp))
-                TextButton(onClick = onShowInfo) {
-                    Text(stringResource(R.string.info))
-                }
-                TextButton(onClick = onShowLegal) {
-                    Text(stringResource(R.string.legal))
-                }
-                TextButton(onClick = onSendFeedback) {
-                    Text(stringResource(R.string.feedback))
-                }
-            }
-        }
-    )
-}
-
-@Composable
-private fun RatingDialog(
-    onRateNow: () -> Unit,
-    onLater: () -> Unit,
-    onNever: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = onLater,
-        title = { Text(stringResource(R.string.rating_dialog_title)) },
-        text = { Text(stringResource(R.string.rating_dialog_body)) },
-        confirmButton = {
-            TextButton(onClick = onRateNow) {
-                Text(stringResource(R.string.rating_now))
-            }
-        },
-        dismissButton = {
-            Row {
-                TextButton(onClick = onLater) {
-                    Text(stringResource(R.string.rating_later))
-                }
-                TextButton(onClick = onNever) {
-                    Text(stringResource(R.string.rating_never))
-                }
-            }
-        }
-    )
-}
-
-@Composable
-private fun InfoDialog(onDismiss: () -> Unit) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {
-            TextButton(onClick = onDismiss) {
-                Text(stringResource(id = R.string.ok))
-            }
-        },
-        title = { Text(stringResource(R.string.info_dialog_title)) },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                InfoBullet(R.string.info_bullet_1)
-                InfoBullet(R.string.info_bullet_2)
-                InfoBullet(R.string.info_bullet_3)
-                InfoBullet(R.string.info_bullet_4)
-                InfoBullet(R.string.info_bullet_5)
-                InfoBullet(R.string.info_bullet_6)
-                InfoBullet(R.string.info_bullet_7)
-                InfoBullet(R.string.info_bullet_8)
-            }
-        }
-    )
-}
-
-@Composable
-private fun InfoBullet(@StringRes textRes: Int) {
-    Row {
-        Text(
-            text = "• ",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Text(
-            text = stringResource(textRes),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.weight(1f)
-        )
-    }
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun StatisticsSheet(
-    onDismiss: () -> Unit,
-    rounds: List<RoundStatistics>,
-    summaries: List<DailySummary>,
-    onDeleteAllStatistics: () -> Unit,
-    isPremium: Boolean,
-    onUpgradeClick: () -> Unit
-) {
-    val dateFormatter = remember { DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM) }
-    var showDeleteConfirm by remember { mutableStateOf(false) }
-
-    ModalBottomSheet(onDismissRequest = onDismiss) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .navigationBarsPadding()
-                .padding(bottom = 24.dp),
-            contentPadding = PaddingValues(24.dp)
-        ) {
-            // Header with title and delete button
-            item {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(R.string.statistics_title),
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                    TextButton(onClick = { showDeleteConfirm = true }) {
-                        Text(stringResource(R.string.statistics_delete_all_button))
-                    }
-                }
-                Spacer(Modifier.height(24.dp))
-            }
-
-            // Global overview
-            if (rounds.isNotEmpty()) {
-                item {
-                    val globalCounts = rounds
-                        .flatMap { it.drawnNumbers }
-                        .groupingBy { it }
-                        .eachCount()
-                    val top5 = globalCounts.entries
-                        .sortedByDescending { it.value }
-                        .take(5)
-                        .joinToString { "${it.key} (${it.value})" }
-
-                    Text(
-                        text = stringResource(R.string.statistics_global_top5, top5),
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                    Spacer(Modifier.height(16.dp))
-                    Text(
-                        text = stringResource(R.string.statistics_heatmap_title),
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                    Spacer(Modifier.height(8.dp))
-                    if (isPremium) {
-                        NumberFrequencyHeatmap(
-                            numberCounts = globalCounts,
-                            modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
-                        )
-                    } else {
-                        LockedHeatmapTeaser(
-                            onClick = onUpgradeClick,
-                            modifier = Modifier.padding(bottom = 20.dp)
-                        )
-                    }
-                    NumberFrequencyChart(
-                        numberCounts = globalCounts,
-                        title = stringResource(R.string.statistics_chart_title),
-                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-                    )
-                }
-            }
-
-            // Daily summaries
-            item {
-                Text(
-                    text = stringResource(R.string.statistics_daily_summaries_title),
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(Modifier.height(8.dp))
-            }
-
-            if (summaries.isEmpty()) {
-                item {
-                    Text(
-                        text = stringResource(R.string.statistics_no_daily_summaries),
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                    Spacer(Modifier.height(16.dp))
-                }
-            } else {
-                items(summaries.sortedByDescending { it.date }) { summary ->
-                    Column(modifier = Modifier.fillMaxWidth()) {
-                        val dateText = summary.date.format(dateFormatter)
-                        Text(
-                            text = stringResource(R.string.statistics_date_label, dateText),
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_most_frequent_numbers,
-                                summary.mostFrequentNumbers.joinToString()
-                            ),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_least_frequent_numbers,
-                                summary.leastFrequentNumbers.joinToString()
-                            ),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_missing_numbers,
-                                summary.missingNumbers.joinToString()
-                            ),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_rounds_and_draws,
-                                summary.totalRounds,
-                                summary.totalDraws
-                            ),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        Spacer(Modifier.height(12.dp))
-                    }
-                }
-            }
-
-            // Completed rounds
-            item {
-                Spacer(Modifier.height(16.dp))
-                Text(
-                    text = stringResource(R.string.statistics_completed_rounds_title),
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(Modifier.height(8.dp))
-            }
-
-            if (rounds.isEmpty()) {
-                item {
-                    Text(
-                        text = stringResource(R.string.statistics_no_completed_rounds),
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                    Spacer(Modifier.height(16.dp))
-                }
-            } else {
-                items(rounds.sortedByDescending { it.roundNumber }) { round ->
-                    Column(modifier = Modifier.fillMaxWidth()) {
-                        val dateText = round.date.format(dateFormatter)
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_round_header,
-                                round.roundNumber,
-                                dateText
-                            ),
-                            style = MaterialTheme.typography.titleSmall
-                        )
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_drawn_numbers_label,
-                                round.drawnNumbers.joinToString()
-                            ),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        Text(
-                            text = stringResource(
-                                R.string.statistics_round_winners_line,
-                                round.winnersCount,
-                                round.maxCompletedRows
-                            ),
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        round.cardStates.forEach { cardState ->
-                            Text(
-                                text = stringResource(R.string.history_card_summary_line, cardState.cardName, cardState.numbersToWin),
-                                style = MaterialTheme.typography.bodySmall
-                            )
-                        }
-                        Spacer(Modifier.height(16.dp))
-                    }
-                }
-            }
-        }
-    }
-
-    if (showDeleteConfirm) {
-        AlertDialog(
-            onDismissRequest = { showDeleteConfirm = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    showDeleteConfirm = false
-                    onDeleteAllStatistics()
-                }) {
-                    Text(stringResource(R.string.statistics_delete_all_confirm_button))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text(stringResource(R.string.cancel))
-                }
-            },
-            title = { Text(stringResource(R.string.statistics_delete_all_confirmation_title)) },
-            text = { Text(stringResource(R.string.statistics_delete_all_confirmation_message)) }
-        )
     }
 }

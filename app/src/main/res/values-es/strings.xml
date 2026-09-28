@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">¿Reiniciar todo?</string>
     <string name="reset_all_confirmation_message">¿Seguro que quieres eliminar todos los cartones, marcas e historial de números?</string>
     <string name="reset_all_confirm_button">Reiniciar todo</string>
+    <string name="new_round_confirmation_title">¿Empezar una nueva ronda?</string>
+    <string name="new_round_confirmation_message">Se borrarán las marcas y el historial de números; la ronda se guardará en las estadísticas.</string>
+    <string name="new_round_confirm_button">Empezar</string>
     <string name="cancel">Cancelar</string>
     <string name="undo_confirmation_title">¿Deshacer?</string>
     <string name="close">Cerrar</string>

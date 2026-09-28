@@ -15,6 +15,8 @@ data class PersistedState(
  * Kartennamen dürfen keine Trennzeichen des Formats (`|` `;` `:` `,` Zeilenumbruch)
  * enthalten, sonst bricht [decodeState] ab. Prozent-Escaping analog zu URL-Encoding;
  * bestehende Namen ohne `%` bleiben unverändert und decodieren wie bisher.
+ * Zusätzlich werden die Record-/Feld-Trennzeichen der Undo-Kette
+ * ([UndoChainCodec]) escaped, damit ein encodierter Zustand nie eines enthält.
  */
 internal fun escapeName(name: String): String = buildString(name.length) {
     for (ch in name) {
@@ -26,6 +28,8 @@ internal fun escapeName(name: String): String = buildString(name.length) {
             ',' -> append("%2C")
             '\n' -> append("%0A")
             '\r' -> append("%0D")
+            UndoChainCodec.RECORD_SEPARATOR -> append("%1E")
+            UndoChainCodec.FIELD_SEPARATOR -> append("%1F")
             else -> append(ch)
         }
     }

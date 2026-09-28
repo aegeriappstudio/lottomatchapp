@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">सब रीसेट करें?</string>
     <string name="reset_all_confirmation_message">क्या आप वाकई सभी कार्ड, चिह्न और नंबर-इतिहास मिटाना चाहते हैं?</string>
     <string name="reset_all_confirm_button">सब रीसेट</string>
+    <string name="new_round_confirmation_title">नया राउंड शुरू करें?</string>
+    <string name="new_round_confirmation_message">निशान और नंबर इतिहास मिट जाएंगे; राउंड आँकड़ों में सहेजा जाएगा।</string>
+    <string name="new_round_confirm_button">शुरू करें</string>
     <string name="cancel">रद्द</string>
     <string name="undo_confirmation_title">पूर्ववत् करें?</string>
     <string name="close">बंद करें</string>

@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">إعادة ضبط الكل؟</string>
     <string name="reset_all_confirmation_message">هل تريد فعلاً حذف كل البطاقات والعلامات وسجل الأرقام؟</string>
     <string name="reset_all_confirm_button">إعادة ضبط الكل</string>
+    <string name="new_round_confirmation_title">بدء جولة جديدة؟</string>
+    <string name="new_round_confirmation_message">سيتم مسح العلامات وسجل الأرقام؛ وستُحفظ الجولة في الإحصائيات.</string>
+    <string name="new_round_confirm_button">بدء</string>
     <string name="cancel">إلغاء</string>
     <string name="undo_confirmation_title">تراجع؟</string>
     <string name="close">إغلاق</string>

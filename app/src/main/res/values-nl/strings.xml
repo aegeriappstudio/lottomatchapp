@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">Alles resetten?</string>
     <string name="reset_all_confirmation_message">Wil je echt alle kaarten, markeringen en de nummergeschiedenis wissen?</string>
     <string name="reset_all_confirm_button">Alles resetten</string>
+    <string name="new_round_confirmation_title">Nieuwe ronde starten?</string>
+    <string name="new_round_confirmation_message">Markeringen en nummergeschiedenis worden gewist; de ronde wordt in de statistieken opgeslagen.</string>
+    <string name="new_round_confirm_button">Starten</string>
     <string name="cancel">Annuleren</string>
     <string name="undo_confirmation_title">Ongedaan maken?</string>
     <string name="close">Sluiten</string>

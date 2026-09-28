@@ -11,6 +11,8 @@ import ch.lottomatchapp.app.data.LottoDataRepository
 import ch.lottomatchapp.app.data.LottoUndoState
 import ch.lottomatchapp.app.data.PremiumRepository
 import ch.lottomatchapp.app.data.ThemeRepository
+import ch.lottomatchapp.app.data.UndoAction
+import ch.lottomatchapp.app.logic.GameReducer
 import ch.lottomatchapp.app.ui.theme.ThemeVariant
 import ch.lottomatchapp.app.stats.DailySummary
 import ch.lottomatchapp.app.stats.RoundStatistics
@@ -76,9 +78,21 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
     private val _lastNumber = MutableStateFlow<Int?>(null)
     val lastNumber = _lastNumber.asStateFlow()
 
-    private val _undoState = MutableStateFlow<LottoUndoState?>(null)
-    val canUndo = MutableStateFlow(false)
-    val undoLabel = MutableStateFlow("")
+    /**
+     * Aktion, die per [undo] rückgängig gemacht würde; `null` wenn nichts
+     * rückgängig zu machen ist. Die Lokalisierung passiert in der UI.
+     */
+    private val _undoAction = MutableStateFlow<UndoAction?>(null)
+    val undoAction: StateFlow<UndoAction?> = _undoAction.asStateFlow()
+    val canUndo: StateFlow<Boolean> = _undoAction
+        .map { it != null }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
+    /**
+     * Laufende Token-Nummer für Undo-Zustände. Nach einem Neustart wird sie aus
+     * der wiederhergestellten Kette fortgesetzt, damit Tokens nie doppelt vergeben werden.
+     */
+    private var tokenCounter: Long = maxToken(repository.appData.value.undoState)
 
     val allRounds: StateFlow<List<RoundStatistics>> = repository.roundsFlow
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
@@ -96,108 +110,76 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
                 _winRows.value = data.winRows
                 _history.value = data.history
                 _lastNumber.value = data.lastNumber
-                _undoState.value = data.undoState
-                canUndo.value = data.undoState != null
-                undoLabel.value = data.undoState?.description ?: ""
+                // Wurzelzustand (undoState == null) hat nichts mehr rückgängig zu machen
+                _undoAction.value = data.undoState?.takeIf { it.undoState != null }?.action
             }
         }
     }
 
-    private fun updateState(description: String, transform: (LottoUndoState) -> LottoUndoState) {
-        val baseState = LottoUndoState(
-            description = undoLabel.value,
-            cards = _cards.value,
-            winRows = _winRows.value,
-            history = _history.value,
-            lastNumber = _lastNumber.value,
-            undoState = _undoState.value
+    /**
+     * Oberster Zustand der Undo-Kette bzw. ein Wurzelzustand aus den aktuellen
+     * Daten, falls noch keine Kette existiert. Liest direkt aus dem Repository,
+     * damit mehrere Aktionen im selben Frame nicht auf veralteten Flows arbeiten.
+     */
+    private fun currentState(): LottoUndoState {
+        val data = repository.appData.value
+        return data.undoState ?: LottoUndoState(
+            action = null,
+            token = 0L,
+            savedRoundId = null,
+            cards = data.cards,
+            winRows = data.winRows,
+            history = data.history,
+            lastNumber = data.lastNumber,
+            undoState = null
         )
-        // Transform anwenden und neue Undo-Kette aufbauen:
-        // neuer Zustand zeigt auf den vorherigen Zustand.
-        val transformed = transform(baseState)
-        val trimmedBase = trimUndoChain(baseState, MAX_UNDO_DEPTH - 1)
-        val newState = transformed.copy(
-            description = description,
-            undoState = trimmedBase
-        )
-        undoLabel.value = description
-        canUndo.value = true
-        repository.saveUndoState(newState)
+    }
+
+    private fun nextToken(): Long = ++tokenCounter
+
+    /** Persistiert den neuen Zustand und liefert dessen Token (für gezieltes Undo). */
+    private fun commit(state: LottoUndoState): Long {
+        repository.saveUndoState(state)
+        return state.token
     }
 
     fun addCard(): AddCardResult {
         if (_cards.value.size >= maxCards.value) return AddCardResult.LimitReached
         val newIndex = _cards.value.size + 1
         val defaultName = getApplication<Application>().getString(R.string.card_title, newIndex)
-        updateState("New card added") {
-            it.copy(cards = _cards.value + LottoCard(name = defaultName))
-        }
+        commit(GameReducer.addCard(currentState(), LottoCard(name = defaultName), nextToken()))
         Analytics.cardAdded(newIndex)
         return AddCardResult.Added
     }
 
-    fun deleteCard(index: Int) {
-        updateState("Card ${index + 1} deleted") {
-            it.copy(cards = _cards.value.filterIndexed { i, _ -> i != index })
-        }
-    }
+    /** @return Token des neuen Zustands, für [undo] mit Token aus der Snackbar. */
+    fun deleteCard(index: Int): Long =
+        commit(GameReducer.deleteCard(currentState(), index, nextToken()))
 
     fun updateCardFromEdit(index: Int, updatedCard: LottoCard) {
-        updateState("Cell on card ${index + 1} changed") {
-            it.copy(
-                cards = _cards.value.mapIndexed { i, card ->
-                    if (i == index) updatedCard else card
-                }
-            )
-        }
+        commit(GameReducer.replaceCard(currentState(), index, updatedCard, nextToken()))
     }
 
     fun updateCardName(index: Int, newName: String) {
-        updateState("Card name changed") {
-            it.copy(
-                cards = _cards.value.mapIndexed { i, card ->
-                    if (i == index) card.copy(name = newName) else card
-                }
-            )
-        }
+        commit(GameReducer.renameCard(currentState(), index, newName, nextToken()))
     }
 
     fun markNumberAcrossAll(number: Int): Boolean {
-        if (number !in 1..90 || _history.value.contains(number) || _lastNumber.value == number) {
-            return false
-        }
-        updateState("Number $number marked") {
-            it.copy(
-                cards = _cards.value.map { card -> card.markNumber(number) },
-                history = _lastNumber.value?.let { n -> _history.value + n } ?: _history.value,
-                lastNumber = number
-            )
-        }
+        val next = GameReducer.markNumber(currentState(), number, nextToken()) ?: return false
+        commit(next)
         return true
     }
 
     fun setWinRows(rows: Int) {
-        updateState("Win rows changed") { it.copy(winRows = rows) }
+        commit(GameReducer.setWinRows(currentState(), rows, nextToken()))
     }
 
-    fun clearMarksOnCard(index: Int) {
-        updateState("Marks on card ${index + 1} cleared") {
-            it.copy(
-                cards = _cards.value.mapIndexed { i, card ->
-                    if (i == index) card.cleared() else card
-                }
-            )
-        }
-    }
+    /** @return Token des neuen Zustands, für [undo] mit Token aus der Snackbar. */
+    fun clearMarksOnCard(index: Int): Long =
+        commit(GameReducer.clearMarksOnCard(currentState(), index, nextToken()))
 
     fun applyScanToCard(index: Int, scannedCard: LottoCard) {
-        updateState("Scan applied to card ${index + 1}") {
-            it.copy(
-                cards = _cards.value.mapIndexed { i, c ->
-                    if (i == index) c.copy(cells = scannedCard.cells) else c
-                }
-            )
-        }
+        commit(GameReducer.applyScanToCard(currentState(), index, scannedCard, nextToken()))
         Analytics.cardScanned()
     }
 
@@ -206,6 +188,7 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
             val roundNumber = allRounds.value.size + 1
             val drawnNumbers = _history.value + listOfNotNull(_lastNumber.value)
 
+            var savedRoundId: Long? = null
             if (drawnNumbers.isNotEmpty()) {
                 val cardStates = _cards.value.map { it.toCardState() }
                 val winnersCount = _cards.value.count { it.completedRows().isNotEmpty() }
@@ -219,53 +202,26 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
                     winnersCount = winnersCount,
                     maxCompletedRows = maxCompletedRows
                 )
-                repository.saveRound(round)
+                savedRoundId = repository.saveRound(round)
                 Analytics.roundCompleted(drawnNumbers.size, winnersCount)
             }
 
-            updateState("New round started") {
-                it.copy(
-                    cards = _cards.value.map { card -> card.cleared() },
-                    history = emptyList(),
-                    lastNumber = null,
-                    winRows = 1
-                )
-            }
+            // Die Room-ID wandert in den Undo-Zustand, damit ein Undo die
+            // Statistik-Zeile wieder entfernt (sonst würde sie doppelt gezählt).
+            commit(GameReducer.newRound(currentState(), nextToken(), savedRoundId))
         }
     }
 
-
     fun wipeAllCardsAndHistory() {
-        updateState("All cards cleared") {
-            it.copy(
-                cards = emptyList(),
-                history = emptyList(),
-                lastNumber = null
-            )
-        }
+        commit(GameReducer.wipeAll(currentState(), nextToken()))
     }
 
     fun clearHistory(alsoUnmarkOnCards: Boolean = true) {
-        updateState("History cleared") {
-            val updatedCards = if (alsoUnmarkOnCards) {
-                val numbersToUnmark = _history.value + listOfNotNull(_lastNumber.value)
-                _cards.value.map { card -> card.unmarkNumbers(numbersToUnmark) }
-            } else _cards.value
-            it.copy(cards = updatedCards, history = emptyList(), lastNumber = null)
-        }
+        commit(GameReducer.clearHistory(currentState(), alsoUnmarkOnCards, nextToken()))
     }
 
     fun removeNumberFromHistory(number: Int, alsoUnmarkOnCards: Boolean = true) {
-        updateState("Number $number removed from history") {
-            val updatedCards = if (alsoUnmarkOnCards) {
-                _cards.value.map { card -> card.unmarkNumber(number) }
-            } else _cards.value
-
-            it.copy(
-                cards = updatedCards,
-                history = _history.value.filter { historyNumber -> historyNumber != number }
-            )
-        }
+        commit(GameReducer.removeNumberFromHistory(currentState(), number, alsoUnmarkOnCards, nextToken()))
     }
 
     fun clearStatistics() {
@@ -274,20 +230,47 @@ class LottoViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /** Macht die oberste Aktion rückgängig (falls vorhanden). */
     fun undo() {
-        _undoState.value?.let {
-            repository.restoreFromUndo(it)
+        val top = repository.appData.value.undoState ?: return
+        val previous = GameReducer.undo(top) ?: return
+        performUndo(top, previous)
+    }
+
+    /**
+     * Macht die oberste Aktion nur rückgängig, wenn sie noch das Token
+     * [expectedToken] trägt — also seither nichts anderes passiert ist.
+     * @return true wenn ein Undo ausgeführt wurde.
+     */
+    fun undo(expectedToken: Long): Boolean {
+        val top = repository.appData.value.undoState ?: return false
+        val previous = GameReducer.undo(top, expectedToken) ?: return false
+        performUndo(top, previous)
+        return true
+    }
+
+    private fun performUndo(top: LottoUndoState, previous: LottoUndoState) {
+        if (top.action == UndoAction.NewRound) {
+            top.savedRoundId?.let { id ->
+                viewModelScope.launch { repository.deleteRound(id) }
+            }
         }
+        repository.restoreFromUndo(previous)
     }
 
     companion object {
         const val FREE_MAX_CARDS = 3
         const val PREMIUM_MAX_CARDS = 30
-        const val MAX_UNDO_DEPTH = 30
+        const val MAX_UNDO_DEPTH = GameReducer.MAX_UNDO_DEPTH
 
-        fun trimUndoChain(state: LottoUndoState?, depth: Int): LottoUndoState? {
-            if (state == null || depth <= 0) return null
-            return state.copy(undoState = trimUndoChain(state.undoState, depth - 1))
+        private fun maxToken(state: LottoUndoState?): Long {
+            var max = 0L
+            var cur = state
+            while (cur != null) {
+                if (cur.token > max) max = cur.token
+                cur = cur.undoState
+            }
+            return max
         }
     }
 }

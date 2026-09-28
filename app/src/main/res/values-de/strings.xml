@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">Alles zurücksetzen?</string>
     <string name="reset_all_confirmation_message">Möchtest du wirklich alle Karten, Markierungen und den Zahlenverlauf unwiderruflich löschen?</string>
     <string name="reset_all_confirm_button">Alles zurücksetzen</string>
+    <string name="new_round_confirmation_title">Neue Runde starten?</string>
+    <string name="new_round_confirmation_message">Markierungen und Zahlenverlauf werden gelöscht; die Runde wird in der Statistik gespeichert.</string>
+    <string name="new_round_confirm_button">Starten</string>
     <string name="cancel">Abbrechen</string>
     <string name="undo_confirmation_title">Rückgängig machen?</string>
     <string name="close">Schliessen</string>

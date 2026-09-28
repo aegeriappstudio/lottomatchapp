@@ -16,6 +16,9 @@
     <string name="reset_all_confirmation_title">Zresetować wszystko?</string>
     <string name="reset_all_confirmation_message">Czy na pewno chcesz usunąć wszystkie kartki, oznaczenia i historię liczb?</string>
     <string name="reset_all_confirm_button">Zresetuj wszystko</string>
+    <string name="new_round_confirmation_title">Rozpocząć nową rundę?</string>
+    <string name="new_round_confirmation_message">Zaznaczenia i historia liczb zostaną usunięte; runda zostanie zapisana w statystykach.</string>
+    <string name="new_round_confirm_button">Rozpocznij</string>
     <string name="cancel">Anuluj</string>
     <string name="undo_confirmation_title">Cofnąć?</string>
     <string name="close">Zamknij</string>

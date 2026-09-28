@@ -56,7 +56,8 @@ class StatisticsRepository(context: Context) {
         }
     }
 
-    suspend fun saveRound(round: RoundStatistics) {
+    /** Speichert die Runde und liefert die Room-ID (für [deleteRound] beim Undo). */
+    suspend fun saveRound(round: RoundStatistics): Long {
         val entity = RoundEntity(
             roundNumber = round.roundNumber,
             date = round.date,
@@ -65,9 +66,25 @@ class StatisticsRepository(context: Context) {
             maxCompletedRows = round.maxCompletedRows,
             cardStatesJson = GsonBuilder().create().toJson(round.cardStates)
         )
-        roundDao.insert(entity)
+        val id = roundDao.insert(entity)
         val allRounds = mapEntitiesToRounds(roundDao.getAllOnce())
         updateDailySummary(round.date, allRounds)
+        return id
+    }
+
+    /**
+     * Entfernt eine per [saveRound] gespeicherte Runde wieder (Undo von "Neue Runde")
+     * und berechnet die Tageszusammenfassung des betroffenen Datums neu.
+     */
+    suspend fun deleteRound(id: Long) {
+        val entity = roundDao.getById(id) ?: return
+        roundDao.deleteById(id)
+        val allRounds = mapEntitiesToRounds(roundDao.getAllOnce())
+        if (allRounds.none { it.date == entity.date }) {
+            summaryDao.deleteByDate(entity.date)
+        } else {
+            updateDailySummary(entity.date, allRounds)
+        }
     }
 
     suspend fun clearAll() {
